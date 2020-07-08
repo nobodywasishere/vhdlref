@@ -1,0 +1,155 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+<!-- base href="http://www.vdlande.com/VHDL/sig_dec.html" --><title>VHDL Reference Guide - Signal Declaration</title></head><body bgcolor="mintcream"><div style="border: 1px solid rgb(153, 153, 153); margin: -1px -1px 0pt; padding: 0pt; background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"><div style="border: 1px solid rgb(153, 153, 153); margin: 12px; padding: 8px; background: rgb(221, 221, 221) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; font-family: arial,sans-serif; font-style: normal; font-variant: normal; font-size: 13px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; color: rgb(0, 0, 0); font-weight: normal; text-align: left;">This is Google's cache of <a href="http://www.vdlande.com/VHDL/sig_dec.html" style="text-decoration: underline; color: rgb(0, 0, 204);">http://www.vdlande.com/VHDL/sig_dec.html</a>. It is a snapshot of the page as it appeared on Oct 15, 2009 21:46:38 GMT. The <a href="http://www.vdlande.com/VHDL/sig_dec.html" style="text-decoration: underline; color: rgb(0, 0, 204);">current page</a> could have changed in the meantime. <a href="http://www.google.com/intl/en/help/features_list.html#cached" style="text-decoration: underline; color: rgb(0, 0, 204);">Learn more</a><br><br><div style="float: right;"><a href="http://74.125.155.132/search?q=cache:Lln2fpfu5zsJ:www.vdlande.com/VHDL/sig_dec.html+site:www.vdlande.com+VHDL+reference+guide+vdlande&amp;hl=en&amp;client=firefox-a&amp;gl=us&amp;strip=1" style="text-decoration: underline; color: rgb(0, 0, 204);">Text-only version</a></div>
+<div>These search terms are highlighted: <span style="background: rgb(255, 255, 102) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; color: black; font-weight: bold;">vhdl</span>&nbsp;These terms only appear in links pointing to this page: <span style="font-weight: bold;">reference</span>&nbsp;<span style="font-weight: bold;">guide</span>&nbsp;<span style="font-weight: bold;">vdlande</span>&nbsp;&nbsp;</div></div></div><div style="position: relative;">
+
+
+
+
+
+<div align="center">
+<table border="0" cellpadding="5">
+<caption><b>Signal Declaration</b></caption>
+<tbody><tr><td colspan="3"><hr></td></tr>
+<tr>
+<td bgcolor="lightcyan">Declaration</td>
+<td>---- used in ----&gt;</td>
+<td bgcolor="lightgreen">Architecture</td>
+</tr>
+</tbody></table>
+
+<p><table border="0">
+<tbody><tr><td><hr width="150"></td><td>Syntax</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="40%">
+<tbody><tr>
+<td><pre>signal signal_name : type;</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="40%">
+<tbody><tr>
+<td><pre>signal signal_name : type := initial_value;</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="center">
+See LRM section 4.3.1.2
+
+<p><table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Rules and Examples</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+<div align="left">
+<table border="1" cellpadding="5" width="80%">
+<tbody><tr>
+<td><pre>signal SUM, CARRY1, CARRY2 : bit;
+signal COUNT : integer range 0 to 15;
+signal CLK, RESET : std_ulogic := '0';
+signal ALARM_TIME : T_CLOCK_TIME := (1,2,0,0);
+signal CONDITION : boolean := false;
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="60%">
+<tbody><tr>
+<td>During elaboration, eacg signal is set to an initial value. If a
+signal is not given an explicit initial value, it will default to the
+leftmost value (<b>'left</b>) of its declared type:
+<pre>signal I : integer range 0 to 3;
+-- I will initialise to 0
+signal X : std_logic;
+-- X will initialise to 'U'</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="left">
+<table border="1" cellpadding="5" width="70%">
+<tbody><tr>
+<td>A signal which is driven by more than one process,
+concurrentstatement or component instance, must be declared with a
+<b>resolved type</b>, e.g.std_logic or std_logic_vector:
+<pre>architecture COND of TRI_STATE is
+  signal TRI_BIT: std_logic;
+begin
+  TRI_BIT &lt;= BIT_1 when EN_1 = '1'
+        else 'Z';
+  TRI_BIT &lt;= BIT_2 when EN_2 = '1'
+        else 'Z';
+end COND;</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="left">
+<table border="1" cellpadding="5" width="40%">
+<tbody><tr>
+<td>Signals may not be declared in a processor subprogram (except as
+formal parameters).</td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="right">
+<table border="1" cellpadding="5" width="40%">
+<tbody><tr>
+<td>Ports declared in an entity are accessible as signals within the
+associated architecture(s) and do not need to be redeclared.</td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="60%">
+<tbody><tr>
+<td>A signal of a <b>resolved type</b> may be declared as a <b>guarded
+resolved</b> signal. This is required if all drivers to a signal may be
+turned off, through guarded assignments.
+<p>
+signal signal_name : resolved_type signal_kind;
+</p><p>
+The "signal kind" keyword may be <b>register</b> or <b>bus</b>. Guarded
+resolved signals of kind <b>register</b> retain their current value when
+drive is turned off, whereas signals of kind <b>bus</b> rely on the
+resolution function to provide a "no-drive" value.</p></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+
+
+<div align="center">
+<p><table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Synthesis Issues</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+Signals are supported for synthesis, providing they are of a type
+acceptable to the logic synthesis tool.
+<p>
+The signal kinds <b>register</b> of <b>bus</b> are usually ignored.
+</p><p>
+Only certain resolved signal types are supported. Most tools recognise
+the <b>std_logic_1164</b> types.
+
+</p><div align="center">
+<p><table border="0">
+<tbody><tr><td><hr width="150"></td><td>Whats New in '93</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+
+Signal Declarations have not changed in <b style="color: black; background-color: rgb(255, 255, 102);">VHDL</b>-93.
+
+</p></div>
+
+<hr width="80%">
+</div></body></html>

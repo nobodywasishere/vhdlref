@@ -1,0 +1,166 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+<!-- base href="http://www.vdlande.com/VHDL/process.html" --><title>VHDL Reference Guide - Process</title></head><body bgcolor="mintcream"><div style="border: 1px solid rgb(153, 153, 153); margin: -1px -1px 0pt; padding: 0pt; background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"><div style="border: 1px solid rgb(153, 153, 153); margin: 12px; padding: 8px; background: rgb(221, 221, 221) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; font-family: arial,sans-serif; font-style: normal; font-variant: normal; font-size: 13px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; color: rgb(0, 0, 0); font-weight: normal; text-align: left;">This is Google's cache of <a href="http://www.vdlande.com/VHDL/process.html" style="text-decoration: underline; color: rgb(0, 0, 204);">http://www.vdlande.com/VHDL/process.html</a>. It is a snapshot of the page as it appeared on Aug 5, 2009 01:41:13 GMT. The <a href="http://www.vdlande.com/VHDL/process.html" style="text-decoration: underline; color: rgb(0, 0, 204);">current page</a> could have changed in the meantime. <a href="http://www.google.com/intl/en/help/features_list.html#cached" style="text-decoration: underline; color: rgb(0, 0, 204);">Learn more</a><br><br><div style="float: right;"><a href="http://74.125.155.132/search?q=cache:53NwptPzJi8J:www.vdlande.com/VHDL/process.html+site:www.vdlande.com+VHDL+reference+guide+vdlande&amp;hl=en&amp;client=firefox-a&amp;gl=us&amp;strip=1" style="text-decoration: underline; color: rgb(0, 0, 204);">Text-only version</a></div>
+<div>These search terms are highlighted: <span style="background: rgb(255, 255, 102) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; color: black; font-weight: bold;">vhdl</span>&nbsp;These terms only appear in links pointing to this page: <span style="font-weight: bold;">reference</span>&nbsp;<span style="font-weight: bold;">guide</span>&nbsp;<span style="font-weight: bold;">vdlande</span>&nbsp;&nbsp;</div></div></div><div style="position: relative;">
+
+
+
+
+
+<div align="center">
+<table border="0" cellpadding="5">
+<caption><b>Process</b></caption>
+<tbody><tr><td colspan="3"><hr></td></tr>
+<tr>
+<td bgcolor="lightcyan">Concurrent Statement</td>
+<td>---- used in ----&gt;</td>
+<td bgcolor="lightgreen">Architecture</td>
+</tr>
+</tbody></table>
+
+<p><table border="0">
+<tbody><tr><td><hr width="150"></td><td>Syntax</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="40%">
+<tbody><tr>
+<td><pre>optional_label: <b>process</b> (optional sensitivity list)
+	declarations
+<b>begin</b>
+	sequential statements
+<b>end process</b> optional_label;
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+
+
+<div align="center">
+See LRM section 9.2
+
+<p><table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Rules and Examples</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+<div align="left">
+<table border="1" cellpadding="5" width="60%">
+<tbody><tr>
+<td>The <b>sensitivity list</b> is a list of signals. A change in value
+on one or more of these signals, causes the process to be activated:
+<pre>process (ALARM_TIME, CURRENT_TIME)
+begin
+  if (ALARM_TIME = CURRENT_TIME) then
+    SOUND_ALARM &lt;= '1';
+  else
+    SOUND_ALARM &lt;= '0';
+  end if;
+end process;</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="60%">
+<tbody><tr>
+<td>Alternatively, process activation and suspension may be controlled
+via the <a href="http://www.vdlande.com/VHDL/waits.htm">wait</a> statement:
+<pre>process
+begin
+  if (ALARM_TIME = CURRENT_TIME) then
+    SOUND_ALARM &lt;= '1';
+  else
+    SOUND_ALARM &lt;= '0';
+  end if;
+  wait on ALARM_TIME, CURRENT_TIME;
+end process;</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="right">
+<table border="1" cellpadding="5" width="50%">
+<tbody><tr>
+<td>A process cannot have both a sensitivity list and wait statements</td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="30%">
+<tbody><tr>
+<td>A process may contain any sequential statement.</td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+
+
+<div align="center">
+<p><table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Synthesis Issues</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+Processes are synthesisable, provided they match certain typical forms,
+some of which are shown below:
+<div align="center">
+<table border="1" cellpadding="5" width="60%">
+<tbody><tr>
+<td>A "clocked process" with either a wait statement or sensitivity
+list. For such a process, registers are inferred on <b>all</b> signals
+which have assignments to them:
+<pre>WAIT_PROC: process
+begin
+  wait until CLK'event and CLK='1';
+  Q1 &lt;= D1;
+end process;
+
+SENSE_PROC: process (CLK)
+begin
+  if CLK'event and CLK='1' then
+    Q2 &lt;= D2;
+  end if;
+end process;</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="right">
+<table border="1" cellpadding="5" width="50%">
+<tbody><tr>
+<td>A "combinational process" must have a sensitivity list containing
+all the signals which it reads (inputs), and must <b>always</b> update
+the signals which it assigns (outputs):
+<pre>process (A, B, SEL)
+begin
+  Z &lt;= B;
+  if SEL='1' then
+    Z &lt;= A;
+  end if;
+end process;</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="center">
+<p><table border="0">
+<tbody><tr><td><hr width="150"></td><td>Whats New in '93</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+
+In <b style="color: black; background-color: rgb(255, 255, 102);">VHDL</b>-93, the keyword <b>process</b> (or the sensitivity list, if
+there is one) may be folllowed by the keyword <b>is</b> for clarity and
+consistancy.
+</p><p>
+In <b style="color: black; background-color: rgb(255, 255, 102);">VHDL</b>-93, a <b>postponed process</b> may be defined. Such a process
+runs when all normal processes have completed at a particular point in
+simulated time. Postponed processes cannot schedule any further
+zero-delay events. Their main use is to perform timing or functional
+checks, based on the "steady-state" values of signals.
+
+</p></div>
+
+<hr width="80%">
+</div></body></html>

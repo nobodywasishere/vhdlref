@@ -1,0 +1,150 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+<!-- base href="http://www.vdlande.com/VHDL/conc_s_a.html" --><title>VHDL Reference Guide</title></head><body bgcolor="mintcream"><div style="border: 1px solid rgb(153, 153, 153); margin: -1px -1px 0pt; padding: 0pt; background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"><div style="border: 1px solid rgb(153, 153, 153); margin: 12px; padding: 8px; background: rgb(221, 221, 221) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; font-family: arial,sans-serif; font-style: normal; font-variant: normal; font-size: 13px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; color: rgb(0, 0, 0); font-weight: normal; text-align: left;">This is Google's cache of <a href="http://www.vdlande.com/VHDL/conc_s_a.html" style="text-decoration: underline; color: rgb(0, 0, 204);">http://www.vdlande.com/VHDL/conc_s_a.html</a>. It is a snapshot of the page as it appeared on Sep 26, 2009 15:12:31 GMT. The <a href="http://www.vdlande.com/VHDL/conc_s_a.html" style="text-decoration: underline; color: rgb(0, 0, 204);">current page</a> could have changed in the meantime. <a href="http://www.google.com/intl/en/help/features_list.html#cached" style="text-decoration: underline; color: rgb(0, 0, 204);">Learn more</a><br><br><div style="float: right;"><a href="http://74.125.155.132/search?q=cache:KHXeQYJU3wQJ:www.vdlande.com/VHDL/conc_s_a.html+site:www.vdlande.com+VHDL+reference+guide+vdlande&amp;hl=en&amp;client=firefox-a&amp;gl=us&amp;strip=1" style="text-decoration: underline; color: rgb(0, 0, 204);">Text-only version</a></div>
+<div>These search terms are highlighted: <span style="background: rgb(255, 255, 102) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; color: black; font-weight: bold;">vhdl</span>&nbsp;These terms only appear in links pointing to this page: <span style="font-weight: bold;">reference</span>&nbsp;<span style="font-weight: bold;">guide</span>&nbsp;<span style="font-weight: bold;">vdlande</span>&nbsp;&nbsp;</div></div></div><div style="position: relative;">
+
+
+
+
+
+<center>
+<table border="0" cellpadding="5">
+<caption><b>Concurrent Signal Assignment</b></caption>
+<tbody><tr>
+<td bgcolor="lightcyan">Concurrent Statement</td>
+<td>----used in ----&gt;</td>
+<td bgcolor="lightgreen">Architecture</td>
+</tr>
+</tbody></table>
+</center>
+
+<center>
+<table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Syntax</td><td><hr width="150"></td></tr>
+</tbody></table>
+</center>
+
+<center>
+<table border="1" cellpadding="5">
+<tbody><tr><td>signal_name &lt;= expression</td></tr>
+</tbody></table>
+</center>
+<p>
+
+</p><center>
+<table border="1" cellpadding="5">
+<tbody><tr><td>signal_name &lt;= expression <b>after</b> delay;</td></tr>
+</tbody></table>
+<p>See LRM section 9.5
+</p></center>
+
+<center>
+<table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Rules and Examples</td><td><hr width="150"></td></tr>
+</tbody></table>
+</center>
+
+<div align="left">
+<table border="1" cellpadding="5" width="70%">
+<tbody><tr><td>
+A concurrent signal assignment assigns a new value to the target signal whenever any
+of the signals on the right hand side change:<pre>architecture CONC of HA is
+begin
+	SUM   &lt;= A xor B;
+	CARRY &lt;= A and B;
+end CONC;</pre>
+</td></tr>
+</tbody></table>
+</div>
+
+<div align="right">
+<table border="1" cellpadding="5" width="70%">
+<tbody><tr><td>
+Concurrent assignments have an "equivalent process". This is the equivalent process
+for the concurrent statements above.<pre>architecture SEQ of HA is
+begin
+	process (A, B)
+	begin
+		SUM   &lt;= A xor B;
+		CARRY &lt;= A and B;
+	end process;
+end SEQ;</pre>
+</td></tr>
+</tbody></table><p>
+</p></div>
+
+<div align="left">
+<table border="1" cellpadding="5" width="80%">
+<tbody><tr><td>
+A signal assignment may have a delay specified:<p>
+</p><pre>architecture DELAYS of X is
+	constant PERIOD : time := 10 ns;
+begin
+	SUM   &lt;= A xor B after 5 ns;
+	CARRY &lt;= A and B after 3 ns;
+	CLK   &lt;= not CLK after PERIOD/2;
+end DELAYS;</pre>
+</td></tr></tbody></table><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="100%">
+<tbody><tr><td>
+The default delay model is <b>inertial</b>. This means that "pulses" shorter than the delay time
+are not propagated. The alternative is <b>transport</b> delay, which propagates all transitions:<p>
+</p><pre>architecture TRANS of BUFF is
+	constant DELAY : time := 10 ns;
+begin
+	O_PIN   &lt;= transport I_PIN after DELAY;
+end TRANS;</pre>
+</td></tr></tbody></table><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="100%">
+<tbody><tr><td>
+Multiple concurrent assignments to the same signal imply multiple drivers. A signal which is the target
+of multiple concurrent signal assignments must be of a resolved type, e.g. std_logic, std_logic_vector.
+</td></tr></tbody></table><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5">
+<tbody><tr><td>
+For <b>guarded assignments</b>, see <b>blocks</b>
+</td></tr></tbody></table>
+</div>
+
+<center>
+<table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Synthesis Issues</td><td><hr width="150"></td></tr>
+</tbody></table><p>
+Concurrent signal assignments are generally synthesisable,
+providing they use types and operators acceptable to the synthesis tool.</p><p>
+A signal assigned with a concurrent statemant will be inferred as combinational logic.</p><p>
+Guarded assignments are not usually supported, and delays are ignored.</p><p>
+</p></center>
+
+<center>
+<table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Whats New in '93</td><td><hr width="150"></td></tr>
+</tbody></table><p>
+In <b style="color: black; background-color: rgb(255, 255, 102);">VHDL</b>-93, any signal assignment statement may have an optional label:</p><p>
+</p></center>label: signal_name &lt;= expression;<p></p><center>
+A delayed signal assignment with inertial delay may be explicitly preceded by
+the keyword <b>inertial</b>. It may also have a <b>reject time</b> specified. This
+is the minimum "pulse width" to be propagated, if different from the inertial delay:<p>
+</p></center>
+OUTPUT &lt;= <b>reject</b> 2 ns <b>inertial</b> not (INPUT) <b>after</b> 10 ns;<p>
+</p><center>
+A concurrent signal assignment can be specified to run as
+a postponed process (see <b>process</b>).
+</center>
+<hr width="80%">
+<div align="center">
+<a href="http://www.vdlande.com/VHDL/sig_dec.htm"><img src="https://www.ics.uci.edu/~jmoorkan/vhdlref/conc_s_a_files/left.gif" border="0"></a>
+<a href="http://www.vdlande.com/VHDL/index.htm"><img src="https://www.ics.uci.edu/~jmoorkan/vhdlref/conc_s_a_files/up.gif" border="0"></a>
+<a href="http://www.vdlande.com/VHDL/cond_s_a.htm"><img src="https://www.ics.uci.edu/~jmoorkan/vhdlref/conc_s_a_files/right.gif" border="0"></a>
+</div>
+
+<hr width="80%">
+</div></body></html>

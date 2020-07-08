@@ -1,0 +1,139 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+<!-- base href="http://www.vdlande.com/VHDL/attrib.html" --><title>VHDL Reference Guide - Attributes</title></head><body bgcolor="mintcream"><div style="border: 1px solid rgb(153, 153, 153); margin: -1px -1px 0pt; padding: 0pt; background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"><div style="border: 1px solid rgb(153, 153, 153); margin: 12px; padding: 8px; background: rgb(221, 221, 221) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; font-family: arial,sans-serif; font-style: normal; font-variant: normal; font-size: 13px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; color: rgb(0, 0, 0); font-weight: normal; text-align: left;">This is Google's cache of <a href="http://www.vdlande.com/VHDL/attrib.html" style="text-decoration: underline; color: rgb(0, 0, 204);">http://www.vdlande.com/VHDL/attrib.html</a>. It is a snapshot of the page as it appeared on Sep 17, 2009 19:08:34 GMT. The <a href="http://www.vdlande.com/VHDL/attrib.html" style="text-decoration: underline; color: rgb(0, 0, 204);">current page</a> could have changed in the meantime. <a href="http://www.google.com/intl/en/help/features_list.html#cached" style="text-decoration: underline; color: rgb(0, 0, 204);">Learn more</a><br><br><div style="float: right;"><a href="http://74.125.155.132/search?q=cache:Dv3wULq8uc8J:www.vdlande.com/VHDL/attrib.html+site:www.vdlande.com+vhdl+attrib&amp;hl=en&amp;client=firefox-a&amp;gl=us&amp;strip=1" style="text-decoration: underline; color: rgb(0, 0, 204);">Text-only version</a></div>
+<div>These search terms are highlighted: <span style="background: rgb(255, 255, 102) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; color: black; font-weight: bold;">vhdl</span>&nbsp;These terms only appear in links pointing to this page: <span style="font-weight: bold;">attrib</span>&nbsp;&nbsp;</div></div></div><div style="position: relative;">
+
+
+
+
+
+<div align="center">
+<table border="0" cellpadding="5">
+<caption><b>Attributes</b></caption>
+<tbody><tr><td colspan="3"><hr></td></tr>
+<tr>
+<td bgcolor="lightcyan">Attribute</td>
+<td>---- used in ----&gt;</td>
+<td bgcolor="lightgreen">Entity<br>Architecture<br>Package<br>Package Body</td>
+</tr>
+</tbody></table>
+
+<p><table border="0">
+<tbody><tr><td><hr width="150"></td><td>Syntax</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="40%">
+<tbody><tr>
+<td>object'attribute_name</td>
+</tr>
+</tbody></table>
+</div>
+<p>
+
+</p><div align="center">
+See LRM sections 14.1, 4.4, 5.1 and 6.6
+
+<p><table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Rules and Examples</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="90%">
+<tbody><tr>
+<td valign="top">Attributes supply additional information about an item, e.g. a signal, variable,
+type or component. Certain attributes are predefined for types, array objects and signals.</td>
+<td>These are some of the predefined attributes for scalar types,
+constrained array types and any objects declared to be of array types.
+They are the same type as the object (scalar), or the index (array):
+<table border="0">
+<tbody><tr><th>Name</th><th>&nbsp;</th><th>Definition</th></tr>
+<tr><td>X'high</td><td></td><td>The upper bound of X</td></tr>
+<tr><td>X'low</td><td></td><td>The lower bound of X</td></tr>
+<tr><td>X'left</td><td></td><td>The leftmost bound of X</td></tr>
+<tr><td>X'right</td><td></td><td>The rightmost bound of X</td></tr>
+</tbody></table></td>
+</tr><tr>
+<td colspan="2">These are predefined only constrained array types and any objects
+declared to be of array types:
+<table border="0">
+<tbody><tr><th>Name</th><th>&nbsp;</th><th>Definition</th></tr>
+<tr><td>X'range</td><td></td><td>The range of X</td></tr>
+<tr><td>X'reverse_range</td><td></td><td>The range of X "back to front"</td></tr>
+<tr><td>X'length</td><td></td><td>X'high - X'low + 1 (integer)</td></tr>
+</tbody></table>
+</td>
+</tr>
+<tr>
+<td colspan="2">These attributes are predefined for any signal X:
+<table border="0">
+<tbody><tr><th>Name</th><th>&nbsp;</th><th>Definition</th></tr>
+<tr><td>X'event</td><td></td><td>True when signal X changes (boolean)</td></tr>
+<tr><td>X'active</td><td></td><td>True when signal X assigned to (boolean)</td></tr>
+<tr><td>X'last_event</td><td></td><td>When signal X last changed (time)</td></tr>
+<tr><td>X'last_active</td><td></td><td>When signal X was last assigned to (time)</td></tr>
+<tr><td>X'last_value</td><td></td><td>Previous value of X (same type as X)</td></tr>
+</tbody></table>
+</td>
+</tr>
+<tr>
+<td colspan="2">These attributes create a <b>new signal</b>, based on signal X:
+<table border="0">
+<tbody><tr><th>Name</th><th>&nbsp;</th><th>Definition</th></tr>
+<tr><td>X'delayed(T)</td><td></td><td>Signal X delayed by T (same type as X)</td></tr>
+<tr><td>X'stable(T)</td><td></td><td>True if X unaltered for time T (boolean)</td></tr>
+<tr><td>X'quiet(T)</td><td></td><td>True if X is unassigned for time T (boolean)</td></tr>
+<tr><td>X'transaction</td><td></td><td>"Toggles" when X is assigned (bit)</td></tr>
+</tbody></table>
+</td>
+</tr>
+<tr>
+<td colspan="2"><b>User defined attributes</b> may be declared. These do not affect simulation,
+but may be used to supply information to other tools, e.g. for layout or synthesis:
+<pre>type IC_PACKAGE is (DIL, PLCC, PGA);
+attribute PTYPE: ICPACKAGE;
+attribute PTYPE of U1 : component is PLCC;
+attribute PTYPE of U2 : component is DIL;
+</pre>
+</td>
+</tr>
+</tbody></table>
+</div>
+
+<div align="center">
+<p><table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Synthesis Issues</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+Logic synthesis tools usually support the predefined attributes <b>'high, 'low,
+'left, 'right, 'range, reverse_range, 'length</b> and <b>'event</b>. Some tools
+support <b>'last_value</b> and <b>'stable</b>
+</p><p>
+Several synthesis vendors define a set of attributes to supply synthesis directives
+such as area or timing constraints, enumeration encoding etc.
+</p></div>
+
+<div align="center">
+<p><table border="0">
+<tbody><tr><td><hr width="150"></td><td>Whats New in '93</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+
+<b style="color: black; background-color: rgb(255, 255, 102);">VHDL</b>-93 has several new predefined attributes:</p><p>
+<table>
+<tbody><tr><th>Name</th><th>&nbsp;</th><th>Definition</th></tr>
+<tr><td>X'driving</td><td>&nbsp;</td><td>True if a process is driving signal X</td></tr>
+<tr><td>X'driving_value</td><td>&nbsp;</td><td>Value a process is driving signal X with</td></tr>
+<tr><td>X'ascending</td><td>&nbsp;</td><td>True if index range of X is ascending</td></tr>
+<tr><td>X'image(literal)</td><td>&nbsp;</td><td>String representation of enumeration literal</td></tr>
+<tr><td>X'simple_name</td><td>&nbsp;</td><td>String equivalent to the name of X</td></tr>
+<tr><td>X'instance_name</td><td>&nbsp;</td><td>Path downto and including X, excluding entity and architecture names</td></tr>
+<tr><td>X'path_name</td><td>&nbsp;</td><td>Path downto and including X, excluding entity and architecture names</td></tr>
+</tbody></table>
+</p><p>
+The <b>group</b> construct allows collections of <b style="color: black; background-color: rgb(255, 255, 102);">VHDL</b> objects of different classes to be
+grouped together to allow common attributes to be set for the elements of these groups.
+
+</p></div>
+
+<hr width="80%">
+</div></body></html>

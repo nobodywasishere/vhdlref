@@ -1,0 +1,148 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+<!-- base href="http://www.vdlande.com/VHDL/typeconv.html" --><title>VHDL Reference Guide - Type Conversion</title></head><body bgcolor="mintcream"><div style="border: 1px solid rgb(153, 153, 153); margin: -1px -1px 0pt; padding: 0pt; background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"><div style="border: 1px solid rgb(153, 153, 153); margin: 12px; padding: 8px; background: rgb(221, 221, 221) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; font-family: arial,sans-serif; font-style: normal; font-variant: normal; font-size: 13px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; color: rgb(0, 0, 0); font-weight: normal; text-align: left;">This is Google's cache of <a href="http://www.vdlande.com/VHDL/typeconv.html" style="text-decoration: underline; color: rgb(0, 0, 204);">http://www.vdlande.com/VHDL/typeconv.html</a>. It is a snapshot of the page as it appeared on Sep 9, 2009 21:09:09 GMT. The <a href="http://www.vdlande.com/VHDL/typeconv.html" style="text-decoration: underline; color: rgb(0, 0, 204);">current page</a> could have changed in the meantime. <a href="http://www.google.com/intl/en/help/features_list.html#cached" style="text-decoration: underline; color: rgb(0, 0, 204);">Learn more</a><br><br><div style="float: right;"><a href="http://74.125.155.132/search?q=cache:P-8gcHaalPgJ:www.vdlande.com/VHDL/typeconv.html+site:www.vdlande.com+VHDL+reference+guide+vdlande&amp;hl=en&amp;client=firefox-a&amp;gl=us&amp;strip=1" style="text-decoration: underline; color: rgb(0, 0, 204);">Text-only version</a></div>
+<div>These search terms are highlighted: <span style="background: rgb(255, 255, 102) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; color: black; font-weight: bold;">vhdl</span>&nbsp;These terms only appear in links pointing to this page: <span style="font-weight: bold;">reference</span>&nbsp;<span style="font-weight: bold;">guide</span>&nbsp;<span style="font-weight: bold;">vdlande</span>&nbsp;&nbsp;</div></div></div><div style="position: relative;">
+
+
+
+
+
+<div align="center">
+<table border="0" cellpadding="5">
+<caption><b>Type Conversion</b></caption>
+<tbody><tr><td colspan="3"><hr></td></tr>
+<tr>
+<td bgcolor="lightcyan">Expression</td>
+<td>---- used in ----&gt;</td>
+<td bgcolor="lightgreen">Package<br>Entity<br>Architecture<br>Process<br>Procedure<br>Function</td>
+</tr>
+</tbody></table>
+
+<p><table border="0">
+<tbody><tr><td><hr width="150"></td><td>Syntax</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="40%">
+<tbody><tr><td><pre>target_type (closely_related_expression)</pre></td></tr>
+<tr><td>&nbsp;</td></tr>
+<tr><td><pre>conversion_function (expression)</pre></td></tr>
+</tbody></table><p>
+</p></div>
+
+
+
+<div align="center">
+See LRM section 7.3.5
+
+<p><table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Rules and Examples</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+<div align="left">
+<table border="1" cellpadding="5" width="70%">
+<tbody><tr>
+<td>Objects of user-defined types cannot directly be assigned to or from
+objects of even a closely related type. A <b>type conversion</b> allows
+the assignment to be made:
+<pre>type BUS_VAL is range 0 to 255;
+
+variable X_INT : integer := 22;
+variable X_BUS : BUS_VAL;
+...
+X_BUS := X_INT;                     --illegal
+X_BUS := BUS_VAL(X_INT);</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="70%">
+<tbody><tr>
+<td><b>Closely related types</b> are
+<ol>
+<li>integer types and real types
+</li><li>array types whose lengths, index types and element types match.
+</li></ol>
+For instance
+<pre>type T_BYTE is array (7 downto 0)
+     of std_ulogic;
+signal TYPE_BUS : T_BYTE;
+signal VEC_BUS :
+     std_ulogic_vector(7 downto 0);
+...
+TYPE_BUS &lt;= VEC_BUS;                --illegal
+TYPE_BUS &lt;= T_BYTE(VEC_BUS);</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="70%">
+<tbody><tr>
+<td>If conversion is required between types which are not closely
+related, a user defined function must be used:
+<pre>signal X_BOOL: boolean;
+signal X_STD:  std_ulogic;
+function BOOL_TO_SL(X : boolean)
+            return std_ulogic is
+begin
+  if X then
+    return ('1');
+  else
+    return ('0');
+  end if;
+end BOOL_TO_SL;
+...
+X_STD &lt;= X_BOOL;                    --illegal
+X_STD &lt;= BOOL_TO_SL(X_BOOL);
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="right">
+<table border="1" cellpadding="5" width="40%">
+<tbody><tr>
+<td>A type conversion function may be called in a port map, to match
+port type to signal type.</td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="center">
+<p><table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Synthesis Issues</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+<div align="center">
+<table border="0" cellpadding="5" width="70%">
+<tbody><tr>
+<td>Most logic synthesis tools support type conversion for appropriate
+array and integer types.
+<p>
+Most also accept the type conversion functions in the std_logic_1164
+package.
+</p><p>
+Some synthesis vendors supply a <b style="color: black; background-color: rgb(255, 255, 102);">VHDL</b> package containing conversion
+functions which the synthesiser will spuuort.
+</p><p>
+Conversion functions in port maps are not usually supported.
+</p></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="center">
+<p><table border="0">
+<tbody><tr><td><hr width="150"></td><td>Whats New in '93</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+
+Type Conversions have not changed in <b style="color: black; background-color: rgb(255, 255, 102);">VHDL</b>-93.
+
+</p></div>
+
+<hr width="80%">
+</div></body></html>

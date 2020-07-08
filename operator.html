@@ -1,0 +1,172 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+<!-- base href="http://www.vdlande.com/VHDL/operator.html" --><title>VHDL Reference Guide - Operators</title></head><body bgcolor="mintcream"><div style="border: 1px solid rgb(153, 153, 153); margin: -1px -1px 0pt; padding: 0pt; background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"><div style="border: 1px solid rgb(153, 153, 153); margin: 12px; padding: 8px; background: rgb(221, 221, 221) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; font-family: arial,sans-serif; font-style: normal; font-variant: normal; font-size: 13px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; color: rgb(0, 0, 0); font-weight: normal; text-align: left;">This is Google's cache of <a href="http://www.vdlande.com/VHDL/operator.html" style="text-decoration: underline; color: rgb(0, 0, 204);">http://www.vdlande.com/VHDL/operator.html</a>. It is a snapshot of the page as it appeared on Oct 6, 2009 17:39:11 GMT. The <a href="http://www.vdlande.com/VHDL/operator.html" style="text-decoration: underline; color: rgb(0, 0, 204);">current page</a> could have changed in the meantime. <a href="http://www.google.com/intl/en/help/features_list.html#cached" style="text-decoration: underline; color: rgb(0, 0, 204);">Learn more</a><br><br><div style="float: right;"><a href="http://74.125.155.132/search?q=cache:tQa10qk3Zt4J:www.vdlande.com/VHDL/operator.html+site:www.vdlande.com+VHDL+reference+guide+vdlande&amp;hl=en&amp;client=firefox-a&amp;gl=us&amp;strip=1" style="text-decoration: underline; color: rgb(0, 0, 204);">Text-only version</a></div>
+<div>These search terms are highlighted: <span style="background: rgb(255, 255, 102) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; color: black; font-weight: bold;">vhdl</span>&nbsp;These terms only appear in links pointing to this page: <span style="font-weight: bold;">reference</span>&nbsp;<span style="font-weight: bold;">guide</span>&nbsp;<span style="font-weight: bold;">vdlande</span>&nbsp;&nbsp;</div></div></div><div style="position: relative;">
+
+
+
+
+
+<div align="center">
+<table border="0" cellpadding="5">
+<caption><b>Operators</b></caption>
+<tbody><tr><td colspan="3"><hr></td></tr>
+<tr>
+<td bgcolor="lightcyan">Operator</td>
+<td>---- used in ----&gt;</td>
+<td bgcolor="lightgreen">Expression</td>
+</tr>
+</tbody></table>
+
+<p><table border="0">
+<tbody><tr><td><hr width="150"></td><td>Syntax</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+<div align="center">
+See LRM section 7.2
+
+<p><table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Rules and Examples</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+<div align="center">
+<table border="0" cellpadding="5" width="100%">
+<tbody><tr>
+<td><table border="1">
+<tbody><tr><td>The <b>logical operators</b> are predefined for <b>bit, boolean,
+bit_vector</b>, linear arrays of <b>boolean, std_logic</b> and
+<b>std_logic_vector</b> types. They return a value of the same type:
+<pre>and, or, nand, nor, xor, not</pre>
+</td></tr>
+</tbody></table></td>
+<td><table border="1">
+<tbody><tr><td>The <b>equality</b> and <b>inequality</b> operators are
+predefined for all types, and they return a boolean value:
+<pre>=   -- equal to
+/=  -- not equal to</pre>
+</td></tr>
+</tbody></table>
+</td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="60%">
+<tbody><tr>
+<td>The other relational operators are predefined for all scalar types,
+and all one-dimensional array types. They also return a boolean value:
+<pre>&lt;   -- less than
+&gt;   -- greater than
+&lt;=  -- less than or equal to
+&gt;=  -- greater than or equal to
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="left">
+<table border="1" cellpadding="5" width="70%">
+<tbody><tr>
+<td>For arrays of different lengthsm the predefined relational operators
+align the left-hand elements and compare corresponding positions. This
+can lead to unexpected results:
+<pre>constant ARR1 :bit_vector := "0011";
+constant ARR2 :bit_vector := "01";
+-- (ARR1 &lt; ARR2) will return true</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="right">
+<table border="1" cellpadding="5" width="70%">
+<tbody><tr>
+<td>The <b>&amp;</b> operator is used to concatenate (join) arrays, or join
+new elements to an array:
+<pre>Z_BUS(1 downto 0) &lt;= '0' &amp; B_BIT;
+BYTE &lt;= A_BUS &amp; B_BUS;
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="70%">
+<tbody><tr>
+<td>Add, subtract, multiply and divide are defined for integer and real.
+Both operands must be the same type, and the result is also of the same
+type:
+<pre>signal INT1, INT2: integer := 0;
+signal REAL1, REAL2: real := 6.7;
+...
+INT1  &lt;= INT1 + 3;
+REAL1 &lt;= REAL2 - 2.2;
+INT2  &lt;= INT1 * REAL1;   --illegal
+INT2  &lt;= INT1 * INTEGER(REAL1);
+REAL2 &lt;= REAL1 / 42.3;
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="right">
+<table border="1" cellpadding="5" width="70%">
+<tbody><tr>
+<td>For physical types (e.g.time), assignments must be dimensionally
+consistant:
+<pre>variable TIME1,TIME2: time;
+...
+TIME1 := TIME2 * 2.5;
+TIME1 := TIME2 / 4;
+TIME1 := 3.6 ns + TIME2;
+TIME1 := TIME2 * 6.67 ns;   --illegal
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="90%">
+<tbody><tr>
+<td>Other numeric operators are exponentiation (<b>**</b>), absolute
+value (<b>abs</b>), modulus (<b>mod</b>), and remainder (<b>rem</b>).
+</td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+
+<div align="center">
+<p><table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Synthesis Issues</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+Most predefined operators are synthesisable, providing they are used
+with types accepted by the synthesis tool. See also <a href="http://www.vdlande.com/VHDL/type_dec.htm">type declarations</a> and <a href="http://www.vdlande.com/VHDL/qualifex.htm">overloading</a>
+<p>
+The following are <b>not</b> usually synthesisable, except as part of a
+constant expression: exponentiation (**), division by other than 2, mod,
+rem.
+
+</p><div align="center">
+<p><table border="0">
+<tbody><tr><td><hr width="150"></td><td>Whats New in '93</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+
+<b>xnor</b> has been added to the logical operators in <b style="color: black; background-color: rgb(255, 255, 102);">VHDL</b>-94. New
+<b>shift</b> and <b>rotate</b> operators are defined for one-dimensional
+arrays of bit or boolean:
+</p><pre><b>sll</b> -- shift left logical
+<b>srl</b> -- shift right logical
+<b>sla</b> -- shift left arithmetic
+<b>sra</b> -- shift right arithmetic
+<b>rol</b> -- rotate left
+<b>ror</b> -- rotate right
+</pre>
+
+</div>
+
+<hr width="80%">
+</div></body></html>

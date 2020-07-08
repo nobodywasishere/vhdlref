@@ -1,0 +1,156 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+<!-- base href="http://www.vdlande.com/VHDL/nexts.html" --><title>VHDL Reference Guide - Next Statements</title></head><body bgcolor="mintcream"><div style="border: 1px solid rgb(153, 153, 153); margin: -1px -1px 0pt; padding: 0pt; background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"><div style="border: 1px solid rgb(153, 153, 153); margin: 12px; padding: 8px; background: rgb(221, 221, 221) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; font-family: arial,sans-serif; font-style: normal; font-variant: normal; font-size: 13px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; color: rgb(0, 0, 0); font-weight: normal; text-align: left;">This is Google's cache of <a href="http://www.vdlande.com/VHDL/nexts.html" style="text-decoration: underline; color: rgb(0, 0, 204);">http://www.vdlande.com/VHDL/nexts.html</a>. It is a snapshot of the page as it appeared on Sep 16, 2009 14:35:25 GMT. The <a href="http://www.vdlande.com/VHDL/nexts.html" style="text-decoration: underline; color: rgb(0, 0, 204);">current page</a> could have changed in the meantime. <a href="http://www.google.com/intl/en/help/features_list.html#cached" style="text-decoration: underline; color: rgb(0, 0, 204);">Learn more</a><br><br><div style="float: right;"><a href="http://74.125.155.132/search?q=cache:zplDdIcrZsMJ:www.vdlande.com/VHDL/nexts.html+site:www.vdlande.com+VHDL+reference+guide+vdlande&amp;hl=en&amp;client=firefox-a&amp;gl=us&amp;strip=1" style="text-decoration: underline; color: rgb(0, 0, 204);">Text-only version</a></div>
+<div>These search terms are highlighted: <span style="background: rgb(255, 255, 102) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; color: black; font-weight: bold;">vhdl</span>&nbsp;These terms only appear in links pointing to this page: <span style="font-weight: bold;">reference</span>&nbsp;<span style="font-weight: bold;">guide</span>&nbsp;<span style="font-weight: bold;">vdlande</span>&nbsp;&nbsp;</div></div></div><div style="position: relative;">
+
+
+
+
+
+<div align="center">
+<table border="0" cellpadding="5">
+<caption><b>Next Statement</b></caption>
+<tbody><tr><td colspan="3"><hr></td></tr>
+<tr>
+<td bgcolor="lightcyan">Sequential Statement</td>
+<td>---- used in ----&gt;</td>
+<td bgcolor="lightgreen">Loop<br>For Loop<br>While Loop</td>
+</tr>
+</tbody></table>
+
+<p><table border="0">
+<tbody><tr><td><hr width="150"></td><td>Syntax</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="40%">
+<tbody><tr>
+<td><pre>next;
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="40%">
+<tbody><tr>
+<td><pre>next loop_label;
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="40%">
+<tbody><tr>
+<td><pre>next loop_label when condition;
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+
+
+<div align="center">
+See LRM section 8.9
+
+<p><table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Rules and Examples</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+<div align="left">
+<table border="1" cellpadding="5" width="75%">
+<tbody><tr>
+<td>The <b>next</b>statement is used to prematurely terminate the
+current iteration of a <b>while, for</b> or infinite <b>loop</b>:
+<pre>for I in 0 to 7 loop
+  if SKIP = '1' then
+    next;
+  else
+    N_BUS &lt;= TABLE(I);
+    wait for 5 ns;
+  end if;
+end loop;
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="50%">
+<tbody><tr>
+<td>The next statement may test a boolean condition directly, using the
+<b>when</b> keyword:
+<pre>process (A)
+begin
+   Z &lt;= "0000";
+   for I in 0 to 3 loop 
+      next when A /= I;
+      Z(I) &lt;= '1';
+   end loop; 
+end process;
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="80%">
+<tbody><tr>
+<td>For a next statement within a set of nested loops, the optional loop
+label may be used to indicate which level of loop is to be iterated. The
+default (no label) is the innermost loop. If an outer loop is specified,
+loops inside are effectively exited:
+<pre>READ_BUS: process
+begin
+  RESETLOOP: loop
+    VALID_CHECK: while 
+      (CPU_DATA_VALID /= '1') loop
+        wait until rising_edge(CLK)
+                   or RESET = '1';
+        next RESETLOOP when RESET='1';
+    end loop VALID_CHECK;
+    CPU_DATA_READ &lt;= '1';
+    wait until rising_edge(CLK);
+    LOCAL_BUFFER &lt;= DATA_BUS;
+    wait until rising_edge(CLK);
+    CPU_DATA_READ &lt;= '0';
+  end loop RESETLOOP;
+end process READ_BUS;
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+
+
+<div align="center">
+<p><table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Synthesis Issues</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+The next statement is supported by some logic synthesis tools, with
+certain restrictions.
+
+<div align="center">
+<p><table border="0">
+<tbody><tr><td><hr width="150"></td><td>Whats New in '93</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+
+In <b style="color: black; background-color: rgb(255, 255, 102);">VHDL</b>-93, the <b>next</b> statement may have an optional label:</p><p>
+labelL <b>next</b> loop_label;
+
+
+</p></div>
+
+<hr width="80%">
+<div align="center">
+<a href="http://www.vdlande.com/VHDL/names.htm"><img src="https://www.ics.uci.edu/~jmoorkan/vhdlref/nexts_files/left.gif" border="0"></a>
+<a href="http://www.vdlande.com/VHDL/index.htm"><img src="https://www.ics.uci.edu/~jmoorkan/vhdlref/nexts_files/up.gif" border="0"></a>
+<a href="http://www.vdlande.com/VHDL/nulls.htm"><img src="https://www.ics.uci.edu/~jmoorkan/vhdlref/nexts_files/right.gif" border="0"></a>
+</div>
+
+<hr width="80%">
+</div></body></html>

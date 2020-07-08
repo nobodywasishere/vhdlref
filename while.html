@@ -1,0 +1,144 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+<!-- base href="http://www.vdlande.com/VHDL/while.html" --><title>VHDL Reference Guide - While and Infinite Loop</title></head><body bgcolor="mintcream"><div style="border: 1px solid rgb(153, 153, 153); margin: -1px -1px 0pt; padding: 0pt; background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"><div style="border: 1px solid rgb(153, 153, 153); margin: 12px; padding: 8px; background: rgb(221, 221, 221) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; font-family: arial,sans-serif; font-style: normal; font-variant: normal; font-size: 13px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; color: rgb(0, 0, 0); font-weight: normal; text-align: left;">This is Google's cache of <a href="http://www.vdlande.com/VHDL/while.html" style="text-decoration: underline; color: rgb(0, 0, 204);">http://www.vdlande.com/VHDL/while.html</a>. It is a snapshot of the page as it appeared on Sep 23, 2009 12:40:54 GMT. The <a href="http://www.vdlande.com/VHDL/while.html" style="text-decoration: underline; color: rgb(0, 0, 204);">current page</a> could have changed in the meantime. <a href="http://www.google.com/intl/en/help/features_list.html#cached" style="text-decoration: underline; color: rgb(0, 0, 204);">Learn more</a><br><br><div style="float: right;"><a href="http://74.125.155.132/search?q=cache:WkjDTxmG8roJ:www.vdlande.com/VHDL/while.html+site:www.vdlande.com+VHDL+reference+guide+vdlande&amp;hl=en&amp;client=firefox-a&amp;gl=us&amp;strip=1" style="text-decoration: underline; color: rgb(0, 0, 204);">Text-only version</a></div>
+<div>These search terms are highlighted: <span style="background: rgb(255, 255, 102) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; color: black; font-weight: bold;">vhdl</span>&nbsp;These terms only appear in links pointing to this page: <span style="font-weight: bold;">reference</span>&nbsp;<span style="font-weight: bold;">guide</span>&nbsp;<span style="font-weight: bold;">vdlande</span>&nbsp;&nbsp;</div></div></div><div style="position: relative;">
+
+
+
+
+
+<div align="center">
+<table border="0" cellpadding="5">
+<caption><b>While and Infinite Loop</b></caption>
+<tbody><tr><td colspan="3"><hr></td></tr>
+<tr>
+<td bgcolor="lightcyan">Sequential Statement</td>
+<td>---- used in ----&gt;</td>
+<td bgcolor="lightgreen">Process<br>Function<br>Procedure</td>
+</tr>
+</tbody></table>
+
+<p><table border="0">
+<tbody><tr><td><hr width="150"></td><td>Syntax</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="40%">
+<tbody><tr>
+<td><pre>while condition loop
+   sequential statements
+end loop;</pre>
+</td></tr>
+<tr><td></td></tr>
+<tr><td><pre>loop
+    sequential statements
+end loop;
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+
+
+<div align="center">
+See LRM section 8.8
+
+<p><table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Rules and Examples</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+<div align="left">
+<table border="1" cellpadding="5" width="60%">
+<tbody><tr>
+<td>The <b>while</b> loop repeats the enclosed sequence of statements if
+the condition tested is true. The condition is tested before wach
+iteration.
+<pre>process (A)
+    variable I :
+      integer range 0 to 4;
+begin
+    Z &lt;= "0000";
+    I := 0;
+    while (I &lt;= 3) loop
+      if (A = I) then
+        Z(I) &lt;= '1';
+      end if;
+      I := I + 1;
+    end loop; 
+end process;</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="60%">
+<tbody><tr>
+<td>While loops may be useful in test benches:
+<pre>process
+begin
+  while NOW &lt; MAX_SIM_TIME loop
+    CLK &lt;= not CLK ;
+    wait for PERIOD/2;
+  end loop;
+  wait;
+end process;</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="right">
+<table border="1" cellpadding="5" width="60%">
+<tbody><tr>
+<td>To prevent simulation hang-up an infinite loop should usually
+contain at least one <a href="http://www.vdlande.com/VHDL/waits.htm">wait</a> or
+<a href="http://www.vdlande.com/VHDL/exits.htm">exit</a> statement:
+<pre>process (A)
+  variable I :
+    integer range 0 to 4;
+begin
+  Z &lt;= "0000";
+  I := 0;    
+  L1: loop
+    exit L1 when I = 4;
+    if (A = I) then
+       Z(I) &lt;= '1';
+    end if;
+    I := I + 1;
+  end loop;    
+end process;</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+
+
+<div align="center">
+<p><table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Synthesis Issues</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+<div align="center">
+<table border="0" cellpadding="5" width="70%">
+<tbody><tr>
+<td>While and infinite loops are supported by some logic synthesis
+tools, with certain restrictions.
+</td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+
+
+<div align="center">
+<p><table border="0">
+<tbody><tr><td><hr width="150"></td><td>Whats New in '93</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+
+The while and infinite loop statements have not changed in <b style="color: black; background-color: rgb(255, 255, 102);">VHDL</b>-93.
+
+</p></div>
+
+<hr width="80%">
+</div></body></html>
