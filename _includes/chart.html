@@ -1,5 +1,5 @@
 <div align="center">
-    <table class="no-border">
+    <table class="chart">
         <thead>
             <tr>
                 <td bgcolor="lightcyan">
@@ -13,7 +13,7 @@
 
                 {% assign crsize = page.chart-right | size %}
                 {% if crsize != 0 %}
-                <td class="no-border">used in</td>
+                <td style="border: 0 solid #FFFFFFFF;">used in</td>
 
                 <td bgcolor="lightgreen">
                     {% for cr in page.chart-right %}
@@ -25,6 +25,34 @@
                 </td>
                 {% endif %}
             </tr>
+
+            {% assign cl2size = page.chart2-left | size %}
+            {% if cl2size != 0 %}
+            <tr>
+                <td bgcolor="lightcyan">
+                    {% for cl in page.chart2-left %}
+                        {{ cl }}
+                        {% if forloop.last == false %}
+                            <br>
+                        {% endif %}
+                    {% endfor %}
+                </td>
+
+                {% assign crsize = page.chart2-right | size %}
+                {% if crsize != 0 %}
+                <td style="border: 0 solid #FFFFFFFF;">used in</td>
+
+                <td bgcolor="lightgreen">
+                    {% for cr in page.chart2-right %}
+                        {{ cr }}
+                        {% if forloop.last == false %}
+                            <br>
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                {% endif %}
+            </tr>
+            {% endif %}
         </thead>
     </table>
 </div>

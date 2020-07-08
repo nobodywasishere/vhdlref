@@ -1,7 +1,7 @@
 body {
     /* homefully this scales on mobile */
     font-size: 5.5mm;
-    background-color: mintcream;
+    background-color: darkgreen;
     word-wrap: break-word;
 }
 
@@ -14,10 +14,20 @@ body {
     background-color: white;
     border: 2px solid darkgreen;
     box-shadow: 5px 5px black;
+    background-color: mintcream;
 }
 
 table {
     border: 1px solid black;
+    width: 100%;
+    max-width: 600px;
+    min-width: 300px;
+    margin: 20px auto 30px auto;
+    background-color: mintcream;
+    box-shadow: 5px 5px black;
+    margin: 20px auto 30px auto;
+    font-size: 85%;
+
 }
 
 th, td {
@@ -25,8 +35,17 @@ th, td {
     padding: 7px 12px 7px 12px;
 }
 
-.no-border {
+.chart {
     border: 0 solid #FFFFFFFF;
+    width: auto;
+    background-color: transparent;
+    box-shadow: 0px 0px;
+}
+
+.define {
+    width: 100%;
+    max-width: none;
+    min-width: none;
 }
 
 .text-norm {
@@ -49,7 +68,7 @@ th, td {
 }
 
 .text-hr span {
-    background: #fff;
+    background: mintcream;
     padding: 0 10px;
 }
 
