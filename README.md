@@ -2,7 +2,7 @@
 
 This is an archive of the VHDL reference website that used to be hosted at http://www.vdlande.com/VHDL/
 
-The links listed in this archive were intentionally left as-is and will most likely not work.
+The links listed in this archive were intentionally left as-is and will most likely not work. The websites folder contains the files from each website. 
 
 The files here have been pulled from:
 * https://www.ics.uci.edu/~jmoorkan/vhdlref/

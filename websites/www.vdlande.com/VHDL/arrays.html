@@ -1,0 +1,152 @@
+<HTML>
+<HEAD>
+<TITLE>VHDL Reference Guide - Arrays</TITLE>
+</HEAD>
+<BODY BGCOLOR="mintcream">
+<DIV ALIGN=CENTER>
+<TABLE BORDER=0 CELLPADDING=5>
+<CAPTION><B>Arrays</B></CAPTION>
+<TR><TD COLSPAN=3><HR></TD></TR>
+<TR>
+<TD BGCOLOR="lightcyan">Declaration</TD>
+<TD>---- used in ----></TD>
+<TD BGCOLOR="lightgreen">Package<br>Entity<br>Architecture<br>Process<br>Procedure<br>Function</TD>
+</TR>
+</TABLE>
+
+<P><TABLE BORDER=0>
+<TR><TD><HR width=150></TD><TD>Syntax</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=60%>
+<TR>
+<TD><b>type</b> type_name <b>is array</b> (range) <b>of</b> element_type;</TD>
+</TR>
+</TABLE><p>
+</DIV>
+
+<DIV ALIGN=CENTER>
+See LRM section 3.2.1
+
+<P><TABLE BORDER=0 align=center>
+<TR><TD><HR width=150></TD><TD>Rules and Examples</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=100%>
+<TR>
+<TD>An <b>array</b>contains multiple elements of the same type.
+When an array object is declared, an existing array type must be used.
+<pre>
+type NIBBLE is array (3 downto 0) of std_ulogic;
+type RAM is array (0 to 31) of integer range 0 to 255;
+signal A_BUS : NIBBLE;
+signal RAM_0 : RAM;
+</pre></TD>
+</TR>
+</TABLE>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=90%>
+<TR>
+<TD>An array type definition can be <b>unconstrained</b>, i.e. of undefined length.
+<b>String, bit_vector</b> and <b>std_logic_vector</b> are defined in this way. An object
+(signal, variable or constant) of an unconstrained array type must have it's index type
+range defined when it is declared.
+<pre>
+type INT_ARRAY is array (integer range <>) of integer;
+variable INT_TABLE: INT_ARRAY(0 to 9);
+variable LOC_BUS : std_ulogic_vector(7 downto 0);
+</pre></TD>
+</TR>
+</TABLE>
+</DIV><DIV ALIGN=right>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=80%>
+<TR>
+<TD>Arrays with character elements such as <b>string, bit_vector</b> and <b>std_logic_vector</b>
+may be assigned a literal value using double quotes (see <b>literals)</b>:
+<pre>
+CONSTANT MSG_o: string := "Test 1 Completed";
+...
+A_BUS <= "0000";
+LOC_BUS <= "10101010";
+</pre></TD>
+</TR>
+</TABLE>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=80%>
+<TR>
+<TD>Arrays may also be assigned using <b>concatenation</b> (&), <a href="aggregat.htm">aggregates</a>,
+<b>slices</b>, or a mixture. By default, assignment is made be <b>position.</b>
+<pre>
+A_BUS <= (A_BIT, B_BIT, C_BIT, D_BIT);
+-- an equivalent assignment:
+A_BUS <= (A_BIT & B_BIT & C_BIT & D_BIT);
+-- rotate A_BUS to the left:
+A_BUS <= A_BUS(2 downto 0) & A_BUS(3);;
+</pre>
+</TD>
+</TR>
+</TABLE>
+</DIV><DIV ALIGN=left>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=80%>
+<TR>
+<TD>Arrays of arrays may be declared. These are useful for memories, vector tables, etc.:
+<pre>
+type NIBBLE is array (3 downto 0) of std_ulogic;
+type MEM is array (0 to 7) of NIBBLE;
+-- an array "array of array" type
+variable MEM8X4 : MEM;
+...
+-- accessing the whole array:
+MEM8X4 := ("0000", "0001", "0010", "0011", "0100", "0101", "0110", "0111");
+-- accessing a "word"
+MEM8X4(5) := "0110";
+-- accessing a single bit
+MEM8X4(6) (0) := '0';
+</pre></TD>
+</TR>
+</TABLE>
+</DIV><DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=80%>
+<TR>
+<TD>True two (or more) dimensional arrays may also be declared:
+<pre>
+type T_2D is array (3 downto 0, 1 downto 0) of integer;
+signal X_2D : T_2D;
+...
+X_2D <= ((0,0), (1,1), (2,2), (3,3));
+X_2D(3,1) <= 4;
+</pre></TD>
+</TR>
+</TABLE>
+</DIV>
+
+<DIV ALIGN=CENTER>
+<P><TABLE BORDER=0 align=center>
+<TR><TD><HR width=150></TD><TD>Synthesis Issues</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+
+Most logic synthesis tools accept one-dimensional <b>arrays</b> of other supported types.
+1-D arrays of 1-D arrays are often supported. Some tols also allow true 2-D arrays, but not more dimensions.
+<p>
+Note that arrays are usually implemented using gates and flip-flops, not ROM's and RAM's.
+</DIV>
+
+<DIV ALIGN=CENTER>
+<P><TABLE BORDER=0>
+<TR><TD><HR width=150></TD><TD>Whats New in '93</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+
+Array types have not changed in VHDL-93.
+
+</DIV>
+<HR WIDTH="80%">
+</BODY>
+</HTML>

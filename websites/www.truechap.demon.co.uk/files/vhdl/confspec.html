@@ -1,0 +1,188 @@
+<HTML>
+<HEAD>
+<TITLE>VHDL Reference Guide - Configuration Specification</TITLE>
+</HEAD>
+<BODY BGCOLOR="mintcream">
+<a href="confdec.html"><img border=0 src="../../images/left.gif" align=left></a>
+<a href="constdec.html"><img border=0 src="../../images/right.gif" align=right></a>
+
+<DIV ALIGN=CENTER>
+<TABLE BORDER=0 CELLPADDING=5>
+<CAPTION><B>Configuration Specification</B></CAPTION>
+<TR><TD COLSPAN=3><HR></TD></TR>
+<TR>
+<TD BGCOLOR="lightcyan">Specification</TD>
+<TD>---- used in ----></TD>
+<TD BGCOLOR="lightgreen">Architecture</TD>
+</TR>
+</TABLE>
+
+<P><TABLE BORDER=0>
+<TR><TD><HR width=150></TD><TD>Syntax</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=70%>
+<TR>
+<TD><pre>
+for instance_label: component_name
+	use entity 
+		library_name.entity_name(architecture_name);
+</pre></TD>
+</TR>
+</TABLE><p>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=70%>
+<TR>
+<TD><pre>
+for instance_label: component_name
+	use configuration library_name.config_name;
+</pre></TD>
+</TR>
+</TABLE><p>
+</DIV>
+
+<DIV ALIGN=CENTER>
+See LRM section 5.2
+
+<P><TABLE BORDER=0 align=center>
+<TR><TD><HR width=150></TD><TD>Rules and Examples</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=left>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=80%>
+<TR>
+<TD>Using a configuration <b>specification</b>, components may be
+configured within an architecture which instances them, rather than
+using a separate configuration declaration design unit. This is less
+flexible, as the architecture has to be re-analysed to change the
+configuration.
+</TD>
+</TR>
+</TABLE><p>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=70%>
+<TR>
+<TD>Component instances may be individually configured:<pre>
+architecture STR of XA is
+  component HALFADD 
+    port(A,B : in bit;
+         SUM, CARRY : out bit);
+  end component;
+  component ORGATE 
+    port(A,B : in bit;
+         Z : out bit);
+  end component;
+ 
+  for U1 : HALFADD use entity
+            work.HA(BEHAVE);
+  for U2 : ORGATE use entity
+            work.OG(BEHAVE);
+begin
+  U1: HALFADD port map (A,B,S,C);
+  U2: ORGATE port map (A,B,Y);
+end STR;
+</pre></TD>
+</TR>
+</TABLE><p>
+</DIV>
+
+<DIV ALIGN=left>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=60%>
+<TR>
+<TD>The keyword <b>all</b> may be used to refer to all instances of a
+component:<pre>
+for all: FULLADDER use entity
+         work.FULLADD(STRUCTURAL);
+</pre></TD>
+</TR>
+</TABLE><p>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=60%>
+<TR>
+<TD>The keyword <b>others</b> may also be used to refer to all instances
+not explicitly mentioned.</TD>
+</TR>
+</TABLE><p>
+</DIV>
+
+<DIV ALIGN=left>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=70%>
+<TR>
+<TD>If the port names on an entity do not match those on the component
+declaration, a port map may be included in the configuration:<pre>
+for all:HALFADD use entity
+      work.HALFADD(BEHAVE)
+      port map (X => A, Y => B,
+            S => SUM, C => CARRY);
+</pre></TD>
+</TR>
+</TABLE><p>
+</DIV>
+
+<DIV ALIGN=right>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=70%>
+<TR>
+<TD>In the abscence of an explicit configuration for any part of a
+model, <b>default binding</b> will occur. For each unbound instance of
+every component, an entity will be selected whose name, port names and
+port types etc. match thosein the corresponding component declaration.
+Where an entity has more than one architecture, the <b>last analysed</b>
+architecture will be used.</TD>
+</TR>
+</TABLE>
+</DIV>
+
+
+<DIV ALIGN=CENTER>
+<P><TABLE BORDER=0 align=center>
+<TR><TD><HR width=150></TD><TD>Synthesis Issues</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+Configuration is not usually supported by synthesis tools. The user
+usually has to ensure that component and entity names and ports match,
+and that only one architecture per entity is analysed.
+
+<DIV ALIGN=CENTER>
+<P><TABLE BORDER=0>
+<TR><TD><HR width=150></TD><TD>Whats New in '93</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+
+In VHDL-93, an entity-architecture pair may be directly instantiated,
+i.e. a component need not be declared. This is more compact, but does
+not allow the flexibility of configuration.
+<p>
+DIRECT: entity HA_ENTITY(HA_ARCH) port map(A, B, S, C);
+<p>
+In VHDL-93, a configuration <b>specification</b> for a component (or
+instance) may legally be overridden by a configuration
+<b>declaration</b> for the same item. This was not allowed in VHDL-87.
+</DIV>
+
+<HR WIDTH="80%">
+<div align=center>
+<a href="confdec.html"><img border=0 src="../../images/left.gif"></a>
+<a href="index.html"><img border=0 src="../../images/up.gif"></a>
+<a href="constdec.html"><img border=0 src="../../images/right.gif"></a>
+</div>
+
+<HR WIDTH="80%">
+<ADDRESS>
+<CENTER>
+This page maintained by <A HREF="mailto:dave@truechap.demon.co.uk">
+<IMG SRC="/images/emailed.gif" BORDER=0>
+Dave Trueman</A>
+</CENTER>
+</ADDRESS>
+<HR WIDTH="80%">
+</BODY>
+</HTML>

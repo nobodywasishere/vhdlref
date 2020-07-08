@@ -1,0 +1,189 @@
+<HTML>
+<HEAD>
+<TITLE>VHDL Reference Guide - If Statement</TITLE>
+</HEAD>
+<BODY BGCOLOR="mintcream">
+<a href="generics.htm"><img border=0 src="../../images/left.gif" align=left></a>
+<a href="library.htm"><img border=0 src="../../images/right.gif" align=right></a>
+
+<DIV ALIGN=CENTER>
+<TABLE BORDER=0 CELLPADDING=5>
+<CAPTION><B>If Statement</B></CAPTION>
+<TR><TD COLSPAN=3><HR></TD></TR>
+<TR>
+<TD BGCOLOR="lightcyan">Sequential Statement</TD>
+<TD>---- used in ----></TD>
+<TD BGCOLOR="lightgreen">Process<br>Function<br>Procedure</TD>
+</TR>
+</TABLE>
+
+<P><TABLE BORDER=0>
+<TR><TD><HR width=150></TD><TD>Syntax</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=40%>
+<TR>
+<TD><PRE><b>if</b> condition_1 <b>then</b>
+	sequential statements
+<b>elsif</b> condition2 <b>then</b>
+	sequential statements
+<b>else</b>
+	sequential statements
+<b>end if;</b></PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=CENTER>
+See LRM section 8.6
+
+<P><TABLE BORDER=0 align=center>
+<TR><TD><HR width=150></TD><TD>Rules and Examples</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=left>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=60%>
+<TR>
+<TD>Conditions may overlap - <b>only</b> the statements after the
+<b>first</b> "true" condition are executed.
+<PRE>if (X = 5) and (Y = 9) then
+	Z <= A;
+elsif (X >= 5) then
+	Z <= B;
+else
+	Z < C;
+end if;</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=right>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=60%>
+<TR>
+<TD>The <b>elsif</b> and <b>else</b> clauses are optional. This process
+models a transparent latch:
+<PRE>process (EN, D)
+begin
+	if (EN = '1') then Q <= D;
+	end if;
+end process;
+</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=90%>
+<TR>
+<TD>A condition is any boolean expression:
+<PRE>process (ALARM_TIME, CURRENT_TIME)
+	variable AL_EQ_CUR: boolean;
+begin
+	AL_EQ_CUR := (ALARM_TIME = CURRENT_TIME);
+	if AL_EQ_CUR then
+		SOUND_ALARM <= '1';
+	else
+		SOUND_ALARM <= '0';
+	end if;
+end process;
+</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=70%>
+<TR>
+<TD>An <b>if</b> statement may be used to infer edge-triggered registers
+in a process sensitive to a clock signal. Asynchronous reset may also be
+modelled:
+<PRE>process(CLK, RESET)
+begin
+	if RESET = '1' then
+		COUNT <= 0;
+	elseif CLK'event and CLK='1' then
+		if (COUNT >= 9) then
+			COUNT <= 0;
+		else
+			COUNT <= COUNT + 1;
+		end if;
+	end if
+end process;
+</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=60%>
+<TR>
+<TD><b>If</b> statements may be used to specify conditional assignments
+or state transitions in a finite state machine:
+<PRE>case READ_CPU_STATE is
+	when WAITING =>
+		if CPU_DATA_VALID = '1' then
+			CPU_DATA_READ <= '1';
+			READ_CPU_STATE <= DATA1;
+		end if;
+	when DATA1 =>
+	-- other branches of the case statement
+end case;
+</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=CENTER>
+<P><TABLE BORDER=0 align=center>
+<TR><TD><HR width=150></TD><TD>Synthesis Issues</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+The <b>if</b> statement is generally synthesisable. Where an <b>if</b>
+statement is used to detect the clock edge in a "clocked process",
+certain conventions must be obeyed. Using an <b>if</b> statement without
+an <b>else</b> clause in a "combinational process" can result in latches
+being inferred, unless all signals driven by the process are given
+unconditional default assignments. For more details see
+<a href="process.htm.htm">Process</a>.
+
+<DIV ALIGN=CENTER>
+<P><TABLE BORDER=0>
+<TR><TD><HR width=150></TD><TD>Whats New in '93</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=0 CELLPADDING=5 WIDTH=50%>
+<TR>
+<TD>In VHDL-93, the <b>if</b> may have an optional label:
+<PRE>label: <b>if</b> condition <b>then</b>
+...etc
+<B>end if</B> label</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+
+
+<HR WIDTH="80%">
+<div align=center>
+<a href="generics.htm"><img border=0 src="../../images/left.gif"></a>
+<a href="index.htm"><img border=0 src="../../images/up.gif"></a>
+<a href="library.htm"><img border=0 src="../../images/right.gif"></a>
+</div>
+
+<HR WIDTH="80%">
+<ADDRESS>
+<CENTER>
+This page maintained by <A HREF="mailto:dave@truechap.demon.co.uk">
+<IMG SRC="/images/emailed.gif" BORDER=0>
+Dave Trueman</A>
+</CENTER>
+</ADDRESS>
+<HR WIDTH="80%">
+</BODY>
+</HTML>

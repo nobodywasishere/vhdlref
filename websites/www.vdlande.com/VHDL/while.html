@@ -1,0 +1,144 @@
+<HTML>
+<HEAD>
+<TITLE>VHDL Reference Guide - While and Infinite Loop</TITLE>
+</HEAD>
+<BODY BGCOLOR="mintcream">
+
+<DIV ALIGN=CENTER>
+<TABLE BORDER=0 CELLPADDING=5>
+<CAPTION><B>While and Infinite Loop</B></CAPTION>
+<TR><TD COLSPAN=3><HR></TD></TR>
+<TR>
+<TD BGCOLOR="lightcyan">Sequential Statement</TD>
+<TD>---- used in ----></TD>
+<TD BGCOLOR="lightgreen">Process<br>Function<br>Procedure</TD>
+</TR>
+</TABLE>
+
+<P><TABLE BORDER=0>
+<TR><TD><HR width=150></TD><TD>Syntax</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=CENTER>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=40%>
+<TR>
+<TD><PRE>while condition loop
+   sequential statements
+end loop;</PRE>
+</TD></TR>
+<TR><TD></TD></TR>
+<TR><TD><PRE>
+loop
+    sequential statements
+end loop;
+</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+
+
+<DIV ALIGN=CENTER>
+See LRM section 8.8
+
+<P><TABLE BORDER=0 align=center>
+<TR><TD><HR width=150></TD><TD>Rules and Examples</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=left>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=60%>
+<TR>
+<TD>The <b>while</b> loop repeats the enclosed sequence of statements if
+the condition tested is true. The condition is tested before wach
+iteration.
+<PRE>process (A)
+    variable I :
+      integer range 0 to 4;
+begin
+    Z <= "0000";
+    I := 0;
+    while (I <= 3) loop
+      if (A = I) then
+        Z(I) <= '1';
+      end if;
+      I := I + 1;
+    end loop; 
+end process;</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=60%>
+<TR>
+<TD>While loops may be useful in test benches:
+<PRE>process
+begin
+  while NOW < MAX_SIM_TIME loop
+    CLK <= not CLK ;
+    wait for PERIOD/2;
+  end loop;
+  wait;
+end process;</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=right>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=60%>
+<TR>
+<TD>To prevent simulation hang-up an infinite loop should usually
+contain at least one <a href="waits.htm">wait</a> or
+<a href="exits.htm">exit</a> statement:
+<PRE>process (A)
+  variable I :
+    integer range 0 to 4;
+begin
+  Z <= "0000";
+  I := 0;    
+  L1: loop
+    exit L1 when I = 4;
+    if (A = I) then
+       Z(I) <= '1';
+    end if;
+    I := I + 1;
+  end loop;    
+end process;</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+
+
+<DIV ALIGN=CENTER>
+<P><TABLE BORDER=0 align=center>
+<TR><TD><HR width=150></TD><TD>Synthesis Issues</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=CENTER>
+<TABLE BORDER=0 CELLPADDING=5 WIDTH=70%>
+<TR>
+<TD>While and infinite loops are supported by some logic synthesis
+tools, with certain restrictions.
+</TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+
+
+<DIV ALIGN=CENTER>
+<P><TABLE BORDER=0>
+<TR><TD><HR width=150></TD><TD>Whats New in '93</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+
+The while and infinite loop statements have not changed in VHDL-93.
+
+</DIV>
+
+<HR WIDTH="80%">
+</BODY>
+</HTML>
