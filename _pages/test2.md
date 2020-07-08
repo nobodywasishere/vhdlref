@@ -4,7 +4,7 @@ layout: page
 title: "Test 2"
 ---
 
-this is another test
+# this is another test
 
 
 | /* ... */              | Comment out from /* to */                                                                                                                                                                                               |
