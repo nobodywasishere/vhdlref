@@ -2,20 +2,12 @@
 permalink: /aggregat.html
 layout: page
 title: "Aggregates"
+description: "Aggregates are a grouping of values to form an array or record expression."
+chart-left: "Expression"
+chart-right: [Entity, Architecture, Package, Package Body]
 ---
 
-
-<div align="center">
-<table class="no-border">
-    <thead>
-        <tr>
-            <td bgcolor="lightcyan">Expression</td>
-            <td class="no-border">used in</td>
-            <td bgcolor="lightgreen">Entity <br>Architecture <br>Package <br>Package Body </td>
-        </tr>
-    </thead>
-</table>
-</div>
+{% include chart.html %}
 
 <h3 class="text-hr"><span>Syntax</span></h3>
 

@@ -1,0 +1,30 @@
+<div align="center">
+    <table class="no-border">
+        <thead>
+            <tr>
+                <td bgcolor="lightcyan">
+                    {% for cl in page.chart-left %}
+                        {{ cl }}
+                        {% if forloop.last == false %}
+                            <br>
+                        {% endif %}
+                    {% endfor %}
+                </td>
+
+                {% assign crsize = page.chart-right | size %}
+                {% if crsize != 0 %}
+                <td class="no-border">used in</td>
+
+                <td bgcolor="lightgreen">
+                    {% for cr in page.chart-right %}
+                        {{ cr }}
+                        {% if forloop.last == false %}
+                            <br>
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                {% endif %}
+            </tr>
+        </thead>
+    </table>
+</div>

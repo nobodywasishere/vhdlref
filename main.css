@@ -13,6 +13,7 @@ body {
     padding: 5px 6% 5px 6%;
     background-color: white;
     border: 2px solid darkgreen;
+    box-shadow: 5px 5px black;
 }
 
 table {
@@ -21,39 +22,12 @@ table {
 
 th, td {
     border: 1px solid black;
-    padding: 1mm;
+    padding: 7px 12px 7px 12px;
 }
 
 .no-border {
     border: 0 solid #FFFFFFFF;
 }
-/*
-.navbar {
-
-}
-
-.navbar ul {
-    column-count: 2;
-    -webkit-columns: 2;
-    -moz-columns: 2;
-    font-size: 120%;
-}
-
-@media screen and (max-width: 800px) {
-    .navbar ul {
-        column-count: 1;
-        -webkit-columns: 1;
-        -moz-columns: 1;
-    }
-}
-
-.navbar li {
-    text-align: center;
-    margin-bottom: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    list-style-type: none;
-} */
 
 .text-norm {
     color: black;
@@ -103,10 +77,6 @@ h1, h2, h4, h6 {
     pre {
         min-width: 200px;
         font-size: 50%;
-    }
-
-    h1, h2 {
-        
     }
 
     p, h3 {
