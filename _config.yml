@@ -1,6 +1,6 @@
 name: VHDL Reference
-url:
-baseurl:
+url: https://nobodywasishere.github.io
+baseurl: /vhdlref
 
 include: ['_pages']
 
