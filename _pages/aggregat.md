@@ -6,14 +6,11 @@ title: "Aggregates"
 
 
 <div align="center">
-<table>
+<table class="no-border">
     <thead>
         <tr>
-            <th colspan=3>Aggregates</th>
-        </tr>
-        <tr>
             <td bgcolor="lightcyan">Expression</td>
-            <td>used in</td>
+            <td class="no-border">used in</td>
             <td bgcolor="lightgreen">Entity <br>Architecture <br>Package <br>Package Body </td>
         </tr>
     </thead>
@@ -88,6 +85,6 @@ variable D_BUS : std_ulogic_vector(63 downto 0) := (others => 'Z');
 
 Logic synthesis tools may not support named association fully. Also, record assignments using aggregates may not be supported.
 
-<h3 class="text-hr"><span>New in STD93</span></h3>
+<h3 class="text-hr"><span>New in VHDL-93</span></h3>
 
 Aggregates have not changed in VHDL-93.
