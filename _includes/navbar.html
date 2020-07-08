@@ -3,7 +3,7 @@
         <li><a href={{ "index.html" | absolute_url }}>{{ site.name }}</a></li>
     {% endif %}
     {% for navpage in site.pages %}
-        {% if page.permalink != navpage.permalink and navpage.title != "VHDL Reference" %}
+        {% if page.permalink != navpage.permalink and navpage.title != "VHDL Reference" and navpage.title != "" %}
             <li><a href="{{ navpage.permalink | absolute_url }}">{{ navpage.title }}</a></li>
         {% endif %}
     {% endfor %}
