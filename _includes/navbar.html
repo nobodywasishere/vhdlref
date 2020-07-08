@@ -1,10 +1,21 @@
-<ul class="double">
-    {% if page.title != "VHDL Reference" %}
+<!-- <div class="navbar">
+    <ul class="navbar">
+        {% if page.title != "VHDL Reference" %}
         <li><a href={{ "index.html" | absolute_url }}>{{ site.name }}</a></li>
-    {% endif %}
-    {% for navpage in site.pages %}
-        {% if page.permalink != navpage.permalink and navpage.title != "VHDL Reference" and navpage.title != "" %}
-            <li><a href="{{ navpage.permalink | absolute_url }}">{{ navpage.title }}</a></li>
         {% endif %}
-    {% endfor %}
-</ul>
+        {% for navpage in site.pages %}
+            {% if page.permalink != navpage.permalink and navpage.title != "VHDL Reference" and navpage.title != "" %}
+            <li><a href="{{ navpage.permalink | absolute_url }}" class="text-norm">{{ navpage.title }}</a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</div> -->
+
+<div>
+{% for navpage in site.pages %}
+    {% if page.permalink != navpage.permalink and navpage.title != "VHDL Reference" and navpage.title != "" %}
+        <h3 class="text-hr" style="font-size: 120%;"><span><a class="text-norm" href="{{ navpage.permalink | absolute_url }}">{{ navpage.title }}</a></span></h3>
+    {% endif %}
+{% endfor %}
+<br>
+</div>
