@@ -1,0 +1,7 @@
+name: VHDL Reference
+url:
+baseurl:
+
+include: ['_pages']
+
+exclude: ['websites']

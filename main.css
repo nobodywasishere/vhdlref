@@ -1,0 +1,36 @@
+body {
+    /* homefully this scales on mobile */
+    font-size: 5.5mm;
+    background-color: mintcream;
+    word-wrap: break-word;
+}
+
+#content {
+    max-width: 1000px;
+    height: 100%;
+    /* top right bottom left */
+    margin: 50px auto 50px auto;
+    padding: 10px 20px 10px 10px;
+
+    background-color: white;
+}
+
+
+table{
+    border: 1px solid black;
+}
+
+th, td{
+    border: 1px solid black;
+    padding: 1mm;
+}
+
+.double ul {
+  column-count: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+}
+
+h1, h2 {
+    text-align: center;
+}

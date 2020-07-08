@@ -1,0 +1,10 @@
+<ul class="double">
+    {% if page.title != "VHDL Reference" %}
+        <li><a href="/">{{ site.name }}</a></li>
+    {% endif %}
+    {% for navpage in site.pages %}
+        {% if page.permalink != navpage.permalink and navpage.title != "VHDL Reference" %}
+            <li><a href="{{navpage.permalink}}">{{ navpage.title }}</a></li>
+        {% endif %}
+    {% endfor %}
+</ul>
