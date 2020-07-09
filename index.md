@@ -41,7 +41,7 @@ Due to this, I have also archived the original websites locally:
 * [`www.truechap.demon.co.uk/files/vhdl/`]({{ '/websites/www.truechap.demon.co.uk/files/vhdl/' | absolute_url }})
 * [`www.truechap.demon.co.uk/files/vhdl.html`]({{ '/websites/www.truechap.demon.co.uk/files/vhdl.htm' | absolute_url }}) (preliminary reference sheet mentioned above)
 * [`vdlande.com/VHDL/`]({{ '/websites/www.vdlande.com/VHDL/' | absolute_url }})
-* [`www.ics.uci.edu/~jmoorkan/vhdlref/`]({{ '/websites/www.ics.uci.edu/~jmoorkan/vhdlref/' | absolute_url }})
+* [`www.ics.uci.edu/~jmoorkan/vhdlref/`]({{ '/websites/www.ics.uci.edu/jmoorkan/vhdlref/' | absolute_url }})
 
 Be careful, I did not break the links to external websites or missing files.
 
