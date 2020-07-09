@@ -104,7 +104,7 @@ pre {
     padding: 10px;
     max-width: 760px;
     white-space: pre-wrap;
-    margin: 20px auto 30px auto;
+    margin: 20px auto 40px auto;
     font-size: 75%;
     box-shadow: 5px 5px black;
     border-radius: 10px;
@@ -118,7 +118,7 @@ h1, h2, h4, h6 {
     text-align: center;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 550px) {
     #content {
         margin: 0;
         border: 0 solid black;
@@ -147,7 +147,7 @@ h1, h2, h4, h6 {
     }
 
     .chart table {
-        max-width: 80%;
+        max-width: 95%;
     }
     .chart td {
         font-size: 70%;
