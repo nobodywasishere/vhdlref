@@ -1,6 +1,6 @@
 ---
 permalink: cases.html # url you want the page to be at
-layout: page
+layout: refpage
 title: "Case Statement"
 description: "Case Statement."
 chart-left: "Sequential Statement" # for the left side of the chart
@@ -8,7 +8,6 @@ chart-right: [Process, Function, Procedure] # for the right side of the chart
 tags: [others, case, null]
 ---
 
-{% include chart.html %}
 
 <h3 class="text-hr"><span>Syntax</span></h3>
 

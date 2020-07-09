@@ -1,6 +1,6 @@
 ---
 permalink: compdec.html # url you want the page to be at
-layout: page
+layout: refpage
 title: "Component Declaration"
 description: "Component Declaration."
 chart-left: "Declaration" # for the left side of the chart
@@ -8,7 +8,6 @@ chart-right: [Architecture, Package] # for the right side of the chart
 tags: [configuration, begin, component, declaration]
 ---
 
-{% include chart.html %}
 
 <h3 class="text-hr"><span>Syntax</span></h3>
 

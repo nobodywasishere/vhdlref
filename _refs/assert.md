@@ -1,6 +1,6 @@
 ---
 permalink: assert.html # url you want the page to be at
-layout: page
+layout: refpage
 title: "Assert"
 description: "The assert statement tests a boolean condition. If this returns false, it outputs a message containing the report string to the simulator screen."
 chart-left: "Concurrent Statement" # for the left side of the chart
@@ -10,7 +10,6 @@ chart2-right: [Process,Function,Procedure] # for the right side of the chart
 tags: [assert, note, warning, error, concurrent, unconditional, false, report]
 ---
 
-{% include chart.html %}
 
 <h3 class="text-hr"><span>Syntax</span></h3>
 

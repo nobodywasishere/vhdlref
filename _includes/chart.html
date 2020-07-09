@@ -1,58 +1,58 @@
-<!-- <div align="center">
+<br>
+<div class="chart">
     <table class="chart">
-        <thead>
-            <tr>
-                <td bgcolor="lightcyan">
-                    {% for cl in page.chart-left %}
-                        {{ cl }}
-                        {% if forloop.last == false %}
-                            <br>
-                        {% endif %}
-                    {% endfor %}
-                </td>
-
-                {% assign crsize = page.chart-right | size %}
-                {% if crsize != 0 %}
-                <td style="border: 0 solid #FFFFFFFF;">used in</td>
-
-                <td bgcolor="lightgreen">
-                    {% for cr in page.chart-right %}
-                        {{ cr }}
-                        {% if forloop.last == false %}
-                            <br>
-                        {% endif %}
-                    {% endfor %}
-                </td>
+        <tr>
+            <td bgcolor="lightcyan">
+                {% for cl in page.chart-left %}
+                {{ cl }}
+                {% if forloop.last == false %}
+                <br>
                 {% endif %}
-            </tr>
+                {% endfor %}
+            </td>
 
-            {% assign cl2size = page.chart2-left | size %}
-            {% if cl2size != 0 %}
-            <tr>
-                <td bgcolor="lightcyan">
-                    {% for cl in page.chart2-left %}
-                        {{ cl }}
-                        {% if forloop.last == false %}
-                            <br>
-                        {% endif %}
-                    {% endfor %}
-                </td>
+            {% assign crsize = page.chart-right | size %}
+            {% if crsize != 0 %}
+            <td style="border: 0px solid transparent">——used—in—></td>
 
-                {% assign crsize = page.chart2-right | size %}
-                {% if crsize != 0 %}
-                <td style="border: 0 solid #FFFFFFFF;">used in</td>
-
-                <td bgcolor="lightgreen">
-                    {% for cr in page.chart2-right %}
-                        {{ cr }}
-                        {% if forloop.last == false %}
-                            <br>
-                        {% endif %}
-                    {% endfor %}
-                </td>
+            <td bgcolor="lightgreen">
+                {% for cr in page.chart-right %}
+                {{ cr }}
+                {% if forloop.last == false %}
+                <br>
                 {% endif %}
-            </tr>
+                {% endfor %}
+            </td>
             {% endif %}
-        </thead>
+        </tr>
+
+        {% assign cl2size = page.chart2-left | size %}
+        {% if cl2size != 0 %}
+        <tr>
+            <td bgcolor="lightcyan">
+                {% for cl in page.chart2-left %}
+                {{ cl }}
+                {% if forloop.last == false %}
+                <br>
+                {% endif %}
+                {% endfor %}
+            </td>
+
+            {% assign crsize = page.chart2-right | size %}
+            {% if crsize != 0 %}
+            <td style="border: 0px solid transparent">——used—in—></td>
+
+            <td bgcolor="lightgreen">
+                {% for cr in page.chart2-right %}
+                {{ cr }}
+                {% if forloop.last == false %}
+                <br>
+                {% endif %}
+                {% endfor %}
+            </td>
+            {% endif %}
+        </tr>
+        {% endif %}
     </table>
-</div> -->
+</div>
+<br>

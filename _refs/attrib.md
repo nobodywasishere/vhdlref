@@ -1,6 +1,6 @@
 ---
 permalink: attrib.html # url you want the page to be at
-layout: page
+layout: refpage
 title: "Attributes"
 description: "Attributes supply additional information about an item, e.g. a signal, variable, type or component."
 chart-left: "Attribute" # for the left side of the chart
@@ -10,7 +10,6 @@ tags: [attributes, user defined attributes, group]
 
 <!-- tables generated using https://www.tablesgenerator.com/markdown_tables -->
 
-{% include chart.html %}
 
 <h3 class="text-hr"><span>Syntax</span></h3>
 

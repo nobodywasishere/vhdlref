@@ -1,6 +1,6 @@
 ---
 permalink: compinst.html # url you want the page to be at
-layout: page
+layout: refpage
 title: "Component Instantiation"
 description: "Template Page."
 chart-left: "Concurrent Statement" # for the left side of the chart
@@ -8,7 +8,6 @@ chart-right: [Architecture] # for the right side of the chart
 tags: [list, positional, named, association, open, generic map]
 ---
 
-{% include chart.html %}
 
 <h3 class="text-hr"><span>Syntax</span></h3>
 

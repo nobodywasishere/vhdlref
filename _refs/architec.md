@@ -1,6 +1,6 @@
 ---
 permalink: architec.html # url you want the page to be at
-layout: page
+layout: refpage
 title: "Architecture"
 description: "An architecture is the secondary unit. It can contain any mix of component instances, processes or other concurrent statements"
 chart-left: "Secondary Unit" # for the left side of the chart
@@ -8,7 +8,6 @@ chart-right: # for the right side of the chart
 tags: [architecture, configuration, end, shared variables]
 ---
 
-{% include chart.html %}
 
 <h3 class="text-hr"><span>Syntax</span></h3>
 

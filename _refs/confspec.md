@@ -1,14 +1,12 @@
 ---
 permalink: confspec.html # url you want the page to be at
-layout: page
+layout: refpage
 title: "Configuration Specification"
 description: "Configuration Specification."
 chart-left: "Specification" # for the left side of the chart
 chart-right: [Architecture] # for the right side of the chart
 tags: [specification, all, others, default binding, last analyzed, declaration]
 ---
-
-{% include chart.html %}
 
 <h3 class="text-hr"><span>Syntax</span></h3>
 

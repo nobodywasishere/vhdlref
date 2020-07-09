@@ -1,6 +1,6 @@
 ---
 permalink: cofdec.html # url you want the page to be at
-layout: page
+layout: refpage
 title: "Configuration Declaration"
 description: "Template Page."
 chart-left: "Primary Library Unit" # for the left side of the chart
@@ -8,7 +8,6 @@ chart-right: # for the right side of the chart
 tags: [configuration, declaration, default binding, last analyzed, all, others, specification, declaration, end]
 ---
 
-{% include chart.html %}
 
 <h3 class="text-hr"><span>Syntax</span></h3>
 

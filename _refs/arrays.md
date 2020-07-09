@@ -1,13 +1,12 @@
 ---
 permalink: arrays.html # url you want the page to be at
-layout: page
+layout: refpage
 title: "Arrays"
 description: "An arraycontains multiple elements of the same type."
 chart-left: "Declaration" # for the left side of the chart
 chart-right: [package, entity, architecture, process, procedure, function] # for the right side of the chart
 ---
 
-{% include chart.html %}
 
 <h3 class="text-hr"><span>Syntax</span></h3>
 

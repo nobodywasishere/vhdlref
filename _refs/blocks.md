@@ -1,6 +1,6 @@
 ---
 permalink: blocks.html # url you want the page to be at
-layout: page
+layout: refpage
 title: "Block Statement"
 description: "Template Page."
 chart-left: "Concurrent Statement" # for the left side of the chart
@@ -8,7 +8,6 @@ chart-right: [Architecture] # for the right side of the chart
 tags: [guard condition, guarded block, guarded signal assignments, guarded signals, bus, register, unguarded block, block]
 ---
 
-{% include chart.html %}
 
 <h3 class="text-hr"><span>Syntax</span></h3>
 

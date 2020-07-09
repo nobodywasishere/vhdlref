@@ -1,6 +1,6 @@
 ---
 permalink: aliasdec.html # url you want the page to be at
-layout: page
+layout: refpage
 title: "Alias Declaration"
 description: "An alias is an alternative name for an existing object (signal, variable or constant). It does not define a new object."
 chart-left: "Declaration" # for the left side of the chart
@@ -8,7 +8,6 @@ chart-right: [Entity,Package,Process,Architecture,Procedure,Function] # for the 
 tag: [alias]
 ---
 
-{% include chart.html %}
 
 <h3 class="text-hr"><span>Syntax</span></h3>
 

@@ -9,11 +9,14 @@ body {
     max-width: 1000px;
     height: 100%;
     /* top right bottom left */
-    margin: 20px auto 20px auto;
-    padding: 5px 6% 5px 6%;
+
     background-color: white;
+
+    /* remove for mobile */
+    margin: 20px auto 20px auto;
     border: 2px solid black;
     box-shadow: 5px 5px black;
+    padding: 5px 6% 5px 6%;
 }
 
 table {
@@ -47,12 +50,24 @@ dd {
     margin: 0 auto 0 auto;
 }
 
-.chart {
-    border: 0 solid #FFFFFFFF;
-    width: auto;
+.chart table {
+    border: 2px solid black;
     background-color: transparent;
-    box-shadow: 0px 0px;
+    box-shadow: 5px 5px black;
+    table-layout: fixed;
+    max-width: 500px;
+    margin: auto;
+    border-radius: 10px;
 }
+
+.chart td {
+    text-align: center;
+    width: 25%;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-family: monospace;
+}
+
 
 .define {
     width: 100%;
@@ -65,17 +80,17 @@ dd {
     text-decoration: none;
 }
 
-.text-norm:hover {
+/* .text-norm:hover {
     text-shadow: 2px 2px #00640044;
     transition-duration: 0.3s;
-}
+} */
 
 .text-hr {
     max-width: 80%;
     text-align: center;
     border-bottom: 3px solid #000;
     line-height: 0.1em;
-    margin: 50px auto 30px auto;
+    margin: 40px auto 30px auto;
     white-space: nowrap;
 }
 
@@ -104,13 +119,20 @@ h1, h2, h4, h6 {
 }
 
 @media screen and (max-width: 500px) {
+    #content {
+        margin: 0;
+        border: 0 solid black;
+        box-shadow: 0 0;
+        padding: 5px;
+    }
+
     table, th, td {
         font-size: 80%;
     }
 
     pre {
         max-width: 90%;
-        font-size: 45%;
+        font-size: 50%;
     }
 
     p, h3 {
@@ -121,6 +143,14 @@ h1, h2, h4, h6 {
         max-width: 100%;
         font-size: 95% !important;
         margin: 35px auto 20px auto;
+        border-bottom: 2px solid #000;
+    }
+
+    .chart table {
+        max-width: 80%;
+    }
+    .chart td {
+        font-size: 70%;
     }
 
     dt, dd {

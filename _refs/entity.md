@@ -1,13 +1,11 @@
 ---
 permalink: entity.html # url you want the page to be at
-layout: page
+layout: refpage
 title: "Entity"
 description: "Entity."
 chart-left: "Primary Library Unit" # for the left side of the chart
 chart-right: # for the right side of the chart
 ---
-
-{% include chart.html %}
 
 <h3 class="text-hr"><span>Syntax</span></h3>
 
