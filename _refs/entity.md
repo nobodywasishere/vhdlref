@@ -1,5 +1,5 @@
 ---
-permalink: /entity.html # url you want the page to be at
+permalink: entity.html # url you want the page to be at
 layout: page
 title: "Entity"
 description: "Entity."

@@ -1,5 +1,5 @@
 ---
-permalink: /aggregat.html
+permalink: aggregat.html
 layout: page
 title: "Aggregates"
 description: "Aggregates are a grouping of values to form an array or record expression."

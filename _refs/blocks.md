@@ -1,5 +1,5 @@
 ---
-permalink: /blocks.html # url you want the page to be at
+permalink: blocks.html # url you want the page to be at
 layout: page
 title: "Block Statement"
 description: "Template Page."

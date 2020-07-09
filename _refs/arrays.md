@@ -1,5 +1,5 @@
 ---
-permalink: /arrays.html # url you want the page to be at
+permalink: arrays.html # url you want the page to be at
 layout: page
 title: "Arrays"
 description: "An arraycontains multiple elements of the same type."
@@ -41,7 +41,7 @@ A_BUS <= "0000";
 LOC_BUS <= "10101010";
 ```
 
-Arrays may also be assigned using __concatenation__ (&), [__aggregates__]({{ 'aggregat.html' | absolute_url }}), __slices__, or a mixture. By default, assignment is made by __position__.
+Arrays may also be assigned using __concatenation__ (&), [__aggregates__]({{ 'aggregat.html' | baseurl }}), __slices__, or a mixture. By default, assignment is made by __position__.
 ```vhdl
 A_BUS <= (A_BIT, B_BIT, C_BIT, D_BIT);
 

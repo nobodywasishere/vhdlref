@@ -1,5 +1,5 @@
 ---
-permalink: /confspec.html # url you want the page to be at
+permalink: confspec.html # url you want the page to be at
 layout: page
 title: "Configuration Specification"
 description: "Configuration Specification."

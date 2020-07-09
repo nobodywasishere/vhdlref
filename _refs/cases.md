@@ -1,5 +1,5 @@
 ---
-permalink: /cases.html # url you want the page to be at
+permalink: cases.html # url you want the page to be at
 layout: page
 title: "Case Statement"
 description: "Case Statement."

@@ -1,5 +1,5 @@
 ---
-permalink: /architec.html # url you want the page to be at
+permalink: architec.html # url you want the page to be at
 layout: page
 title: "Architecture"
 description: "An architecture is the secondary unit. It can contain any mix of component instances, processes or other concurrent statements"

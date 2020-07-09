@@ -12,7 +12,7 @@ body {
     margin: 20px auto 20px auto;
     padding: 5px 6% 5px 6%;
     background-color: white;
-    border: 2px solid darkgreen;
+    border: 2px solid black;
     box-shadow: 5px 5px black;
 }
 
@@ -92,6 +92,7 @@ pre {
     margin: 20px auto 30px auto;
     font-size: 75%;
     box-shadow: 5px 5px black;
+    border-radius: 10px;
 }
 
 .highlighter-rouge div {

@@ -1,5 +1,5 @@
 ---
-permalink: /attrib.html # url you want the page to be at
+permalink: attrib.html # url you want the page to be at
 layout: page
 title: "Attributes"
 description: "Attributes supply additional information about an item, e.g. a signal, variable, type or component."

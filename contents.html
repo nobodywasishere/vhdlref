@@ -16,7 +16,7 @@ layout: page
     {%- for refs in site.refs -%}
         {%- if refs.tags contains tag -%}
 
-            <dd><a href="{{ refs.permalink | absolute_url }}">{{ refs.title }}</a></dd>
+            <dd><a href="{{ refs.permalink | baseurl }}">{{ refs.title }}</a></dd>
 
         {%- endif -%}
     {%- endfor -%}

@@ -1,5 +1,5 @@
 ---
-permalink: /template # url you want the page to be at
+permalink: template.html # url you want the page to be at
 layout: page
 title: "Template Page"
 description: "Template Page."

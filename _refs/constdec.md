@@ -1,5 +1,5 @@
 ---
-permalink: /constdec.html # url you want the page to be at
+permalink: constdec.html # url you want the page to be at
 layout: page
 title: "Constant Declaration"
 description: "Template Page."

@@ -1,5 +1,5 @@
 ---
-permalink: /cofdec.html # url you want the page to be at
+permalink: cofdec.html # url you want the page to be at
 layout: page
 title: "Configuration Declaration"
 description: "Template Page."

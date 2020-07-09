@@ -1,5 +1,5 @@
 ---
-permalink: /assert.html # url you want the page to be at
+permalink: assert.html # url you want the page to be at
 layout: page
 title: "Assert"
 description: "The assert statement tests a boolean condition. If this returns false, it outputs a message containing the report string to the simulator screen."
@@ -72,7 +72,7 @@ Assert statements are ignored by logic synthesis tools.
 
 In VHDL-93, the __assert__ statement may have an option label.
 
-A concurrent __assert__ statement may be run as a postponed [__process__]({{'process.html' | absolute_url}}).
+A concurrent __assert__ statement may be run as a postponed [__process__]({{'process.html' | baseurl }}).
 
 VHDL-93 allows __report__ to be used on it's own as a sequential statement, giving the same functionality as __assert false__, except that the default severity is __note__.
 

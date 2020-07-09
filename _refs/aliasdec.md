@@ -1,5 +1,5 @@
 ---
-permalink: /aliasdec.html # url you want the page to be at
+permalink: aliasdec.html # url you want the page to be at
 layout: page
 title: "Alias Declaration"
 description: "An alias is an alternative name for an existing object (signal, variable or constant). It does not define a new object."

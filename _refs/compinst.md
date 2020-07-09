@@ -1,5 +1,5 @@
 ---
-permalink: /compinst.html # url you want the page to be at
+permalink: compinst.html # url you want the page to be at
 layout: page
 title: "Component Instantiation"
 description: "Template Page."

@@ -1,5 +1,5 @@
 ---
-permalink: /compdec.html # url you want the page to be at
+permalink: compdec.html # url you want the page to be at
 layout: page
 title: "Component Declaration"
 description: "Component Declaration."
