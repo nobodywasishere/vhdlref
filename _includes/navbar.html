@@ -1,9 +1,9 @@
 <div>
-    <h3 class="text-hr" style="font-size: 120%;"><span><a class="text-norm" href="{{ 'define.html' | absolute_url }}">Definitions</a></span></h3>
-    {% for navpage in site.pages %}
+    <h3 class="text-hr"><span><a class="text-norm" href="{{ 'define.html' | absolute_url }}">Definitions</a></span></h3>
+    {% for navpage in site.refs %}
 
         {% if page.permalink != navpage.permalink and navpage.title != "VHDL Reference" and navpage.title != "" %}
-            <h3 class="text-hr" style="font-size: 120%;"><span><a class="text-norm" href="{{ navpage.permalink | absolute_url }}">{{ navpage.title }}</a></span></h3>
+            <h3 class="text-hr"><span><a class="text-norm" href="{{ navpage.permalink | absolute_url }}">{{ navpage.title }}</a></span></h3>
         {% endif %}
     {% endfor %}
 <br>

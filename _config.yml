@@ -2,6 +2,10 @@ name: VHDL Reference
 url: https://nobodywasishere.github.io
 baseurl: /vhdlref
 
-include: ['_pages']
 
-exclude: ['websites']
+exclude: ['websites/websites']
+
+collections:
+  refs:
+    output: true
+    permalink: /:permalink

@@ -5,6 +5,7 @@ title: "Attributes"
 description: "Attributes supply additional information about an item, e.g. a signal, variable, type or component."
 chart-left: "Attribute" # for the left side of the chart
 chart-right: [Entity,Architecture,Package,Package Body] # for the right side of the chart
+tags: [attributes, user defined attributes, group]
 ---
 
 <!-- tables generated using https://www.tablesgenerator.com/markdown_tables -->
@@ -13,10 +14,11 @@ chart-right: [Entity,Architecture,Package,Package Body] # for the right side of 
 
 <h3 class="text-hr"><span>Syntax</span></h3>
 
-```
+```vhdl
 object'attribute_name
 ```
 See LRM sections 14.1, 4.4, 5.1 and 6.6
+
 
 <h3 class="text-hr"><span>Rules and Examples</span></h3>
 
@@ -59,7 +61,7 @@ These attributes create a __new signal__, based on signal X:
 | X'transaction | "Toggles" when X is assigned (bit)           |
 
 __User defined attributes__ may be declared. These do not affect simulation, but may be used to supply information to other tools, e.g. for layout or synthesis:
-```
+```vhdl
 type IC_PACKAGE is (DIL, PLCC, PGA);
 attribute PTYPE: ICPACKAGE;
 attribute PTYPE of U1 : component is PLCC;

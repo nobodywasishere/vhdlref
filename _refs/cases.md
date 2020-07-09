@@ -5,27 +5,28 @@ title: "Case Statement"
 description: "Case Statement."
 chart-left: "Sequential Statement" # for the left side of the chart
 chart-right: [Process, Function, Procedure] # for the right side of the chart
+tags: [others, case, null]
 ---
 
 {% include chart.html %}
 
 <h3 class="text-hr"><span>Syntax</span></h3>
 
-<pre>
-<strong>case</strong> expression <strong>is</strong>
-    <strong>when</strong> choice =>
+```vhdl
+case expression is
+    when choice =>
         sequential statements
-    <strong>when</strong> choice =>
+    when choice =>
         sequential statements
-<strong>end</strong> <strong>case</strong>;
-</pre>
+end case;
+```
 
 See LRM section 8.7
 
 <h3 class="text-hr"><span>Rules and Examples</span></h3>
 
 All possible choices must be included, unless the __others__ clause is used as the last choice:
-```
+```vhdl
 case SEL is
     when "01" =>   Z <=  A;
     when "10" =>   Z <=  B;
@@ -34,7 +35,7 @@ end case;
 ```
 
 A range or a selection may be specified as a choice:
-```
+```vhdl
 case INT_A is
     when 0      =>  Z <=  A;
     when 1 to 3 =>  Z <=  B;
@@ -44,7 +45,7 @@ end case;
 ```
 
 Choices may not overlap:
-```
+```vhdl
 case INT_A is
     when 0      =>  Z <=  A;
     when 1 to 3 =>  Z <=  B;
@@ -54,7 +55,7 @@ end case;
 ```
 
 A range may not be used with a vector type:
-```
+```vhdl
 case VEC is
     when "000" to "010" =>  
         Z <= A;   -- illegal
@@ -72,7 +73,7 @@ The __case__ statement is generally synthesizable.
 With repeated assignments to a target signal, it will synthesize to a large multiplexer with logic on the select inputs to evaluate the conditions for the different choices in the case statement branches. No "priority" will be inferred from the order of the branches
 
 With multiple targets and embedded __if__ statements, the __case__ statement may be used to synthesize a general mapping function, e.g. next state and output generation for a finite state machine. For example:
-```
+```vhdl
 case READ_CPU_STATE is
     when WAITING =>
         if CPU_DATA_VALID = '1' then
@@ -86,4 +87,10 @@ end case;
 
 <h3 class="text-hr"><span>New in VHDL-93</span></h3>
 
-Aggregates have not changed in VHDL-93.
+In VHDL-93, the __case__ statement may have an optional label:
+
+```vhdl
+label: case expression is
+    -- etc.
+end case label;
+```

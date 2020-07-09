@@ -1,47 +1,53 @@
 ---
-permalink: /aliasdec # url you want the page to be at
+permalink: /aliasdec.html # url you want the page to be at
 layout: page
 title: "Alias Declaration"
 description: "An alias is an alternative name for an existing object (signal, variable or constant). It does not define a new object."
 chart-left: "Declaration" # for the left side of the chart
 chart-right: [Entity,Package,Process,Architecture,Procedure,Function] # for the right side of the chart
+tag: [alias]
 ---
 
 {% include chart.html %}
 
 <h3 class="text-hr"><span>Syntax</span></h3>
 
-<pre>
-<strong>alias</strong> alias_name : alias_type <strong>is</strong> object_name;
-</pre>
+```vhdl
+alias alias_name : alias_type is object_name;
+```
 See LRM section 4.3.4
 
 <h3 class="text-hr"><span>Rules and Examples</span></h3>
 
 An alias is an alternative name for an existing object (signal, variable or constant). It does not define a new object.
-```
+```vhdl
 alias SIGN    : bit is DATA(31);
 alias BYTE_ID : bit is NET_DATA_IN(7);
 ```
 
-aliases provide a useful "shorthand" for referencing complex slices etc.:
-```
+Aliases provide a useful "shorthand" for referencing complex slices etc.:
+```vhdl
 use work.BV_ARITH.all;
-...
+
+--
+
 alias OPERAND : bit_vector(1 downto 0)
        is CPU_BUFFER(LOW) (4 downto 3);
 alias A       : bit_vector(3 downto 0)
        is CPU_BUFFER(HIGH)(3 downto 0);
 alias B       : bit_vector(2 downto 0)
        is CPU_BUFFER(LOW) (2 downto 0);
-...
+
+--
+
 CPU_DATA_TMP := (B & A) + OPERAND;
 ```
 
 An alias of an array object can be indexed in the opposite direction
-```
+```vhdl
 signal BUS_A :
     std_ulogic_vector(7 downto 0);
+
 alias BIT_REV_A :
     std_ulogic_vector(0 to 7) is BUS_A;
 ```
@@ -62,9 +68,10 @@ All objects may be aliased, i.e. signals, files, variables and constants.
 
 All "non-objects" can also be aliased, except labels, loop parameters and generate parameters. For instance:
 
-```
+```vhdl
 -- an alias of a type
 alias MY_LOGIC is ieee.std_logic_1164.std_logic;
+
 -- an alias of a component
 alias NAND2 is ASIC_LIB.ONE_MICRON.ND2;
 ```

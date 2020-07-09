@@ -1,0 +1,31 @@
+---
+title: Site Index
+layout: page
+---
+
+<div class="index-container">
+<!-- https://talk.jekyllrb.com/t/collect-items-from-multiple-collections-and-organize-by-tag/1645/5 -->
+{%- assign tags = site.refs | map: 'tags' |  join: ','  | split: ',' | sort -%}
+{%- assign prevTag = "" -%}
+{%- for tag in tags -%}
+
+{%- if tag != prevTag -%}
+
+    <dt>{{ tag }}</dt>
+
+    {%- for refs in site.refs -%}
+        {%- if refs.tags contains tag -%}
+
+            <dd><a href="{{ refs.permalink | absolute_url }}">{{ refs.title }}</a></dd>
+
+        {%- endif -%}
+    {%- endfor -%}
+    <br><br>
+
+{%- endif -%}
+
+{%- assign prevTag = tag -%}
+
+{%- endfor -%}
+</div>
+<br>
