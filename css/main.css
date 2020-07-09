@@ -75,7 +75,7 @@ dd {
     text-align: center;
     border-bottom: 3px solid #000;
     line-height: 0.1em;
-    margin: 60px auto 40px auto;
+    margin: 50px auto 30px auto;
     white-space: nowrap;
 }
 
@@ -120,6 +120,7 @@ h1, h2, h4, h6 {
     .text-hr {
         max-width: 100%;
         font-size: 95% !important;
+        margin: 35px auto 20px auto;
     }
 
     dt, dd {
