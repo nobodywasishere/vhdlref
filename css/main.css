@@ -88,7 +88,6 @@ pre {
     border: 2px solid black;
     padding: 10px;
     max-width: 760px;
-    min-width: 300px;
     white-space: pre-wrap;
     margin: 20px auto 30px auto;
     font-size: 75%;
@@ -109,8 +108,8 @@ h1, h2, h4, h6 {
     }
 
     pre {
-        min-width: 300px;
-        font-size: 50%;
+        max-width: 90%;
+        font-size: 45%;
     }
 
     p, h3 {
