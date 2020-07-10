@@ -1,0 +1,178 @@
+<HTML>
+<HEAD>
+<TITLE>VHDL Reference Guide - Assert</TITLE>
+</HEAD>
+<BODY BGCOLOR="mintcream">
+<a href="arrays.htm"><img border=0 src="../../images/left.gif" align=left></a>
+<a href="attrib.htm"><img border=0 src="../../images/right.gif" align=right></a>
+
+<DIV ALIGN=CENTER>
+<TABLE BORDER=0 CELLPADDING=5>
+<CAPTION><B>Assert</B></CAPTION>
+<TR><TD COLSPAN=3><HR></TD></TR>
+<TR>
+<TD BGCOLOR="lightcyan">Concurrent Statement</TD>
+<TD>---- used in ----></TD>
+<TD BGCOLOR="lightgreen">Entity<br>Architecture</TD>
+</TR>
+<tr>
+</tr>
+<TR>
+<TD BGCOLOR="lightcyan">Sequential Statement</TD>
+<TD>---- used in ----></TD>
+<TD BGCOLOR="lightgreen">Process<br>Function<br>Procedure</TD>
+</TR>
+</TABLE>
+
+<P><TABLE BORDER=0>
+<TR><TD><HR width=150></TD><TD>Syntax</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=70%>
+<TR>
+<TD><b>assert</b> condition <b>report</b> string <b>severity</b> severity_level;</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<DIV ALIGN=CENTER>
+<p>See LRM sections 8.2 and 9.4
+
+<P><TABLE BORDER=0 align=center>
+<TR><TD><HR width=150></TD><TD>Rules and Examples</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=left>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=70%>
+<TR>
+<TD>The assert statement tests the boolean condition. If this is false,
+it outputs a message containing the reopirt string to the simulator screen:
+<pre>
+assert (J /= C) report "J = C" severity note;
+</pre></TD>
+</TR>
+</TABLE><p>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=70%>
+<TR>
+<TD>The severity level may be defined as <b>note, warning, error</b> or <b>failure</b>
+Level <b>failure</b> normally aborts the simulation.
+<pre>
+assert not OVERFLOW) report "Accumulator overflowed" severity failure;
+</pre></TD>
+</TR>
+</TABLE><p>
+</DIV>
+
+<DIV ALIGN=left>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=50%>
+<TR>
+<TD>If the message clause is ommited, a default message is output.
+The severity level and the name of the design unit containing the relevant assert
+statement may also be output</TD>
+</TR>
+</TABLE><p>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=50%>
+<TR>
+<TD>If the severity clause is ommited, the default level is <b>error.</b></TD>
+</TR>
+</TABLE><p>
+</DIV>
+
+<DIV ALIGN=right>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=50%>
+<TR>
+<TD>A <b>concurrent</b> statement monitors the boolean condition continuously</TD>
+</TR>
+</TABLE><p>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=50%>
+<TR>
+<TD>An unconditional message can be output by using the literal <b>false</b>:
+<pre>
+procedure PUT
+	(signal STACK  : inout T_STACK;
+	signal POINTER : inout T_POINT;
+	signal ITEM    : in    T_DATA) is
+begin
+	if (POINTER < 5) then
+		STACK(POINTER) <= ITEM;
+		POINTER <= POINTER + 1;
+	else
+		assert false report "Stack overflow" severity error;
+	end if;
+end PUT;
+</pre></TD>
+</TR>
+</TABLE><p>
+</DIV>
+
+<DIV ALIGN=left>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=70%>
+<TR>
+<TD>As well as functional errors, timing errors can be reported via <b>assert</b>:
+<pre>
+CHECK_SETUP: process (CLK, D)
+begin
+	if (CLK'event and CLK = '1') then
+		assert D'stable(SETUP_TIME) report "Setup Violation..." severity warning;
+	end if;
+end process CHECK_SETUP;
+</pre></TD>
+</TR>
+</TABLE>
+</DIV>
+
+<DIV ALIGN=CENTER>
+<P><TABLE BORDER=0 align=center>
+<TR><TD><HR width=150></TD><TD>Synthesis Issues</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+
+Assert statements are ignored by logic synthesis tools.
+</DIV>
+
+<DIV ALIGN=CENTER>
+<P><TABLE BORDER=0>
+<TR><TD><HR width=150></TD><TD>Whats New in '93</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+
+In VHDL-93, the <b>assert</b> statement may have an option label.
+<p>
+A concurrent <b>assert</b> statement may be run as a
+postponed <a href="process.htm">process</a>
+<p>
+VHDL-93 allows <b>report</b> to be used on it's own as a sequential statement,
+giving the same functionality as <b>assert false</b>, except that the default
+severity is <b>note</b>
+<p>
+MSG1: report "Starting test sequence" severity note;
+</DIV>
+
+<HR WIDTH="80%">
+<div align=center>
+<a href="arrays.htm"><img border=0 src="../../images/left.gif"></a>
+<a href="index.htm"><img border=0 src="../../images/up.gif"></a>
+<a href="attrib.htm"><img border=0 src="../../images/right.gif"></a>
+</div>
+
+<HR WIDTH="80%">
+<ADDRESS>
+<CENTER>
+This page maintained by <A HREF="mailto:dave@truechap.demon.co.uk">
+<IMG SRC="/images/emailed.gif" BORDER=0>
+Dave Trueman</A>
+</CENTER>
+</ADDRESS>
+<HR WIDTH="80%">
+</BODY>
+</HTML>

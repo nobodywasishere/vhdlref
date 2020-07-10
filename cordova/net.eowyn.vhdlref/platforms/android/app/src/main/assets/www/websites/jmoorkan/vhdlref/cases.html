@@ -1,0 +1,168 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+<!-- base href="http://www.vdlande.com/VHDL/cases.html" --><title>VHDL Reference Guide - Case Statement</title></head><body bgcolor="mintcream"><div style="border: 1px solid rgb(153, 153, 153); margin: -1px -1px 0pt; padding: 0pt; background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"><div style="border: 1px solid rgb(153, 153, 153); margin: 12px; padding: 8px; background: rgb(221, 221, 221) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; font-family: arial,sans-serif; font-style: normal; font-variant: normal; font-size: 13px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; color: rgb(0, 0, 0); font-weight: normal; text-align: left;">This is Google's cache of <a href="http://www.vdlande.com/VHDL/cases.html" style="text-decoration: underline; color: rgb(0, 0, 204);">http://www.vdlande.com/VHDL/cases.html</a>. It is a snapshot of the page as it appeared on Oct 2, 2009 23:08:46 GMT. The <a href="http://www.vdlande.com/VHDL/cases.html" style="text-decoration: underline; color: rgb(0, 0, 204);">current page</a> could have changed in the meantime. <a href="http://www.google.com/intl/en/help/features_list.html#cached" style="text-decoration: underline; color: rgb(0, 0, 204);">Learn more</a><br><br><div style="float: right;"><a href="http://74.125.155.132/search?q=cache:7n2V-xTBzUwJ:www.vdlande.com/VHDL/cases.html+site:www.vdlande.com+VHDL+reference+guide+vdlande&amp;hl=en&amp;client=firefox-a&amp;gl=us&amp;strip=1" style="text-decoration: underline; color: rgb(0, 0, 204);">Text-only version</a></div>
+<div>These search terms are highlighted: <span style="background: rgb(255, 255, 102) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; color: black; font-weight: bold;">vhdl</span>&nbsp;These terms only appear in links pointing to this page: <span style="font-weight: bold;">reference</span>&nbsp;<span style="font-weight: bold;">guide</span>&nbsp;<span style="font-weight: bold;">vdlande</span>&nbsp;&nbsp;</div></div></div><div style="position: relative;">
+
+
+
+
+
+<div align="center">
+<table border="0" cellpadding="5">
+<caption><b>Case Statement</b></caption>
+<tbody><tr><td colspan="3"><hr></td></tr>
+<tr>
+<td bgcolor="lightcyan">Sequential Statement</td>
+<td>---- used in ----&gt;</td>
+<td bgcolor="lightgreen">Process<br>Function<br>Procedure</td>
+</tr>
+</tbody></table>
+
+<p><table border="0">
+<tbody><tr><td><hr width="150"></td><td>Syntax</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="40%">
+<tbody><tr><td><pre><b>case</b> expression <b>is</b>
+   <b>when</b> choice =&gt;
+     sequential statements	
+   <b>when</b> choice =&gt;
+      sequential statements
+<b>end case</b>;
+<pre></pre></pre></td>
+</tr>
+</tbody></table>
+</div>
+
+
+
+<div align="center">
+See LRM section 8.7
+
+<p><table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Rules and Examples</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+<div align="left">
+<table border="1" cellpadding="5" width="70%">
+<tbody><tr>
+<td>All possible choices must be included, unless the <b>others</b> clause is used as the last choice:
+<pre>case SEL is
+  when "01" =&gt;   Z &lt;= A;
+  when "10" =&gt;   Z &lt;= B;
+  when others =&gt; Z &lt;= 'X';
+end case;
+</pre>
+</td>
+</tr>
+</tbody></table>
+</div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="70%">
+<tbody><tr>
+<td>A range or a selection may be specified as a choice:
+<pre>case INT_A is
+  when 0      =&gt;  Z &lt;= A;
+  when 1 to 3 =&gt;  Z &lt;= B;
+  when 4|6|8  =&gt;  Z &lt;= C;
+  when others =&gt;  Z &lt;= 'X';
+end case;
+</pre>
+</td>
+</tr>
+</tbody></table>
+</div>
+
+<div align="right">
+<table border="1" cellpadding="5" width="70%">
+<tbody><tr>
+<td>Choices may not overlap
+<pre>case INT_A is
+  when 0      =&gt;  Z &lt;= A;
+  when 1 to 3 =&gt;  Z &lt;= B;
+  when 2|6|8  =&gt;  Z &lt;= C;   -- illegal
+  when others =&gt;  Z &lt;= 'X';
+end case;
+</pre>
+</td>
+</tr>
+</tbody></table>
+</div>
+
+<div align="left">
+<table border="1" cellpadding="5" width="70%">
+<tbody><tr>
+<td>A range may not be used with a vector type
+<pre>case VEC is
+  when "000" to "010" 
+               =&gt;  Z &lt;= A;   -- illegal
+  when "111"   =&gt;  Z &lt;= B;
+  when others  =&gt;  Z &lt;= 'X';
+end case;
+</pre>
+</td>
+</tr>
+</tbody></table>
+</div>
+
+<div align="right">
+<table border="1" cellpadding="5" width="50%">
+<tbody><tr>
+<td>See also the <b>null</b> statement</td>
+</tr>
+</tbody></table>
+</div>
+
+
+
+<div align="center">
+<p><table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Synthesis Issues</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+The CASE statement is generally synthesisable.
+<p>
+With repeated assignments to a target signal, it willsynthesise to a
+large multiplexer with logic on the select inputs to evaluate the
+conditions for the different choices in the case statement branches. No
+"priority" will be inferred from the order of the branches
+</p><p>
+With multiple targets and embedded <b>if</b> statements, the <b>case</b>
+statement may be used to synthesise a general mapping function, e.g.
+next state and output generation for a finite state machine. For
+example:</p><p>
+</p><div align="center">
+<table border="1" cellpadding="5" width="40%">
+<tbody><tr>
+<td><pre>case READ_CPU_STATE is
+  when WAITING =&gt;
+    if CPU_DATA_VALID = '1' then
+      CPU_DATA_READ  &lt;= '1';
+      READ_CPU_STATE &lt;= DATA1;
+    end if;
+  when DATA1 =&gt;
+    -- etc.
+end case;
+</pre></td>
+</tr>
+</tbody></table>
+</div>
+
+<div align="center">
+<p><table border="0">
+<tbody><tr><td><hr width="150"></td><td>Whats New in '93</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+
+In <b style="color: black; background-color: rgb(255, 255, 102);">VHDL</b>-93, the <b>case</b>statement may have an optional label:
+</p><pre>label: <b>case</b> expression <b>is</b>
+... etc.
+<b>end case</b> label;
+</pre>
+</div>
+
+<hr width="80%">
+</div></body></html>

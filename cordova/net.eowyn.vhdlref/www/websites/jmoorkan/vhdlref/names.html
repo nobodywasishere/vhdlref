@@ -1,0 +1,135 @@
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<base href=""><div style="margin:-1px -1px 0;padding:0;border:1px solid #999;background:#fff"><div style="margin:12px;padding:8px;border:1px solid #999;background:#ddd;font:13px arial,sans-serif;color:#000;font-weight:normal;text-align:left">This is Google&#39;s cache of <a href="http://www.vdlande.com/VHDL/names.html" style="text-decoration:underline;color:#00c">http://www.vdlande.com/VHDL/names.html</a>. It is a snapshot of the page as it appeared on Oct 22, 2009 21:45:11 GMT. The <a href="http://www.vdlande.com/VHDL/names.html" style="text-decoration:underline;color:#00c">current page</a> could have changed in the meantime. <a href="http://www.google.com/intl/en/help/features_list.html#cached" style="text-decoration:underline;color:#00c">Learn more</a><br><br><div style="float:right"><a href="http://74.125.155.132/search?q=cache:pZu8MdyuSbcJ:www.vdlande.com/VHDL/names.html+site:www.vdlande.com+vhdl+names&amp;hl=en&amp;client=firefox-a&amp;gl=us&strip=1" style="text-decoration:underline;color:#00c">Text-only version</a></div>
+<div>These search terms are highlighted: <span style="background:#ffff66;color:black;font-weight:bold">vhdl</span>&nbsp;<span style="background:#a0ffff;color:black;font-weight:bold">names</span>&nbsp;&nbsp;</div></div></div><div style="position:relative">
+<HTML>
+<HEAD>
+<TITLE>VHDL Reference Guide - Names</TITLE>
+</HEAD>
+<BODY BGCOLOR="mintcream">
+
+<DIV ALIGN=CENTER>
+<TABLE BORDER=0 CELLPADDING=5>
+<CAPTION><B><b style="color:black;background-color:#a0ffff">Names</b></B></CAPTION>
+<TR><TD COLSPAN=3><HR></TD></TR>
+<TR>
+<TD BGCOLOR="lightcyan">Identifier</TD>
+<TD>---- used in ----></TD>
+<TD BGCOLOR="lightgreen">Entity<br>Architecture<br>Package<br>Package Body<br>Configuration</TD>
+</TR>
+</TABLE>
+
+<P><TABLE BORDER=0>
+<TR><TD><HR width=150></TD><TD>Syntax</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=CENTER>
+See LRM section 13.3
+
+<P><TABLE BORDER=0 align=center>
+<TR><TD><HR width=150></TD><TD>Rules and Examples</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=left>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=70%>
+<TR>
+<TD><b style="color:black;background-color:#a0ffff">Names</b> (or identifiers) may consist of letters, numbers and
+underscore:
+<PRE>architecture RTL of UNIT_34 is
+signal SOUND_ALARM : std_ulogic;
+</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=40%>
+<TR>
+<TD>Case is not significant, so the following are all equivalent:
+<PRE>An_Example_Name
+AN_EXAMPLE_NAME
+an_example_name
+</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=left>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=60%>
+<TR>
+<TD><b style="color:black;background-color:#a0ffff">Names</b> must start with a letter:
+<PRE>
+signal 16_BIT_BUS : integer;   -- illegal
+signal _BUS_16_BIT_ : integer; -- illegal
+signal BUS_16_BIT : integer;   -- OK
+</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=40%>
+<TR>
+<TD><b style="color:black;background-color:#a0ffff">Names</b> may be of arbitary length.
+</TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=right>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=60%>
+<TR>
+<TD>None of the <b style="color:black;background-color:#ffff66">VHDL</b> keywords (i.e.<b>signal, bus, component, wait,
+</b>etc.) may be reused as a name.</TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=CENTER>
+<P><TABLE BORDER=0 align=center>
+<TR><TD><HR width=150></TD><TD>Synthesis Issues</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+Legal <b style="color:black;background-color:#a0ffff">names</b> (identifiers) are supported for synthesis, but long <b style="color:black;background-color:#a0ffff">names</b>
+may be truncated in some tools, or when using certain output netlist
+formats.
+
+<DIV ALIGN=CENTER>
+<P><TABLE BORDER=0>
+<TR><TD><HR width=150></TD><TD>Whats New in '93</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+
+<b style="color:black;background-color:#ffff66">VHDL</b>-93. supports extended identifiers. An extended identifier is
+delimited be backslashes(\), and may use any of the printing characters
+from the <b style="color:black;background-color:#ffff66">VHDL</b>-93 extended character set.
+<p>
+This allows the use of <b style="color:black;background-color:#a0ffff">names</b> which would otherwise be illegal in <b style="color:black;background-color:#ffff66">VHDL</b>
+(e.g.where compatibility with a preexisting design database is
+required). Examples:</div><pre>
+\Buffer\ -- would otherwise be a keyword
+\Buff\
+\BUFF\	-- these are now two distinct identifiers
+\BUS_$8\ -- contains otherwise illegal character
+</pre>
+<DIV ALIGN=CENTER>
+<b style="color:black;background-color:#ffff66">VHDL</b>-93 has introduced the following new language keywords, whicj may
+not be reused as identifiers:<br>
+<b>group, impure, inertial, literal, postponed, pure, rol, ror, shared,
+sla, sll, sra, srl, unaffected, xnor</b>
+<p>
+these keywords should also be avoided in <b style="color:black;background-color:#ffff66">VHDL</b>-87 models, to ensure
+upward-compatibility .
+</DIV>
+
+<HR WIDTH="80%">
+<div align=center>
+<a href="http://www.vdlande.com/VHDL/literals.htm"><img border=0 src="http://www.vdlande.com/images/left.gif"></a>
+<a href="http://www.vdlande.com/VHDL/index.htm"><img border=0 src="http://www.vdlande.com/images/up.gif"></a>
+<a href="http://www.vdlande.com/VHDL/names.htm"><img border=0 src="http://www.vdlande.com/images/right.gif"></a>
+</div>
+
+<HR WIDTH="80%">
+</BODY>
+</HTML>

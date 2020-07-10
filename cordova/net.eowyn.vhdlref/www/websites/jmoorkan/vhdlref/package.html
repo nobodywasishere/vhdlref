@@ -1,0 +1,150 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+<!-- base href="http://www.vdlande.com/VHDL/package.html" --><title>VHDL Reference Guide - Package</title></head><body bgcolor="mintcream"><div style="border: 1px solid rgb(153, 153, 153); margin: -1px -1px 0pt; padding: 0pt; background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"><div style="border: 1px solid rgb(153, 153, 153); margin: 12px; padding: 8px; background: rgb(221, 221, 221) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; font-family: arial,sans-serif; font-style: normal; font-variant: normal; font-size: 13px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; color: rgb(0, 0, 0); font-weight: normal; text-align: left;">This is Google's cache of <a href="http://www.vdlande.com/VHDL/package.html" style="text-decoration: underline; color: rgb(0, 0, 204);">http://www.vdlande.com/VHDL/package.html</a>. It is a snapshot of the page as it appeared on Sep 7, 2009 18:41:30 GMT. The <a href="http://www.vdlande.com/VHDL/package.html" style="text-decoration: underline; color: rgb(0, 0, 204);">current page</a> could have changed in the meantime. <a href="http://www.google.com/intl/en/help/features_list.html#cached" style="text-decoration: underline; color: rgb(0, 0, 204);">Learn more</a><br><br><div style="float: right;"><a href="http://74.125.155.132/search?q=cache:sKFoI4_vFSEJ:www.vdlande.com/VHDL/package.html+site:www.vdlande.com+VHDL+reference+guide+vdlande&amp;hl=en&amp;client=firefox-a&amp;gl=us&amp;strip=1" style="text-decoration: underline; color: rgb(0, 0, 204);">Text-only version</a></div>
+<div>These search terms are highlighted: <span style="background: rgb(255, 255, 102) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; color: black; font-weight: bold;">vhdl</span>&nbsp;These terms only appear in links pointing to this page: <span style="font-weight: bold;">reference</span>&nbsp;<span style="font-weight: bold;">guide</span>&nbsp;<span style="font-weight: bold;">vdlande</span>&nbsp;&nbsp;</div></div></div><div style="position: relative;">
+
+
+
+
+
+<div align="center">
+<table border="0" cellpadding="5">
+<caption><b>Package</b></caption>
+<tbody><tr><td colspan="3"><hr></td></tr>
+<tr>
+<td bgcolor="lightcyan">Primary Library Unit</td>
+</tr>
+</tbody></table>
+
+<p><table border="0">
+<tbody><tr><td><hr width="150"></td><td>Syntax</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="40%">
+<tbody><tr>
+<td><pre><b>package</b> package_name is
+	declarations
+<b>end</b> package_name;</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+
+
+
+<div align="center">
+See LRM section 2.5
+
+<p><table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Rules and Examples</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+<div align="left">
+<table border="1" cellpadding="5" width="70%">
+<tbody><tr>
+<td>Declarations may typically be any of the following:
+<a href="http://www.vdlande.com/VHDL/typedef.htm">type</a>, <a href="http://www.vdlande.com/VHDL/subt_dec.htm">subtype</a>,
+<a href="http://www.vdlande.com/VHDL/constdec.htm">constant</a>, <a href="http://www.vdlande.com/VHDL/filedec.htm">file</a>,
+<a href="http://www.vdlande.com/VHDL/aliasdec.htm">alias</a>, <a href="http://www.vdlande.com/VHDL/compdec.htm">component</a>,
+<a href="http://www.vdlande.com/VHDL/attrib.htm">attribute</a>, <a href="http://www.vdlande.com/VHDL/function.htm">function</a>,
+<a href="http://www.vdlande.com/VHDL/procedur.htm">procedure</a>
+<pre>package DEMO_PACK is
+  constant SOME_FLAG : bit_vector := "11111111";
+  type STATE is (RESET,IDLE,ACKA);
+  component HALFADD 
+    port(A,B : in bit;
+         SUM,CARRY : out bit);
+  end component;
+end DEMO_PACK;
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="right">
+<table border="1" cellpadding="5" width="70%">
+<tbody><tr>
+<td>Items declared in a package are visible wherever selected via a
+<a href="http://www.vdlande.com/VHDL/use.htm">use</a> clause. For instance, assume DEMO_PACK is
+analysed into library work:
+<pre>use work.DEMO_PACK.all;
+entity DEMO is
+port
+ (Z: out bit_vector(7 downto 0));
+end DEMO;
+
+architecture BEHAVE of DEMO is 
+begin
+  Z &lt;= SOME_FLAG; 
+end BEHAVE;
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="l;eft">
+<table border="1" cellpadding="5" width="60%">
+<tbody><tr>
+<td>When a procedure or function is declared in a package, its body (the
+algorithm part) must be placed in the
+<a href="http://www.vdlande.com/VHDL/packageb.htm">package body</a>.</td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="right">
+<table border="1" cellpadding="5" width="60%">
+<tbody><tr>
+<td>A constant declared in a package may be <b>deferred</b>. This means
+that its value may be changed by re-analysing omly the
+<a href="http://www.vdlande.com/VHDL/packageb.htm">package body</a>:
+<pre>package P is
+  constant C : integer;
+end P;
+
+package body P is
+  constant C : integer := 200;
+end P;
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+
+
+<div align="center">
+<p><table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Synthesis Issues</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+Packages are usually supported by synthesis tools, provided all the
+items they declare are compatible with synthesis
+<p>
+Synthesisable declarations and non-synthesisable declarations (e.g.for a
+test bench) should therefore be placed in separated packages.
+</p><p>
+Design Libraries are often not supported, so design files containing
+packages must either by analysed first for synthesis, or be present in
+the local directory.
+</p><p>
+If a package has a body, it must usually be in the same design file as
+the package itself.
+
+</p><div align="center">
+<p><table border="0">
+<tbody><tr><td><hr width="150"></td><td>Whats New in '93</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+
+In <b style="color: black; background-color: rgb(255, 255, 102);">VHDL</b>-93, the keyword <b>end</b> may be followed by the
+keyword <b>package</b>, for clarity and consistancy.
+</p><p>
+<a href="http://www.vdlande.com/VHDL/var_dec.htm">Shared variables</a> and <a href="http://www.vdlande.com/VHDL/attrib.htm">groups</a> may
+also be declared in a package.
+
+</p></div>
+
+<hr width="80%">
+</div></body></html>

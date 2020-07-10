@@ -1,0 +1,147 @@
+<HTML>
+<HEAD>
+<TITLE>VHDL Reference Guide - Type Conversion</TITLE>
+</HEAD>
+<BODY BGCOLOR="mintcream">
+
+<DIV ALIGN=CENTER>
+<TABLE BORDER=0 CELLPADDING=5>
+<CAPTION><B>Type Conversion</B></CAPTION>
+<TR><TD COLSPAN=3><HR></TD></TR>
+<TR>
+<TD BGCOLOR="lightcyan">Expression</TD>
+<TD>---- used in ----></TD>
+<TD BGCOLOR="lightgreen">Package<br>Entity<br>Architecture<br>Process<br>Procedure<br>Function</TD>
+</TR>
+</TABLE>
+
+<P><TABLE BORDER=0>
+<TR><TD><HR width=150></TD><TD>Syntax</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=CENTER>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=40%>
+<TR><TD><PRE>target_type (closely_related_expression)</PRE></TD></TR>
+<TR><TD>&nbsp;</TD></TR>
+<TR><TD><PRE>conversion_function (expression)</PRE></TD></TR>
+</TABLE><P>
+</DIV>
+
+
+
+<DIV ALIGN=CENTER>
+See LRM section 7.3.5
+
+<P><TABLE BORDER=0 align=center>
+<TR><TD><HR width=150></TD><TD>Rules and Examples</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=left>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=70%>
+<TR>
+<TD>Objects of user-defined types cannot directly be assigned to or from
+objects of even a closely related type. A <b>type conversion</b> allows
+the assignment to be made:
+<PRE>type BUS_VAL is range 0 to 255;
+
+variable X_INT : integer := 22;
+variable X_BUS : BUS_VAL;
+...
+X_BUS := X_INT;                     --illegal
+X_BUS := BUS_VAL(X_INT);</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=70%>
+<TR>
+<TD><b>Closely related types</b> are
+<ol>
+<li>integer types and real types
+<li>array types whose lengths, index types and element types match.
+</ol>
+For instance
+<PRE>type T_BYTE is array (7 downto 0)
+     of std_ulogic;
+signal TYPE_BUS : T_BYTE;
+signal VEC_BUS :
+     std_ulogic_vector(7 downto 0);
+...
+TYPE_BUS <= VEC_BUS;                --illegal
+TYPE_BUS <= T_BYTE(VEC_BUS);</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=70%>
+<TR>
+<TD>If conversion is required between types which are not closely
+related, a user defined function must be used:
+<PRE>signal X_BOOL: boolean;
+signal X_STD:  std_ulogic;
+function BOOL_TO_SL(X : boolean)
+            return std_ulogic is
+begin
+  if X then
+    return ('1');
+  else
+    return ('0');
+  end if;
+end BOOL_TO_SL;
+...
+X_STD <= X_BOOL;                    --illegal
+X_STD <= BOOL_TO_SL(X_BOOL);
+</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=right>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=40%>
+<TR>
+<TD>A type conversion function may be called in a port map, to match
+port type to signal type.</TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=CENTER>
+<P><TABLE BORDER=0 align=center>
+<TR><TD><HR width=150></TD><TD>Synthesis Issues</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=CENTER>
+<TABLE BORDER=0 CELLPADDING=5 WIDTH=70%>
+<TR>
+<TD>Most logic synthesis tools support type conversion for appropriate
+array and integer types.
+<p>
+Most also accept the type conversion functions in the std_logic_1164
+package.
+<p>
+Some synthesis vendors supply a VHDL package containing conversion
+functions which the synthesiser will spuuort.
+<p>
+Conversion functions in port maps are not usually supported.
+</TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=CENTER>
+<P><TABLE BORDER=0>
+<TR><TD><HR width=150></TD><TD>Whats New in '93</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+
+Type Conversions have not changed in VHDL-93.
+
+</DIV>
+
+<HR WIDTH="80%">
+</BODY>
+</HTML>

@@ -1,0 +1,154 @@
+<HTML>
+<HEAD>
+<TITLE>VHDL Reference Guide - Exit Statement</TITLE>
+</HEAD>
+<BODY BGCOLOR="mintcream">
+<a href="entity.html"><img border=0 src="../../images/left.gif" align=left></a>
+<a href="filedec.html"><img border=0 src="../../images/right.gif" align=right></a>
+
+<DIV ALIGN=CENTER>
+<TABLE BORDER=0 CELLPADDING=5>
+<CAPTION><B>Exit Statement</B></CAPTION>
+<TR><TD COLSPAN=3><HR></TD></TR>
+<TR>
+<TD BGCOLOR="lightcyan">Sequential Statement</TD>
+<TD>---- used in ----></TD>
+<TD BGCOLOR="lightgreen">Loop<br>For Loop<br>While Loop</TD>
+</TR>
+</TABLE>
+
+<P><TABLE BORDER=0>
+<TR><TD><HR width=150></TD><TD>Syntax</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=40%>
+<TR>
+<TD><PRE>exit;
+</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=40%>
+<TR>
+<TD><PRE>
+exit loop_label;
+</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=40%>
+<TR>
+<TD><PRE>
+exit loop_label when condition;
+</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=CENTER>
+See LRM section 8.10
+
+<P><TABLE BORDER=0 align=center>
+<TR><TD><HR width=150></TD><TD>Rules and Examples</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=60%>
+<TR>
+<TD>The exit statement is used to terminate a <b>while, for</b> or
+infinite <b>loop</b>:
+<PRE>for I in 0 to 7 loop
+  if FINISH_LOOP_EARLY = '1' then
+    exit;
+  else
+    A_BUS <= TABLE(I);
+    wait for 5 ns;
+  end if;
+end loop;</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=70%>
+<TR>
+<TD>The exit statement may test a boolean condition directly using the
+<b>when</b> keyword
+<PRE>process (A)
+   variable I : integer range 0 to 4; 
+begin
+   Z <= "0000";
+   I := 0;    
+   loop
+      exit when I = 4;
+      if (A = I) then
+         Z(I) <= '1';
+      end if;
+      I := I + 1;
+   end loop;
+end process;</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=70%>
+<TR>
+<TD>For an exit statement within a set of nested loops, the optional
+loop label may be used to indicate which level of loop is to be exited.
+The default (no label) is the innermost loop:
+<PRE>L1: for I in 0 to 7 loop
+  L2: for J in 0 to 7 loop
+    exit L1 when QUIT_BOTH_LOOPS = '1';
+    exit when QUIT_INNER_LOOP = '1';
+    -- other statements 
+  end loop L2;
+end loop L1;</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=CENTER>
+<P><TABLE BORDER=0 align=center>
+<TR><TD><HR width=150></TD><TD>Synthesis Issues</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+The exit statement is supported by some logic synthesis tools, with
+certain restrictions.
+
+<DIV ALIGN=CENTER>
+<P><TABLE BORDER=0>
+<TR><TD><HR width=150></TD><TD>Whats New in '93</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+
+In VHDL-93, the <b>exit</b> statement may have an optional label
+<pre>label: <b>exit</b> loop_label;</pre>
+
+</DIV>
+
+<HR WIDTH="80%">
+<div align=center>
+<a href="entity.html"><img border=0 src="../../images/left.gif"></a>
+<a href="index.html"><img border=0 src="../../images/up.gif"></a>
+<a href="filedec.html"><img border=0 src="../../images/right.gif"></a>
+</div>
+
+<HR WIDTH="80%">
+<ADDRESS>
+<CENTER>
+This page maintained by <A HREF="mailto:dave@truechap.demon.co.uk">
+<IMG SRC="/images/emailed.gif" BORDER=0>
+Dave Trueman</A>
+</CENTER>
+</ADDRESS>
+<HR WIDTH="80%">
+</BODY>
+</HTML>

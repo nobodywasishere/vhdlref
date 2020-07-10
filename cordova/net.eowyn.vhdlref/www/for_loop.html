@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href=css/main.css />
+    <link rel="stylesheet" href=css/code.css />
+    <link rel="apple-touch-icon" sizes="57x57"         href=assets/icons/apple-icon-57x57.png>
+    <link rel="apple-touch-icon" sizes="60x60"         href=assets/icons/apple-icon-60x60.png>
+    <link rel="apple-touch-icon" sizes="72x72"         href=assets/icons/apple-icon-72x72.png>
+    <link rel="apple-touch-icon" sizes="76x76"         href=assets/icons/apple-icon-76x76.png>
+    <link rel="apple-touch-icon" sizes="114x114"       href=assets/icons/apple-icon-114x114.png>
+    <link rel="apple-touch-icon" sizes="120x120"       href=assets/icons/apple-icon-120x120.png>
+    <link rel="apple-touch-icon" sizes="144x144"       href=assets/icons/apple-icon-144x144.png>
+    <link rel="apple-touch-icon" sizes="152x152"       href=assets/icons/apple-icon-152x152.png>
+    <link rel="apple-touch-icon" sizes="180x180"       href=assets/icons/apple-icon-180x180.png>
+    <link rel="icon" type="image/png" sizes="192x192"  href=assets/icons/android-icon-192x192.png>
+    <link rel="icon" type="image/png" sizes="32x32"    href=assets/icons/favicon-32x32.png>
+    <link rel="icon" type="image/png" sizes="96x96"    href=assets/icons/favicon-96x96.png>
+    <link rel="icon" type="image/png" sizes="16x16"    href=assets/icons/favicon-16x16.png>
+</head>
+
+
+<body>
+
+    <div id="content">
+
+        <title>For Loop</title>
+
+<span>
+    <h2 style="align-items: center;">
+        <a href=index.html class="text-norm">
+            <img src="assets/icons/android-icon-48x48.png" alt="logo" style="vertical-align:middle; margin: auto 2px 5px auto;" />
+            VHDLref
+        </a>
+    </h2>
+</span>
+
+<hr>
+
+<h1>For Loop</h1>
+
+<br>
+<div class="chart">
+    <table class="chart">
+        <tr>
+            <td bgcolor="lightcyan">
+                
+                Sequential Statement
+                
+                
+            </td>
+
+            
+            
+            <td style="border: 0px solid transparent">——used—in—></td>
+
+            <td bgcolor="lightgreen">
+                
+                Process
+                
+                <br>
+                
+                
+                Function
+                
+                <br>
+                
+                
+                Procedure
+                
+                
+            </td>
+            
+        </tr>
+
+        
+        
+    </table>
+</div>
+<br>
+<h3 class="text-hr"><span>Syntax</span></h3>
+
+<!-- include the vhdl tag to highlight as vhdl -->
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">optional_label</span><span class="p">:</span> <span class="k">for</span> <span class="k">parameter</span> <span class="k">in</span> <span class="k">range</span> <span class="k">loop</span>
+
+    <span class="c1">-- sequential statements</span>
+
+<span class="k">end</span> <span class="k">loop</span> <span class="k">label</span><span class="p">;</span>
+</code></pre></div></div>
+<p>See LRM section 8.8</p>
+
+<h3 class="text-hr"><span>Rules and Examples</span></h3>
+
+<p>The <strong>for</strong> loop defines a loop parameter which takes on the type of the range specified. For example, the range <strong>0 to 3</strong> implies an integer:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">process</span> <span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="k">begin</span>
+
+    <span class="n">Z</span> <span class="o">&lt;=</span> <span class="s1">"0000"</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="n">I</span> <span class="k">in</span> <span class="n">o</span> <span class="k">to</span> <span class="mi">3</span> <span class="k">loop</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">A</span> <span class="o">=</span> <span class="n">I</span><span class="p">)</span> <span class="k">then</span>
+            <span class="n">Z</span><span class="p">(</span><span class="n">I</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="sc">'1'</span><span class="p">;</span>
+        <span class="k">end</span> <span class="k">if</span><span class="p">;</span>
+    <span class="k">end</span> <span class="k">loop</span><span class="p">;</span>
+
+<span class="k">end</span> <span class="k">process</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Attributes such as <strong>‘high</strong>, <strong>‘low</strong> and <strong>‘range</strong> may also be used to define the iterations of a <strong>for</strong> loop:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">process</span> <span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">#</span>
+
+    <span class="k">variable</span> <span class="n">TMP</span> <span class="p">:</span> <span class="kt">std_ulogic</span><span class="p">;</span>
+
+<span class="k">begin</span>
+
+    <span class="n">TMP</span> <span class="p">:</span><span class="o">=</span> <span class="sc">'0'</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="n">I</span> <span class="k">in</span> <span class="n">A</span><span class="na">'low</span> <span class="k">to</span> <span class="n">A</span><span class="na">'high</span> <span class="k">loop</span>
+        <span class="n">TMP</span> <span class="p">:</span><span class="o">=</span> <span class="n">TMP</span> <span class="ow">xor</span> <span class="n">A</span><span class="p">(</span><span class="n">I</span><span class="p">);</span>
+        <span class="k">end</span> <span class="k">loop</span><span class="p">;</span>
+    <span class="n">ODD</span> <span class="o">&lt;=</span> <span class="n">TMP</span><span class="p">;</span>
+
+<span class="k">end</span> <span class="k">process</span><span class="p">;</span>
+
+</code></pre></div></div>
+
+<p>The range may be any discrete range, e.g. an enumerated type:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">type</span> <span class="n">PRIMARY</span> <span class="k">is</span> <span class="p">(</span><span class="n">RED</span><span class="p">,</span> <span class="n">GREEN</span><span class="p">,</span> <span class="n">BLUE</span><span class="p">);</span>
+<span class="k">type</span> <span class="n">COLOUR</span> <span class="k">is</span> <span class="k">ARRAY</span> <span class="p">(</span><span class="n">PRIMARY</span><span class="p">)</span> <span class="k">of</span> <span class="kt">integer</span> <span class="k">range</span> <span class="mi">0</span> <span class="k">to</span> <span class="mi">255</span><span class="p">;</span>
+
+<span class="c1">-- other statements</span>
+
+<span class="n">MUX</span><span class="p">:</span> <span class="k">process</span>
+<span class="k">begin</span>
+
+    <span class="k">for</span> <span class="n">SEL</span> <span class="k">in</span> <span class="n">PRIMARY</span> <span class="k">loop</span>
+        <span class="n">V_BUS</span> <span class="o">&lt;=</span> <span class="n">VIDEO</span><span class="p">(</span><span class="n">SEL</span><span class="p">);</span>
+        <span class="k">wait</span> <span class="k">for</span> <span class="mi">10</span> <span class="n">ns</span><span class="p">;</span>
+    <span class="k">end</span> <span class="k">loop</span><span class="p">;</span>
+
+<span class="k">end</span> <span class="k">process</span> <span class="n">MUX</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>The loop parameter does not need to be declared: it is implicitly declared within the loop. It may not be modified within the loop:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">I</span> <span class="k">in</span> <span class="mi">1</span> <span class="k">to</span> <span class="mi">10</span> <span class="k">loop</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">REPEAT</span> <span class="o">=</span> <span class="sc">'1'</span><span class="p">)</span> <span class="k">then</span>
+        <span class="n">I</span> <span class="p">:</span><span class="o">=</span> <span class="n">I</span><span class="mi">-1</span><span class="p">;</span>	<span class="c1">-- Illegal</span>
+    <span class="k">end</span> <span class="k">if</span><span class="p">;</span>
+<span class="k">end</span> <span class="k">loop</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 class="text-hr"><span>Synthesis Issues</span></h3>
+
+<p>The for loop is supported for synthesis, providing:</p>
+<ul>
+  <li>the loop range is static (i.e. implies a definite number of iterations), and</li>
+  <li>the loop contains no <strong>wait</strong> statements.</li>
+</ul>
+
+<h3 class="text-hr"><span>New in VHDL-93</span></h3>
+
+<p>The for loop statement has not changed in VHDL-93.</p>
+
+
+
+<br>
+<hr>
+
+
+        <div id="footer">
+            <h6>v1.0 - &copy; 2020 Michael Riegert - <a href="https://github.com/nobodywasishere/vhdlref">View on Github</a>
+<br>Distributed under the terms of the <a href="LICENSE.html">MIT License</a></h6>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

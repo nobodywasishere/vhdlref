@@ -1,7 +1,11 @@
-name: VHDL Reference
+name: VHDLref
 url: https://nobodywasishere.github.io
 baseurl:
+
+exclude: ['cordova']
 
 collections:
   refs:
     output: true
+
+version: 1.0

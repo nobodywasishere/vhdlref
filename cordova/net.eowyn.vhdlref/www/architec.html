@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href=css/main.css />
+    <link rel="stylesheet" href=css/code.css />
+    <link rel="apple-touch-icon" sizes="57x57"         href=assets/icons/apple-icon-57x57.png>
+    <link rel="apple-touch-icon" sizes="60x60"         href=assets/icons/apple-icon-60x60.png>
+    <link rel="apple-touch-icon" sizes="72x72"         href=assets/icons/apple-icon-72x72.png>
+    <link rel="apple-touch-icon" sizes="76x76"         href=assets/icons/apple-icon-76x76.png>
+    <link rel="apple-touch-icon" sizes="114x114"       href=assets/icons/apple-icon-114x114.png>
+    <link rel="apple-touch-icon" sizes="120x120"       href=assets/icons/apple-icon-120x120.png>
+    <link rel="apple-touch-icon" sizes="144x144"       href=assets/icons/apple-icon-144x144.png>
+    <link rel="apple-touch-icon" sizes="152x152"       href=assets/icons/apple-icon-152x152.png>
+    <link rel="apple-touch-icon" sizes="180x180"       href=assets/icons/apple-icon-180x180.png>
+    <link rel="icon" type="image/png" sizes="192x192"  href=assets/icons/android-icon-192x192.png>
+    <link rel="icon" type="image/png" sizes="32x32"    href=assets/icons/favicon-32x32.png>
+    <link rel="icon" type="image/png" sizes="96x96"    href=assets/icons/favicon-96x96.png>
+    <link rel="icon" type="image/png" sizes="16x16"    href=assets/icons/favicon-16x16.png>
+</head>
+
+
+<body>
+
+    <div id="content">
+
+        <title>Architecture</title>
+
+<span>
+    <h2 style="align-items: center;">
+        <a href=index.html class="text-norm">
+            <img src="assets/icons/android-icon-48x48.png" alt="logo" style="vertical-align:middle; margin: auto 2px 5px auto;" />
+            VHDLref
+        </a>
+    </h2>
+</span>
+
+<hr>
+
+<h1>Architecture</h1>
+
+<br>
+<div class="chart">
+    <table class="chart">
+        <tr>
+            <td bgcolor="lightcyan">
+                
+                Secondary Unit
+                
+                
+            </td>
+
+            
+            
+        </tr>
+
+        
+        
+    </table>
+</div>
+<br>
+<h3 class="text-hr"><span>Syntax</span></h3>
+
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">architecture</span> <span class="n">architecture_name</span> <span class="k">of</span> <span class="n">entity_name</span> <span class="k">is</span>
+
+    <span class="c1">-- declarations</span>
+
+<span class="k">begin</span>
+
+    <span class="c1">-- concurrent statements</span>
+
+<span class="k">end</span> <span class="n">architecture_name</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 class="text-hr"><span>Rules and Examples</span></h3>
+
+<p>Declarations may typically be any of the following: type, subtype, signal, constant, file, alias, component, attribute, function, procedure, configuration specification.</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">architecture</span> <span class="n">TB</span> <span class="k">of</span> <span class="n">TB_CPU</span> <span class="k">is</span>
+
+    <span class="k">component</span> <span class="n">CPU_IF</span>
+        <span class="k">port</span> <span class="p">(</span>
+            <span class="c1">--port list</span>
+        <span class="p">);</span>
+    <span class="k">end</span> <span class="k">component</span><span class="p">;</span>
+
+    <span class="k">signal</span> <span class="n">CPU_DATA_VALID</span><span class="p">:</span> <span class="kt">std_ulogic</span><span class="p">;</span>
+    <span class="k">signal</span> <span class="n">CLK</span><span class="p">,</span> <span class="n">RESET</span><span class="p">:</span> <span class="kt">std_ulogic</span> <span class="p">:</span><span class="o">=</span> <span class="sc">'0'</span><span class="p">;</span>
+    <span class="k">constant</span> <span class="n">PERIOD</span> <span class="p">:</span> <span class="kt">time</span> <span class="p">:</span><span class="o">=</span> <span class="mi">10</span> <span class="n">ns</span><span class="p">;</span>
+    <span class="k">constant</span> <span class="n">MAX_SIM</span><span class="p">:</span> <span class="kt">time</span> <span class="p">:</span><span class="o">=</span> <span class="mi">50</span> <span class="o">*</span> <span class="n">PERIOD</span><span class="p">;</span>
+
+<span class="k">begin</span>
+
+    <span class="c1">-- concurrent statements</span>
+
+<span class="k">end</span> <span class="n">TB</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Items declared in an architecture are visible in any process or block within it.</p>
+
+<p>The order of concurrent statements is not important - behavior is defined by data dependencies only:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">architecture</span> <span class="n">EX1</span> <span class="k">of</span> <span class="n">CONC</span> <span class="k">is</span>
+
+    <span class="k">signal</span> <span class="n">Z</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">D</span> <span class="p">:</span> <span class="kt">integer</span><span class="p">;</span>
+
+<span class="k">begin</span>
+
+    <span class="n">D</span> <span class="o">&lt;=</span> <span class="n">A</span> <span class="o">+</span> <span class="n">B</span><span class="p">;</span>
+    <span class="n">Z</span> <span class="o">&lt;=</span> <span class="n">C</span> <span class="o">+</span> <span class="n">D</span><span class="p">;</span>
+
+<span class="k">end</span> <span class="n">EX1</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>An equivalent architecture:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">architecture</span> <span class="n">EX2</span> <span class="k">of</span> <span class="n">CONC</span> <span class="k">is</span>
+
+    <span class="k">signal</span> <span class="n">Z</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">D</span> <span class="p">:</span> <span class="kt">integer</span><span class="p">;</span>
+
+<span class="k">begin</span>
+
+    <span class="n">Z</span> <span class="o">&lt;=</span> <span class="n">C</span> <span class="o">+</span> <span class="n">D</span><span class="p">;</span>
+    <span class="n">D</span> <span class="o">&lt;=</span> <span class="n">A</span> <span class="o">+</span> <span class="n">B</span><span class="p">;</span>
+
+<span class="k">end</span> <span class="n">EX2</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>An architecture can contain any mix of component instances, processes or other concurrent statements:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">architecture</span> <span class="n">TEST</span> <span class="k">of</span> <span class="n">TB_DFF</span> <span class="k">is</span>
+
+    <span class="k">component</span> <span class="n">DFF</span> <span class="k">is</span>
+        <span class="k">port</span> <span class="p">(</span>
+            <span class="n">CLK</span><span class="p">,</span> <span class="n">D</span><span class="p">:</span>  <span class="k">in</span> <span class="kt">std_ulogic</span><span class="p">;</span>
+            <span class="n">Q</span>     <span class="p">:</span> <span class="k">out</span> <span class="kt">std_ulogic</span>
+        <span class="p">);</span>
+    <span class="k">end</span> <span class="k">component</span><span class="p">;</span>
+
+    <span class="k">signal</span> <span class="n">CLK</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">Q</span> <span class="p">:</span> <span class="kt">std_ulogic</span> <span class="p">:</span><span class="o">=</span> <span class="sc">'0'</span><span class="p">;</span>
+
+<span class="k">begin</span>
+
+    <span class="n">UUT</span><span class="p">:</span> <span class="n">DFF</span> <span class="k">port</span> <span class="k">map</span> <span class="p">(</span><span class="n">CLK</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">Q</span><span class="p">);</span>
+
+    <span class="n">CLK</span> <span class="o">&lt;=</span> <span class="ow">not</span> <span class="p">(</span><span class="n">CLK</span><span class="p">)</span> <span class="k">after</span> <span class="mi">25</span> <span class="n">ns</span><span class="p">;</span>
+
+    <span class="n">STIMULUS</span><span class="p">:</span> <span class="k">process</span>
+    <span class="k">begin</span>
+        <span class="k">wait</span> <span class="k">for</span> <span class="mi">50</span> <span class="n">ns</span><span class="p">;</span>
+        <span class="n">D</span> <span class="o">&lt;=</span> <span class="sc">'1'</span><span class="p">;</span>
+        <span class="k">wait</span> <span class="k">for</span> <span class="mi">100</span> <span class="n">ns</span><span class="p">;</span>
+        <span class="n">D</span> <span class="o">&lt;=</span> <span class="sc">'0'</span><span class="p">;</span>
+        <span class="k">wait</span> <span class="k">for</span> <span class="mi">50</span> <span class="n">ns</span><span class="p">;</span>
+    <span class="k">end</span> <span class="k">process</span> <span class="n">STIMULUS</span><span class="p">;</span>
+
+<span class="k">end</span> <span class="n">TEST</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>An entity can have one or more architectures. which one is used (or “bound”) depends on the <strong>configuration</strong>.</p>
+
+<p>An architecture cannot be analyzed unless the entity it refers to exists in the same design library.</p>
+
+<h3 class="text-hr"><span>Synthesis Issues</span></h3>
+
+<p>Architectures are fully supported by synthesis tools, provided the declarations and statements they contain are compatible with synthesis.</p>
+
+<p>Configuration is not usually supported by synthesis tools, so only one architecture per entity may be analyzed. With some tools, this architecture must be in the same design file as the entity.</p>
+
+<h3 class="text-hr"><span>New in VHDL-93</span></h3>
+
+<p>In VHDL-93, the keyword <strong>end</strong> may be followed by the keyword <strong>architecture</strong>, for clarity and consistency.</p>
+
+<p>In VHDL-93, <strong>shared variables</strong> may be declared within an architecture. Shared variables may be accessed by more than one process. However, the language does not define what happens if two or more processes make conflicting accesses to a shared variable at the same time.</p>
+
+
+
+<br>
+<hr>
+
+
+        <div id="footer">
+            <h6>v1.0 - &copy; 2020 Michael Riegert - <a href="https://github.com/nobodywasishere/vhdlref">View on Github</a>
+<br>Distributed under the terms of the <a href="LICENSE.html">MIT License</a></h6>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

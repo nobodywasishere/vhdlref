@@ -1,0 +1,167 @@
+<HTML>
+<HEAD>
+<TITLE>VHDL Reference Guide - Package</TITLE>
+</HEAD>
+<BODY BGCOLOR="mintcream">
+
+<a href="operator.htm"><img border=0 src="../../images/left.gif" align=left></a>
+<a href="packageb.htm"><img border=0 src="../../images/right.gif"align=right></a>
+
+<DIV ALIGN=CENTER>
+<TABLE BORDER=0 CELLPADDING=5>
+<CAPTION><B>Package</B></CAPTION>
+<TR><TD COLSPAN=3><HR></TD></TR>
+<TR>
+<TD BGCOLOR="lightcyan">Primary Library Unit</TD>
+</TR>
+</TABLE>
+
+<P><TABLE BORDER=0>
+<TR><TD><HR width=150></TD><TD>Syntax</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=40%>
+<TR>
+<TD><PRE><b>package</b> package_name is
+	declarations
+<b>end</b> package_name;</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+
+
+
+<DIV ALIGN=CENTER>
+See LRM section 2.5
+
+<P><TABLE BORDER=0 align=center>
+<TR><TD><HR width=150></TD><TD>Rules and Examples</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=left>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=70%>
+<TR>
+<TD>Declarations may typically be any of the following:
+<a href="typedef.htm">type</a>, <a href="subt_dec.htm">subtype</a>,
+<a href="constdec.htm">constant</a>, <a href="filedec.htm">file</a>,
+<a href="aliasdec.htm">alias</a>, <a href="compdec.htm">component</a>,
+<a href="attrib.htm">attribute</a>, <a href="function.htm">function</a>,
+<a href="procedur.htm">procedure</a>
+<PRE>package DEMO_PACK is
+  constant SOME_FLAG : bit_vector := "11111111";
+  type STATE is (RESET,IDLE,ACKA);
+  component HALFADD 
+    port(A,B : in bit;
+         SUM,CARRY : out bit);
+  end component;
+end DEMO_PACK;
+</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=right>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=70%>
+<TR>
+<TD>Items declared in a package are visible wherever selected via a
+<a href="use.htm">use</a> clause. For instance, assume DEMO_PACK is
+analysed into library work:
+<PRE>use work.DEMO_PACK.all;
+entity DEMO is
+port
+ (Z: out bit_vector(7 downto 0));
+end DEMO;
+
+architecture BEHAVE of DEMO is 
+begin
+  Z <= SOME_FLAG; 
+end BEHAVE;
+</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=l;eft>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=60%>
+<TR>
+<TD>When a procedure or function is declared in a package, its body (the
+algorithm part) must be placed in the
+<a href="packageb.htm">package body</a>.</TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=right>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=60%>
+<TR>
+<TD>A constant declared in a package may be <b>deferred</b>. This means
+that its value may be changed by re-analysing omly the
+<a href="packageb.htm">package body</a>:
+<PRE>package P is
+  constant C : integer;
+end P;
+
+package body P is
+  constant C : integer := 200;
+end P;
+</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+
+
+<DIV ALIGN=CENTER>
+<P><TABLE BORDER=0 align=center>
+<TR><TD><HR width=150></TD><TD>Synthesis Issues</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+Packages are usually supported by synthesis tools, provided all the
+items they declare are compatible with synthesis
+<p>
+Synthesisable declarations and non-synthesisable declarations (e.g.for a
+test bench) should therefore be placed in separated packages.
+<p>
+Design Libraries are often not supported, so design files containing
+packages must either by analysed first for synthesis, or be present in
+the local directory.
+<p>
+If a package has a body, it must usually be in the same design file as
+the package itself.
+
+<DIV ALIGN=CENTER>
+<P><TABLE BORDER=0>
+<TR><TD><HR width=150></TD><TD>Whats New in '93</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+
+In VHDL-93, the keyword <B>end</b> may be followed by the
+keyword <b>package</b>, for clarity and consistancy.
+<p>
+<a href=var_dec.htm>Shared variables</a> and <a href="attrib.htm">groups</a> may
+also be declared in a package.
+
+</DIV>
+
+<HR WIDTH="80%">
+<div align=center>
+<a href="operator.htm"><img border=0 src="../../images/left.gif"></a>
+<a href="index.htm"><img border=0 src="../../images/up.gif"></a>
+<a href="packageb.htm"><img border=0 src="../../images/right.gif"></a>
+</div>
+
+<HR WIDTH="80%">
+<ADDRESS>
+<CENTER>
+This page maintained by <A HREF="mailto:dave@truechap.demon.co.uk">
+<IMG SRC="/images/emailed.gif" BORDER=0>
+Dave Trueman</A>
+</CENTER>
+</ADDRESS>
+<HR WIDTH="80%">
+</BODY>
+</HTML>

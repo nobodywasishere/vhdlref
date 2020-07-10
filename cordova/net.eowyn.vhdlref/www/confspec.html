@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href=css/main.css />
+    <link rel="stylesheet" href=css/code.css />
+    <link rel="apple-touch-icon" sizes="57x57"         href=assets/icons/apple-icon-57x57.png>
+    <link rel="apple-touch-icon" sizes="60x60"         href=assets/icons/apple-icon-60x60.png>
+    <link rel="apple-touch-icon" sizes="72x72"         href=assets/icons/apple-icon-72x72.png>
+    <link rel="apple-touch-icon" sizes="76x76"         href=assets/icons/apple-icon-76x76.png>
+    <link rel="apple-touch-icon" sizes="114x114"       href=assets/icons/apple-icon-114x114.png>
+    <link rel="apple-touch-icon" sizes="120x120"       href=assets/icons/apple-icon-120x120.png>
+    <link rel="apple-touch-icon" sizes="144x144"       href=assets/icons/apple-icon-144x144.png>
+    <link rel="apple-touch-icon" sizes="152x152"       href=assets/icons/apple-icon-152x152.png>
+    <link rel="apple-touch-icon" sizes="180x180"       href=assets/icons/apple-icon-180x180.png>
+    <link rel="icon" type="image/png" sizes="192x192"  href=assets/icons/android-icon-192x192.png>
+    <link rel="icon" type="image/png" sizes="32x32"    href=assets/icons/favicon-32x32.png>
+    <link rel="icon" type="image/png" sizes="96x96"    href=assets/icons/favicon-96x96.png>
+    <link rel="icon" type="image/png" sizes="16x16"    href=assets/icons/favicon-16x16.png>
+</head>
+
+
+<body>
+
+    <div id="content">
+
+        <title>Configuration Specification</title>
+
+<span>
+    <h2 style="align-items: center;">
+        <a href=index.html class="text-norm">
+            <img src="assets/icons/android-icon-48x48.png" alt="logo" style="vertical-align:middle; margin: auto 2px 5px auto;" />
+            VHDLref
+        </a>
+    </h2>
+</span>
+
+<hr>
+
+<h1>Configuration Specification</h1>
+
+<br>
+<div class="chart">
+    <table class="chart">
+        <tr>
+            <td bgcolor="lightcyan">
+                
+                Specification
+                
+                
+            </td>
+
+            
+            
+            <td style="border: 0px solid transparent">——used—in—></td>
+
+            <td bgcolor="lightgreen">
+                
+                Architecture
+                
+                
+            </td>
+            
+        </tr>
+
+        
+        
+    </table>
+</div>
+<br>
+<h3 class="text-hr"><span>Syntax</span></h3>
+
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">instance_label</span><span class="p">:</span> <span class="n">component_name</span>
+    <span class="k">use</span> <span class="k">entity</span>
+        <span class="n">library_name</span><span class="o">.</span><span class="n">entity_name</span><span class="p">(</span><span class="n">architecture_name</span><span class="p">);</span>
+</code></pre></div></div>
+
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">instance_label</span><span class="p">:</span> <span class="n">component_name</span>
+    <span class="k">use</span> <span class="k">configuration</span> <span class="n">library_name</span><span class="o">.</span><span class="n">config_name</span><span class="p">;</span>
+</code></pre></div></div>
+<p>See LRM section 5.2</p>
+
+<h3 class="text-hr"><span>Rules and Examples</span></h3>
+
+<p>Using a configuration <strong>specification</strong>, components may be configured within an architecture which instances them, rather than using a separate configuration declaration design unit. This is less flexible, as the architecture has to be re-analyzed to change the configuration.</p>
+
+<p>Component instances may be individually configured:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">architecture</span> <span class="n">STR</span> <span class="k">of</span> <span class="n">XA</span> <span class="k">is</span>
+
+    <span class="k">component</span> <span class="n">HALFADD</span>
+        <span class="k">port</span><span class="p">(</span>
+            <span class="n">A</span><span class="p">,</span><span class="n">B</span> <span class="p">:</span> <span class="k">in</span> <span class="kt">bit</span><span class="p">;</span>
+            <span class="n">SUM</span><span class="p">,</span> <span class="n">CARRY</span> <span class="p">:</span> <span class="k">out</span> <span class="kt">bit</span>
+        <span class="p">);</span>
+    <span class="k">end</span> <span class="k">component</span><span class="p">;</span>
+
+    <span class="k">component</span> <span class="n">ORGATE</span>
+        <span class="k">port</span><span class="p">(</span>
+            <span class="n">A</span><span class="p">,</span><span class="n">B</span> <span class="p">:</span> <span class="k">in</span> <span class="kt">bit</span><span class="p">;</span>
+            <span class="n">Z</span> <span class="p">:</span> <span class="k">out</span> <span class="kt">bit</span>
+        <span class="p">);</span>
+    <span class="k">end</span> <span class="k">component</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="n">U1</span> <span class="p">:</span> <span class="n">HALFADD</span> <span class="k">use</span> <span class="k">entity</span> <span class="n">work</span><span class="o">.</span><span class="n">HA</span><span class="p">(</span><span class="n">BEHAVE</span><span class="p">);</span>
+    <span class="k">for</span> <span class="n">U2</span> <span class="p">:</span> <span class="n">ORGATE</span> <span class="k">use</span> <span class="k">entity</span> <span class="n">work</span><span class="o">.</span><span class="n">OG</span><span class="p">(</span><span class="n">BEHAVE</span><span class="p">);</span>
+
+<span class="k">begin</span>
+
+    <span class="n">U1</span><span class="p">:</span> <span class="n">HALFADD</span> <span class="k">port</span> <span class="k">map</span> <span class="p">(</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">C</span><span class="p">);</span>
+    <span class="n">U2</span><span class="p">:</span> <span class="n">ORGATE</span> <span class="k">port</span> <span class="k">map</span> <span class="p">(</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">Y</span><span class="p">);</span>
+
+<span class="k">end</span> <span class="n">STR</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>The keyword <strong>all</strong> may be used to refer to all instances of a component:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="k">all</span><span class="p">:</span> <span class="n">FULLADDER</span> <span class="k">use</span> <span class="k">entity</span>
+    <span class="n">work</span><span class="o">.</span><span class="n">FULLADD</span><span class="p">(</span><span class="n">STRUCTURAL</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>The keyword <strong>others</strong> may also be used to refer to all instances not explicitly mentioned.</p>
+
+<p>If the port names on an entity do not match those on the component declaration, a port map may be included in the configuration:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="k">all</span><span class="p">:</span><span class="n">HALFADD</span> <span class="k">use</span> <span class="k">entity</span>
+    <span class="n">work</span><span class="o">.</span><span class="n">HALFADD</span><span class="p">(</span><span class="n">BEHAVE</span><span class="p">)</span>
+    <span class="k">port</span> <span class="k">map</span> <span class="p">(</span>
+        <span class="n">X</span> <span class="o">=&gt;</span> <span class="n">A</span><span class="p">,</span>
+        <span class="n">Y</span> <span class="o">=&gt;</span> <span class="n">B</span><span class="p">,</span>
+        <span class="n">S</span> <span class="o">=&gt;</span> <span class="n">SUM</span><span class="p">,</span>
+        <span class="n">C</span> <span class="o">=&gt;</span> <span class="n">CARRY</span>
+    <span class="p">);</span>
+</code></pre></div></div>
+
+<p>In the absence of an explicit configuration for any part of a model, <strong>default binding</strong> will occur. For each unbound instance of every component, an entity will be selected whose name, port names and port types etc. match those in the corresponding component declaration. Where an entity has more than one architecture, the <strong>last analyzed</strong> architecture will be used.</p>
+
+<h3 class="text-hr"><span>Synthesis Issues</span></h3>
+
+<p>Configuration is not usually supported by synthesis tools. The user usually has to ensure that component and entity names and ports match, and that only one architecture per entity is analyzed.</p>
+
+<h3 class="text-hr"><span>New in VHDL-93</span></h3>
+
+<p>In VHDL-93, an entity-architecture pair may be directly instantiated, i.e. a component need not be declared. This is more compact, but does not allow the flexibility of configuration.</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">DIRECT</span><span class="p">:</span> <span class="k">entity</span> <span class="n">HA_ENTITY</span><span class="p">(</span><span class="n">HA_ARCH</span><span class="p">)</span> <span class="k">port</span> <span class="k">map</span><span class="p">(</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">C</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>In VHDL-93, a configuration <strong>specification</strong> for a component (or instance) may legally be overridden by a configuration <strong>declaration</strong> for the same item. This was not allowed in VHDL-87.</p>
+
+
+
+<br>
+<hr>
+
+
+        <div id="footer">
+            <h6>v1.0 - &copy; 2020 Michael Riegert - <a href="https://github.com/nobodywasishere/vhdlref">View on Github</a>
+<br>Distributed under the terms of the <a href="LICENSE.html">MIT License</a></h6>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

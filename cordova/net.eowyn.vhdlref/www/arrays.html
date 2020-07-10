@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href=css/main.css />
+    <link rel="stylesheet" href=css/code.css />
+    <link rel="apple-touch-icon" sizes="57x57"         href=assets/icons/apple-icon-57x57.png>
+    <link rel="apple-touch-icon" sizes="60x60"         href=assets/icons/apple-icon-60x60.png>
+    <link rel="apple-touch-icon" sizes="72x72"         href=assets/icons/apple-icon-72x72.png>
+    <link rel="apple-touch-icon" sizes="76x76"         href=assets/icons/apple-icon-76x76.png>
+    <link rel="apple-touch-icon" sizes="114x114"       href=assets/icons/apple-icon-114x114.png>
+    <link rel="apple-touch-icon" sizes="120x120"       href=assets/icons/apple-icon-120x120.png>
+    <link rel="apple-touch-icon" sizes="144x144"       href=assets/icons/apple-icon-144x144.png>
+    <link rel="apple-touch-icon" sizes="152x152"       href=assets/icons/apple-icon-152x152.png>
+    <link rel="apple-touch-icon" sizes="180x180"       href=assets/icons/apple-icon-180x180.png>
+    <link rel="icon" type="image/png" sizes="192x192"  href=assets/icons/android-icon-192x192.png>
+    <link rel="icon" type="image/png" sizes="32x32"    href=assets/icons/favicon-32x32.png>
+    <link rel="icon" type="image/png" sizes="96x96"    href=assets/icons/favicon-96x96.png>
+    <link rel="icon" type="image/png" sizes="16x16"    href=assets/icons/favicon-16x16.png>
+</head>
+
+
+<body>
+
+    <div id="content">
+
+        <title>Arrays</title>
+
+<span>
+    <h2 style="align-items: center;">
+        <a href=index.html class="text-norm">
+            <img src="assets/icons/android-icon-48x48.png" alt="logo" style="vertical-align:middle; margin: auto 2px 5px auto;" />
+            VHDLref
+        </a>
+    </h2>
+</span>
+
+<hr>
+
+<h1>Arrays</h1>
+
+<br>
+<div class="chart">
+    <table class="chart">
+        <tr>
+            <td bgcolor="lightcyan">
+                
+                Declaration
+                
+                
+            </td>
+
+            
+            
+            <td style="border: 0px solid transparent">——used—in—></td>
+
+            <td bgcolor="lightgreen">
+                
+                Package
+                
+                <br>
+                
+                
+                Entity
+                
+                <br>
+                
+                
+                Architecture
+                
+                <br>
+                
+                
+                Process
+                
+                <br>
+                
+                
+                Procedure
+                
+                <br>
+                
+                
+                Function
+                
+                
+            </td>
+            
+        </tr>
+
+        
+        
+    </table>
+</div>
+<br>
+<h3 class="text-hr"><span>Syntax</span></h3>
+
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">type</span> <span class="n">type_name</span> <span class="k">is</span> <span class="k">array</span> <span class="p">(</span><span class="k">range</span><span class="p">)</span> <span class="k">of</span> <span class="n">element_type</span><span class="p">;</span>
+</code></pre></div></div>
+<p>See LRM section 3.2.1</p>
+
+<h3 class="text-hr"><span>Rules and Examples</span></h3>
+
+<p>An <strong>array</strong> contains multiple elements of the same type. When an array object is declared, an existing array type must be used.</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">type</span> <span class="n">NIBBLE</span> <span class="k">is</span> <span class="k">array</span> <span class="p">(</span><span class="mi">3</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">)</span> <span class="k">of</span> <span class="kt">std_ulogic</span><span class="p">;</span>
+<span class="k">type</span> <span class="n">RAM</span> <span class="k">is</span> <span class="k">array</span> <span class="p">(</span><span class="mi">0</span> <span class="k">to</span> <span class="mi">31</span><span class="p">)</span> <span class="k">of</span> <span class="kt">integer</span> <span class="k">range</span> <span class="mi">0</span> <span class="k">to</span> <span class="mi">255</span><span class="p">;</span>
+<span class="k">signal</span> <span class="n">A_BUS</span> <span class="p">:</span> <span class="n">NIBBLE</span><span class="p">;</span>
+<span class="k">signal</span> <span class="n">RAM_0</span> <span class="p">:</span> <span class="n">RAM</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>An array type definition can be <strong>unconstrained</strong>, i.e. of undefined length. <strong>String</strong>, <strong>bit_vector</strong>, and <strong>std_logic_vector</strong> are defined in this way. An object (signal, variable or constant) of an unconstrained array type must have it’s index type range defined when it is declared.</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">type</span> <span class="n">INT_ARRAY</span> <span class="k">is</span> <span class="k">array</span> <span class="p">(</span><span class="kt">integer</span> <span class="k">range</span> <span class="o">&lt;&gt;</span><span class="p">)</span> <span class="k">of</span> <span class="kt">integer</span><span class="p">;</span>
+<span class="k">variable</span> <span class="n">INT_TABLE</span><span class="p">:</span> <span class="n">INT_ARRAY</span><span class="p">(</span><span class="mi">0</span> <span class="k">to</span> <span class="mi">9</span><span class="p">);</span>
+<span class="k">variable</span> <span class="n">LOC_BUS</span> <span class="p">:</span> <span class="kt">std_ulogic_vector</span><span class="p">(</span><span class="mi">7</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Arrays with character elements such as <strong>string</strong>, <strong>bit_vector</strong>, and <strong>std_logic_vector</strong> may be assigned a literal value using double quotes (see <strong>literals</strong>):</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CONSTANT</span> <span class="n">MSG_o</span><span class="p">:</span> <span class="kt">string</span> <span class="p">:</span><span class="o">=</span> <span class="s1">"Test 1 Completed"</span><span class="p">;</span>
+
+<span class="n">A_BUS</span> <span class="o">&lt;=</span> <span class="s1">"0000"</span><span class="p">;</span>
+<span class="n">LOC_BUS</span> <span class="o">&lt;=</span> <span class="s1">"10101010"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Arrays may also be assigned using <strong>concatenation</strong> (&amp;), <a href="aggregat.html"><strong>aggregates</strong></a>, <strong>slices</strong>, or a mixture. By default, assignment is made by <strong>position</strong>.</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">A_BUS</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="n">A_BIT</span><span class="p">,</span> <span class="n">B_BIT</span><span class="p">,</span> <span class="n">C_BIT</span><span class="p">,</span> <span class="n">D_BIT</span><span class="p">);</span>
+
+<span class="c1">-- an equivalent assignment:</span>
+<span class="n">A_BUS</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="n">A_BIT</span> <span class="o">&amp;</span> <span class="n">B_BIT</span> <span class="o">&amp;</span> <span class="n">C_BIT</span> <span class="o">&amp;</span> <span class="n">D_BIT</span><span class="p">);</span>
+
+<span class="c1">-- rotate A_BUS to the left:</span>
+<span class="n">A_BUS</span> <span class="o">&lt;=</span> <span class="n">A_BUS</span><span class="p">(</span><span class="mi">2</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">A_BUS</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Arrays of arrays may be declared. These are useful for memories, vector tables, etc.:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">type</span> <span class="n">MEM</span> <span class="k">is</span> <span class="k">array</span> <span class="p">(</span><span class="mi">0</span> <span class="k">to</span> <span class="mi">7</span><span class="p">)</span> <span class="k">of</span> <span class="n">NIBBLE</span><span class="p">;</span>
+<span class="c1">-- an array "array of array" type</span>
+<span class="k">variable</span> <span class="n">MEM8X4</span> <span class="p">:</span> <span class="n">MEM</span><span class="p">;</span>
+
+<span class="c1">--</span>
+
+<span class="c1">-- accessing the whole array:</span>
+<span class="n">MEM8X4</span> <span class="p">:</span><span class="o">=</span> <span class="p">(</span><span class="s1">"0000"</span><span class="p">,</span> <span class="s1">"0001"</span><span class="p">,</span> <span class="s1">"0010"</span><span class="p">,</span> <span class="s1">"0011"</span><span class="p">,</span> <span class="s1">"0100"</span><span class="p">,</span> <span class="s1">"0101"</span><span class="p">,</span> <span class="s1">"0110"</span><span class="p">,</span> <span class="s1">"0111"</span><span class="p">);</span>
+<span class="c1">-- accessing a "word"</span>
+<span class="n">MEM8X4</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="p">:</span><span class="o">=</span> <span class="s1">"0110"</span><span class="p">;</span>
+<span class="c1">-- accessing a single bit</span>
+<span class="n">MEM8X4</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">:</span><span class="o">=</span> <span class="sc">'0'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>True two (or more) dimensional arrays may also be declared:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">type</span> <span class="n">T_2D</span> <span class="k">is</span> <span class="k">array</span> <span class="p">(</span><span class="mi">3</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">)</span> <span class="k">of</span> <span class="kt">integer</span><span class="p">;</span>
+<span class="k">signal</span> <span class="n">X_2D</span> <span class="p">:</span> <span class="n">T_2D</span><span class="p">;</span>
+
+<span class="c1">--</span>
+
+<span class="n">X_2D</span> <span class="o">&lt;=</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">));</span>
+<span class="n">X_2D</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">4</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 class="text-hr"><span>Synthesis Issues</span></h3>
+
+<p>Most logic synthesis tools accept one-dimensional arrays of other supported types. 1-D arrays of 1-D arrays are often supported. Some tools also allow true 2-D arrays, but not more dimensions.</p>
+
+<p>Note that arrays are usually implemented using gates and flip-flops, not ROM’s and RAM’s.</p>
+
+<h3 class="text-hr"><span>New in VHDL-93</span></h3>
+
+<p>Array types have not changed in VHDL-93.</p>
+
+
+
+<br>
+<hr>
+
+
+        <div id="footer">
+            <h6>v1.0 - &copy; 2020 Michael Riegert - <a href="https://github.com/nobodywasishere/vhdlref">View on Github</a>
+<br>Distributed under the terms of the <a href="LICENSE.html">MIT License</a></h6>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

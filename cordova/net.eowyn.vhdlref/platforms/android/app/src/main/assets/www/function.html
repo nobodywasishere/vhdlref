@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href=css/main.css />
+    <link rel="stylesheet" href=css/code.css />
+    <link rel="apple-touch-icon" sizes="57x57"         href=assets/icons/apple-icon-57x57.png>
+    <link rel="apple-touch-icon" sizes="60x60"         href=assets/icons/apple-icon-60x60.png>
+    <link rel="apple-touch-icon" sizes="72x72"         href=assets/icons/apple-icon-72x72.png>
+    <link rel="apple-touch-icon" sizes="76x76"         href=assets/icons/apple-icon-76x76.png>
+    <link rel="apple-touch-icon" sizes="114x114"       href=assets/icons/apple-icon-114x114.png>
+    <link rel="apple-touch-icon" sizes="120x120"       href=assets/icons/apple-icon-120x120.png>
+    <link rel="apple-touch-icon" sizes="144x144"       href=assets/icons/apple-icon-144x144.png>
+    <link rel="apple-touch-icon" sizes="152x152"       href=assets/icons/apple-icon-152x152.png>
+    <link rel="apple-touch-icon" sizes="180x180"       href=assets/icons/apple-icon-180x180.png>
+    <link rel="icon" type="image/png" sizes="192x192"  href=assets/icons/android-icon-192x192.png>
+    <link rel="icon" type="image/png" sizes="32x32"    href=assets/icons/favicon-32x32.png>
+    <link rel="icon" type="image/png" sizes="96x96"    href=assets/icons/favicon-96x96.png>
+    <link rel="icon" type="image/png" sizes="16x16"    href=assets/icons/favicon-16x16.png>
+</head>
+
+
+<body>
+
+    <div id="content">
+
+        <title>Functions</title>
+
+<span>
+    <h2 style="align-items: center;">
+        <a href=index.html class="text-norm">
+            <img src="assets/icons/android-icon-48x48.png" alt="logo" style="vertical-align:middle; margin: auto 2px 5px auto;" />
+            REVHDL
+        </a>
+    </h2>
+</span>
+
+<hr>
+
+<h1>Functions</h1>
+
+<br>
+<div class="chart">
+    <table class="chart">
+        <tr>
+            <td bgcolor="lightcyan">
+                
+                Declaration
+                
+                
+            </td>
+
+            
+            
+            <td style="border: 0px solid transparent">——used—in—></td>
+
+            <td bgcolor="lightgreen">
+                
+                Package
+                
+                <br>
+                
+                
+                Entity
+                
+                <br>
+                
+                
+                Process
+                
+                <br>
+                
+                
+                Procedure
+                
+                <br>
+                
+                
+                Function
+                
+                
+            </td>
+            
+        </tr>
+
+        
+        
+    </table>
+</div>
+<br>
+<h3 class="text-hr"><span>Syntax</span></h3>
+
+<!-- include the vhdl tag to highlight as vhdl -->
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">function</span> <span class="n">function_name</span> <span class="p">(</span><span class="n">parameter_list</span><span class="p">)</span> <span class="k">return</span> <span class="k">type</span> <span class="k">is</span>
+
+    <span class="c1">-- declarations</span>
+
+<span class="k">begin</span>
+
+    <span class="c1">-- sequential statements</span>
+
+<span class="k">end</span> <span class="n">function_name</span><span class="p">;</span>
+</code></pre></div></div>
+<p>See LRM sections 2.1, 2.2 and 7.3.3</p>
+
+<h3 class="text-hr"><span>Rules and Examples</span></h3>
+
+<p>A function can only have input parameters, so the mode (direction) is not specified.</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">function</span> <span class="n">BOOL_TO_SL</span><span class="p">(</span><span class="n">X</span> <span class="p">:</span> <span class="kt">boolean</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kt">std_ulogic</span> <span class="k">is</span>
+
+<span class="k">begin</span>
+
+    <span class="k">if</span> <span class="n">X</span> <span class="k">then</span>
+        <span class="k">return</span> <span class="sc">'1'</span><span class="p">;</span>
+    <span class="k">else</span>
+        <span class="k">return</span> <span class="sc">'0'</span><span class="p">;</span>
+    <span class="k">end</span> <span class="k">if</span><span class="p">;</span>
+
+<span class="k">end</span> <span class="n">BOOL_TO_SL</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>A function may declare local variables. These do not retain their values between successive calls, but are re-initialized each time. Array-type parameters may be unconstrained:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">function</span> <span class="n">PARITY</span> <span class="p">(</span><span class="n">X</span> <span class="p">:</span> <span class="kt">std_ulogic_vector</span><span class="p">)</span> <span class="k">return</span> <span class="kt">std_ulogic</span> <span class="k">is</span>
+    <span class="k">variable</span> <span class="n">TMP</span> <span class="p">:</span> <span class="kt">std_ulogic</span> <span class="p">:</span><span class="o">=</span> <span class="sc">'0'</span><span class="p">;</span>
+
+<span class="k">begin</span>
+
+    <span class="k">for</span> <span class="n">J</span> <span class="k">in</span> <span class="n">X</span><span class="na">'range</span> <span class="k">loop</span>
+        <span class="n">TMP</span> <span class="p">:</span><span class="o">=</span> <span class="n">TMP</span> <span class="ow">xor</span> <span class="n">X</span><span class="p">(</span><span class="n">J</span><span class="p">);</span>
+    <span class="k">end</span> <span class="k">loop</span><span class="p">;</span> <span class="c1">-- works for any size X</span>
+
+    <span class="k">return</span> <span class="n">TMP</span><span class="p">;</span>
+
+<span class="k">end</span> <span class="n">PARITY</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>A function may contain any sequential statement except <strong>signal assignment</strong> and <strong>wait</strong>.</p>
+
+<p>A type-conversion function may be called in a port map, to match port type to signal type.</p>
+
+<p>If a function is defined in a package, its body (the algorithm part) must be placed in the package body:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">REF_PACK</span> <span class="k">is</span>
+    <span class="k">function</span> <span class="n">PARITY</span> <span class="p">(</span><span class="n">X</span> <span class="p">:</span> <span class="kt">bit_vector</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kt">bit</span><span class="p">;</span>
+<span class="k">end</span> <span class="n">REF_PACK</span><span class="p">;</span>
+
+<span class="k">package</span> <span class="k">body</span> <span class="n">REF_PACK</span> <span class="k">is</span>
+    <span class="k">function</span> <span class="n">PARITY</span> <span class="p">(</span><span class="n">X</span> <span class="p">:</span> <span class="kt">bit_vector</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kt">bit</span> <span class="k">is</span>
+
+    <span class="k">begin</span>
+
+        <span class="c1">-- function code</span>
+
+    <span class="k">end</span> <span class="n">PARITY</span><span class="p">;</span>
+<span class="k">end</span> <span class="n">REF_PACK</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>A function is called as an expression, in either a concurrent or sequential statement:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">architecture</span> <span class="n">FUNCTIONS</span> <span class="k">of</span> <span class="n">PAR</span> <span class="k">is</span>
+<span class="k">begin</span>
+
+  <span class="n">PARITY_BYTE</span> <span class="o">&lt;=</span> <span class="n">PARITY</span><span class="p">(</span><span class="n">DATA_BYTE</span><span class="p">);</span>
+  <span class="n">PARITY_WORD</span> <span class="o">&lt;=</span> <span class="n">PARITY</span><span class="p">(</span><span class="n">DATA_WORD</span><span class="p">);</span>
+
+<span class="k">end</span> <span class="n">FUNCTIONS</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 class="text-hr"><span>Synthesis Issues</span></h3>
+
+<p><strong>User defined functions</strong> are usually supported for synthesis, providing they act on suitable data types. Different synthesis tools recognize various different type conversion and resolution functions. Most accept those defined in the <strong>std_logic_1164</strong> package.</p>
+
+<h3 class="text-hr"><span>New in VHDL-93</span></h3>
+
+<p>In VHDL-93, functions may be declared as <strong>pure</strong> or <strong>impure</strong>. A <strong>pure</strong> function is the default, and is compatible with VHDL-87. The value returned by an <strong>impure</strong> function can depend on items other than just its input parameters (e.g.shared variables).</p>
+
+<p>In VHDL-93, the keyword <strong>end</strong> may be followed by the keyword <strong>function</strong> for clarity and consistency.</p>
+
+
+
+<br>
+<hr>
+
+
+        <div id="footer">
+            <h6>&copy; 2020 Michael Riegert - <a href="https://github.com/nobodywasishere/vhdlref">View on Github</a>
+<br>Distributed under the terms of the <a href="LICENSE.html">MIT License</a></h6>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

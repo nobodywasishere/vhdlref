@@ -1,0 +1,137 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+<!-- base href="http://www.vdlande.com/VHDL/for_loop.html" --><title>VHDL Reference Guide - For Loop</title></head><body bgcolor="mintcream"><div style="border: 1px solid rgb(153, 153, 153); margin: -1px -1px 0pt; padding: 0pt; background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"><div style="border: 1px solid rgb(153, 153, 153); margin: 12px; padding: 8px; background: rgb(221, 221, 221) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; font-family: arial,sans-serif; font-style: normal; font-variant: normal; font-size: 13px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; color: rgb(0, 0, 0); font-weight: normal; text-align: left;">This is Google's cache of <a href="http://www.vdlande.com/VHDL/for_loop.html" style="text-decoration: underline; color: rgb(0, 0, 204);">http://www.vdlande.com/VHDL/for_loop.html</a>. It is a snapshot of the page as it appeared on Sep 18, 2009 20:41:43 GMT. The <a href="http://www.vdlande.com/VHDL/for_loop.html" style="text-decoration: underline; color: rgb(0, 0, 204);">current page</a> could have changed in the meantime. <a href="http://www.google.com/intl/en/help/features_list.html#cached" style="text-decoration: underline; color: rgb(0, 0, 204);">Learn more</a><br><br><div style="float: right;"><a href="http://74.125.155.132/search?q=cache:RgNh3SSpLzEJ:www.vdlande.com/VHDL/for_loop.html+site:www.vdlande.com+VHDL+reference+guide+vdlande&amp;hl=en&amp;client=firefox-a&amp;gl=us&amp;strip=1" style="text-decoration: underline; color: rgb(0, 0, 204);">Text-only version</a></div>
+<div>These search terms are highlighted: <span style="background: rgb(255, 255, 102) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; color: black; font-weight: bold;">vhdl</span>&nbsp;These terms only appear in links pointing to this page: <span style="font-weight: bold;">reference</span>&nbsp;<span style="font-weight: bold;">guide</span>&nbsp;<span style="font-weight: bold;">vdlande</span>&nbsp;&nbsp;</div></div></div><div style="position: relative;">
+
+
+
+
+
+<center>
+<table border="0" cellpadding="5">
+<caption><b>For Loop</b></caption>
+<tbody><tr>
+<td bgcolor="lightcyan">Sequential Statement</td>
+<td>----used in ----&gt;</td>
+<td bgcolor="lightgreen">Process<br>Function<br>Procedure</td>
+</tr>
+</tbody></table>
+</center>
+
+<center>
+<table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Syntax</td><td><hr width="150"></td></tr>
+</tbody></table><p>
+</p></center>
+
+<div align="center">
+<table border="1" cellpadding="5">
+<tbody><tr><td>
+<pre>optional_label: <b>for</b> parameter <b>in</b> range <b>loop</b>
+	sequential statements
+<b>end loop</b> label;
+</pre>
+</td></tr>
+</tbody></table>
+</div>
+<p>
+
+</p><center>
+See LRM section 8.8
+</center>
+
+<center>
+<table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Rules and Examples</td><td><hr width="150"></td></tr>
+</tbody></table>
+</center>
+
+<div align="left">
+<table border="1" cellpadding="5" width="50%">
+<tbody><tr><td>The <b>for</b> loop defines a loop parameter which takes on the type of the range
+specified. For example, the range <b>0 to 3</b> implies an integer:
+<pre>process (A)
+begin
+	Z &lt;= "0000";
+	for I in o to 3 loop
+		if (A = I) then
+			Z(I) &lt;= '1';
+		end if;
+	end loop;
+end process;
+</pre>
+</td></tr>
+</tbody></table><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="60%">
+<tbody><tr>
+<td>Attributes such as <b>'high, 'low</b> and <b>'range</b> may also be
+used to define the iterations of a <b>for</b> loop:
+<pre>process (A)#
+	variable TMP : std_ulogic;
+begin
+	TMP := '0';
+	for I in A'low to A'high loop
+		TMP := TMP xor A(I);
+	end loop;
+	ODD &lt;= TMP;
+end process;
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="right">
+<table border="1" cellpadding="5" width="70%">
+<tbody><tr>
+<td>The range may be any discrete range, e.g. an enumerated type:
+<pre>type PRIMARY is (RED, GREEN, BLUE);
+type COLOUR is ARRAY (PRIMARY) of integer range 0 to 255;
+-- other statements
+MUX: process
+begin
+	for SEL in PRIMARY loop
+		V_BUS &lt;= VIDEO(SEL);
+		wait for 10 ns;
+	end loop;
+end process MUX;
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="50%">
+<tbody><tr>
+<td>The loop parameter does not need to be declared: it is implicitly
+declared within the loop. It may not be modified within the loop:
+<pre>for I in 1 to 10 loop
+	if (REPEAT = '1') then
+		I := I-1;	-- Illegal
+	end if;
+end loop;
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="center">
+<table border="0">
+<tbody><tr><td><hr width="150"></td><td>Synthesis Issues</td><td><hr width="150"></td></tr>
+<tr><td colspan="3">
+The for loop is supported for synthesis, providing:
+<ol><li>the loop range is static (i.e. implies a definite number of iterations), and
+</li><li>the loop contains no <b>wait</b> statements.
+</li></ol>
+</td></tr></tbody></table><p>
+
+</p><div align="center">
+<table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Whats New in '93</td><td><hr width="150"></td></tr>
+</tbody></table><p>
+The for ... loop statement has not changed in <b style="color: black; background-color: rgb(255, 255, 102);">VHDL</b>-93
+</p></div>
+
+<hr width="80%">
+</div></div></body></html>

@@ -1,0 +1,171 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+<!-- base href="http://www.vdlande.com/VHDL/procedur.html" --><title>VHDL Reference Guide - Procedures</title></head><body bgcolor="mintcream"><div style="border: 1px solid rgb(153, 153, 153); margin: -1px -1px 0pt; padding: 0pt; background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"><div style="border: 1px solid rgb(153, 153, 153); margin: 12px; padding: 8px; background: rgb(221, 221, 221) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; font-family: arial,sans-serif; font-style: normal; font-variant: normal; font-size: 13px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; color: rgb(0, 0, 0); font-weight: normal; text-align: left;">This is Google's cache of <a href="http://www.vdlande.com/VHDL/procedur.html" style="text-decoration: underline; color: rgb(0, 0, 204);">http://www.vdlande.com/VHDL/procedur.html</a>. It is a snapshot of the page as it appeared on Oct 7, 2009 23:06:31 GMT. The <a href="http://www.vdlande.com/VHDL/procedur.html" style="text-decoration: underline; color: rgb(0, 0, 204);">current page</a> could have changed in the meantime. <a href="http://www.google.com/intl/en/help/features_list.html#cached" style="text-decoration: underline; color: rgb(0, 0, 204);">Learn more</a><br><br><div style="float: right;"><a href="http://74.125.155.132/search?q=cache:8SxywBl9mhIJ:www.vdlande.com/VHDL/procedur.html+site:www.vdlande.com+VHDL+reference+guide+vdlande&amp;hl=en&amp;client=firefox-a&amp;gl=us&amp;strip=1" style="text-decoration: underline; color: rgb(0, 0, 204);">Text-only version</a></div>
+<div>These search terms are highlighted: <span style="background: rgb(255, 255, 102) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; color: black; font-weight: bold;">vhdl</span>&nbsp;These terms only appear in links pointing to this page: <span style="font-weight: bold;">reference</span>&nbsp;<span style="font-weight: bold;">guide</span>&nbsp;<span style="font-weight: bold;">vdlande</span>&nbsp;&nbsp;</div></div></div><div style="position: relative;">
+
+
+
+
+
+<div align="center">
+<table border="0" cellpadding="5">
+<caption><b>Procedures</b></caption>
+<tbody><tr><td colspan="3"><hr></td></tr>
+<tr>
+<td bgcolor="lightcyan">Declaration</td>
+<td>---- used in ----&gt;</td>
+<td bgcolor="lightgreen">Package<br>Entity<br>Architecture<br>Process<br>Procedure<br>Function</td>
+</tr>
+</tbody></table>
+
+<p><table border="0">
+<tbody><tr><td><hr width="150"></td><td>Syntax</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="40%">
+<tbody><tr>
+<td><pre>procedure procedure_name (parameter_list) is
+	declarations
+begin
+	sequential statements
+end procedure_name;
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+
+
+<div align="center">
+See LRM sections 2.1, 2.2, 8.5 and 9.3
+
+<p><table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Rules and Examples</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+<div align="left">
+<table border="1" cellpadding="5" width="60%">
+<tbody><tr>
+<td>Procedures may have <b>in</b>, <b>out</b> or <b>inout</b>
+parameters. These may be <b>signal</b>, <b>variable</b> or
+<b>constant</b>. the default for <b>in</b> parameters is constant. For
+<b>out</b> and <b>inout</b> it is variable. In fact, a <b>constant
+in</b> parameter can be associated with a signal, variable constant or
+expression when the procedure is called:
+<pre>procedure DISPLAY_MUX
+ (ALARM_TIME, CURRENT_TIME : in digit;
+  SHOW_A              : in std_ulogic;
+  signal DISPLAY_TIME : out digit) is 
+begin
+  if (SHOW_A = '1') then
+    DISPLAY_TIME &lt;= ALARM_TIME;
+  else
+    DISPLAY_TIME &lt;= CURRENT_TIME;
+  end if;
+end DISPLAY_MUX;
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="left">
+<table border="1" cellpadding="5" width="70%">
+<tbody><tr>
+<td>Procedures may be called concurrently or sequentially. A concurrent
+procedure call executes whenever any of its <b>in</b> or <b>inout</b>
+parameters change:
+<pre>architecture SUBPROG of DISP_MUX is
+  ...
+begin
+  DISPLAY_MUX (ALARM_TIME, CURRENT_TIME,
+                  SHOW_A, DISPLAY_TIME);
+end SUBPROG;
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="left">
+<table border="1" cellpadding="5" width="70%">
+<tbody><tr>
+<td>A procedure may declare local variables. These do not retain their
+values between successive calls, but are re-initialised each time.
+Array-type parameters may be <a href="http://www.vdlande.com/VHDL/arrays.htm">unconstrained</a>
+<pre>procedure PARITY
+   (signal X : in std_ulogic_vector;
+    signal Y : out std_ulogic) is
+  variable TMP : std_ulogic := '0';
+begin
+  for J in X'range loop
+    TMP := TMP xor X(J);
+  end loop; -- works for any size X
+  Y &lt;= TMP;
+end PARITY;</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="right">
+<table border="1" cellpadding="5" width="40%">
+<tbody><tr>
+<td>A procedure <b>can</b> contain <a href="http://www.vdlande.com/VHDL/waits.htm">wait
+statements</a>, <b>unless</b> it is called from a
+<a href="http://www.vdlande.com/VHDL/process.htm">process</a> with a sensitivity list, or from
+within a <a href="http://www.vdlande.com/VHDL/function.htm">function</a>.</td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="left">
+<table border="1" cellpadding="5" width="70%">
+<tbody><tr>
+<td>If a procedure is defined in a <a href="http://www.vdlande.com/VHDL/package.htm">package</a>,
+its body (the algorithm part) must be placed in the
+<a href="http://www.vdlande.com/VHDL/packageb.htm">package body</a>.
+<pre>package REF_PACK is
+  procedure PARITY
+   (signal X : in std_logic_vector;
+    signal Y : out std_logic);
+end REF_PACK;
+
+package body REF_PACK is
+  procedure PARITY
+   (signal X : in std_logic_vector;
+    signal Y : out std_logic) is  
+  begin
+    -- procedure code
+  end PARITY;
+end REF_PACK;</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+
+
+<div align="center">
+<p><table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Synthesis Issues</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+Procedures are usually supported for synthesis, providing they do not
+contain any <a href="http://www.vdlande.com/VHDL/waits.htm">wait statements</a>.
+
+<div align="center">
+<p><table border="0">
+<tbody><tr><td><hr width="150"></td><td>Whats New in '93</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+
+In <b style="color: black; background-color: rgb(255, 255, 102);">VHDL</b>-93, the keyword <b>end</b> may be followed by the keyword
+<b>procedure</b> for clarity and consistancy.
+</p><p>
+Any procedure may be given an optional label.
+</p><p>
+A concurrent procedure call can be specified to run as a
+<a href="http://www.vdlande.com/VHDL/process.htm">postponed process</a>.
+</p></div>
+
+<hr width="80%">
+</div></body></html>

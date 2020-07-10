@@ -1,0 +1,109 @@
+<HTML>
+<HEAD>
+<TITLE>VHDL Reference Guide - Null Statement</TITLE>
+</HEAD>
+<BODY BGCOLOR="mintcream">
+<a href="nexts.htm"><img border=0 src="../../images/left.gif" align=left></a>
+<a href="operator.htm"><img border=0 src="../../images/right.gif" align=right></a>
+
+<DIV ALIGN=CENTER>
+<TABLE BORDER=0 CELLPADDING=5>
+<CAPTION><B>Null Statement</B></CAPTION>
+<TR><TD COLSPAN=3><HR></TD></TR>
+<TR>
+<TD BGCOLOR="lightcyan">Sequential Statement</TD>
+<TD>---- used in ----></TD>
+<TD BGCOLOR="lightgreen">Process<br>Function<br>Procedure</TD>
+</TR>
+</TABLE>
+
+<P><TABLE BORDER=0>
+<TR><TD><HR width=150></TD><TD>Syntax</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=40%>
+<TR>
+<TD><PRE><b>null;</b>
+</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+
+
+<DIV ALIGN=CENTER>
+See LRM section 8.12
+
+<P><TABLE BORDER=0 align=center>
+<TR><TD><HR width=150></TD><TD>Rules and Examples</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=70%>
+<TR>
+<TD>The null statement performs no action. It is usualls used with the
+case statement, to indicate that under certain conditions, no action is
+required.
+<PRE>case ENCRYPTION is
+  when "00" => 
+    CPU_DATA_TMP := (B & A) - OPERAND;
+  when "01" => 
+    CPU_DATA_TMP := (B & A) + OPERAND;
+  when "10" => 
+    CPU_DATA_TMP := (A & B) - OPERAND; 
+  when "11" => 
+    CPU_DATA_TMP := (A & B) + OPERAND;
+  when others =>
+    null;
+end case;
+</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+
+
+<DIV ALIGN=CENTER>
+<P><TABLE BORDER=0 align=center>
+<TR><TD><HR width=150></TD><TD>Synthesis Issues</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+The <b>null</b> statement is supported by synthesis tools.
+<p>
+Note: using a <b>null</b> statement in a "combinational process" can
+result in latches being inferred, unless all signals driven by the
+process are given unconditional default assignments.
+
+<DIV ALIGN=CENTER>
+<P><TABLE BORDER=0>
+<TR><TD><HR width=150></TD><TD>Whats New in '93</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+
+In VHDL-93, the <b>null</b> may have an optional label:
+<p>
+label<b>null;</b>
+
+</DIV>
+
+<HR WIDTH="80%">
+<div align=center>
+<a href="nexts.htm"><img border=0 src="../../images/left.gif"></a>
+<a href="index.htm"><img border=0 src="../../images/up.gif"></a>
+<a href="operator.htm"><img border=0 src="../../images/right.gif"></a>
+</div>
+
+<HR WIDTH="80%">
+<ADDRESS>
+<CENTER>
+This page maintained by <A HREF="mailto:dave@truechap.demon.co.uk">
+<IMG SRC="/images/emailed.gif" BORDER=0>
+Dave Trueman</A>
+</CENTER>
+</ADDRESS>
+<HR WIDTH="80%">
+</BODY>
+</HTML>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href=css/main.css />
+    <link rel="stylesheet" href=css/code.css />
+    <link rel="apple-touch-icon" sizes="57x57"         href=assets/icons/apple-icon-57x57.png>
+    <link rel="apple-touch-icon" sizes="60x60"         href=assets/icons/apple-icon-60x60.png>
+    <link rel="apple-touch-icon" sizes="72x72"         href=assets/icons/apple-icon-72x72.png>
+    <link rel="apple-touch-icon" sizes="76x76"         href=assets/icons/apple-icon-76x76.png>
+    <link rel="apple-touch-icon" sizes="114x114"       href=assets/icons/apple-icon-114x114.png>
+    <link rel="apple-touch-icon" sizes="120x120"       href=assets/icons/apple-icon-120x120.png>
+    <link rel="apple-touch-icon" sizes="144x144"       href=assets/icons/apple-icon-144x144.png>
+    <link rel="apple-touch-icon" sizes="152x152"       href=assets/icons/apple-icon-152x152.png>
+    <link rel="apple-touch-icon" sizes="180x180"       href=assets/icons/apple-icon-180x180.png>
+    <link rel="icon" type="image/png" sizes="192x192"  href=assets/icons/android-icon-192x192.png>
+    <link rel="icon" type="image/png" sizes="32x32"    href=assets/icons/favicon-32x32.png>
+    <link rel="icon" type="image/png" sizes="96x96"    href=assets/icons/favicon-96x96.png>
+    <link rel="icon" type="image/png" sizes="16x16"    href=assets/icons/favicon-16x16.png>
+</head>
+
+
+<body>
+
+    <div id="content">
+
+        <title>File Declaration</title>
+
+<span>
+    <h2 style="align-items: center;">
+        <a href=index.html class="text-norm">
+            <img src="assets/icons/android-icon-48x48.png" alt="logo" style="vertical-align:middle; margin: auto 2px 5px auto;" />
+            VHDLref
+        </a>
+    </h2>
+</span>
+
+<hr>
+
+<h1>File Declaration</h1>
+
+<br>
+<div class="chart">
+    <table class="chart">
+        <tr>
+            <td bgcolor="lightcyan">
+                
+                Declaration
+                
+                
+            </td>
+
+            
+            
+            <td style="border: 0px solid transparent">——used—in—></td>
+
+            <td bgcolor="lightgreen">
+                
+                Package Process Architecture Procedure Function
+                
+                
+            </td>
+            
+        </tr>
+
+        
+        
+    </table>
+</div>
+<br>
+<h3 class="text-hr"><span>Syntax</span></h3>
+
+<!-- include the vhdl tag to highlight as vhdl -->
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">file</span> <span class="n">logical_name</span> <span class="p">:</span> <span class="n">file_type</span> <span class="k">is</span> <span class="n">mode</span> <span class="s1">"file_name"</span><span class="p">;</span>
+</code></pre></div></div>
+<p>See LRM sections 3.4, 4.3.2 and 14.3</p>
+
+<h3 class="text-hr"><span>Rules and Examples</span></h3>
+
+<p>Usually, files of type <strong>text</strong> are used as they are portable between different VHDL simulators. The mode of the <strong>file</strong> refers to the direction of data flow, and may be either <strong>in</strong> (i.e. a read-only <strong>file</strong>) or <strong>out</strong> (a write-only <strong>file</strong>):</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">use</span> <span class="n">std</span><span class="o">.</span><span class="n">textio</span><span class="o">.</span><span class="k">all</span><span class="p">;</span>
+
+<span class="k">package</span> <span class="n">REF_PACK</span> <span class="k">is</span>
+    <span class="k">file</span> <span class="n">INFILE</span>  <span class="p">:</span> <span class="n">text</span> <span class="k">is</span>  <span class="k">in</span> <span class="s1">"in.dat"</span><span class="p">;</span>
+    <span class="k">file</span> <span class="n">OUTFILE</span> <span class="p">:</span> <span class="n">text</span> <span class="k">is</span> <span class="k">out</span> <span class="s1">"out.dat"</span><span class="p">;</span>
+<span class="k">end</span> <span class="n">REF_PACK</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Text files may be read by using the <strong>endfile</strong>, <strong>readline</strong> and <strong>read</strong> subprograms defined in the package <strong>std.textio</strong>:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">READ_FILE</span><span class="p">:</span> <span class="k">process</span>
+
+    <span class="k">variable</span> <span class="n">VEC_LINE</span> <span class="p">:</span> <span class="n">line</span><span class="p">;</span>
+    <span class="k">variable</span> <span class="n">VEC_VAR</span> <span class="p">:</span> <span class="kt">bit_vector</span><span class="p">(</span><span class="mi">0</span> <span class="k">to</span> <span class="mi">7</span><span class="p">);</span>
+    <span class="k">file</span> <span class="n">VEC_FILE</span> <span class="p">:</span> <span class="n">text</span> <span class="k">is</span> <span class="k">in</span> <span class="s1">"stim.vec"</span><span class="p">;</span>
+
+<span class="k">begin</span>
+
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">endfile</span><span class="p">(</span><span class="n">VEC_FILE</span><span class="p">)</span> <span class="k">loop</span>
+        <span class="n">readline</span> <span class="p">(</span><span class="n">VEC_FILE</span><span class="p">,</span> <span class="n">VEC_LINE</span><span class="p">);</span>
+        <span class="n">read</span> <span class="p">(</span><span class="n">VEC_LINE</span><span class="p">,</span> <span class="n">VEC_VAR</span><span class="p">);</span>
+        <span class="n">A_BUS</span> <span class="o">&lt;=</span> <span class="n">VEC_VAR</span><span class="p">;</span>
+        <span class="k">wait</span> <span class="k">for</span> <span class="mi">10</span> <span class="n">ns</span><span class="p">;</span>
+    <span class="k">end</span> <span class="k">loop</span><span class="p">;</span>
+    <span class="k">wait</span><span class="p">;</span>
+
+<span class="k">end</span> <span class="k">process</span> <span class="n">READ_FILE</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>The textio package must be made visible by the clause:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">use</span> <span class="n">std</span><span class="o">.</span><span class="n">textio</span><span class="o">.</span><span class="k">all</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Text files may be written by using the <strong>write</strong> and <strong>writeln</strong> subprograms, also defined in the textio package. Output data may be formatted using optional parameters for <strong>write</strong> - see the LRM section 14.3.</p>
+
+<p>Textio <strong>read</strong> and <strong>write</strong> procedures are defined for the types <strong>bit</strong>, <strong>bit_vector</strong>, <strong>boolean</strong>, <strong>character</strong>, <strong>integer</strong>, <strong>real</strong>, <strong>string</strong> and <strong>time</strong>. They are not compatible with user-defined types or std_logic_1164 types (although some vendors supply routines for the std_logic_1164_types).</p>
+
+<p>Text files may be written by using the <strong>writeln</strong> and <strong>write</strong> subprograms defined in the package <strong>std.textio</strong>:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">WRITE_FILE</span><span class="p">:</span> <span class="k">process</span> <span class="p">(</span><span class="n">CLK</span><span class="p">)</span>
+
+    <span class="k">variable</span> <span class="n">VEC_LINE</span> <span class="p">:</span> <span class="n">line</span><span class="p">;</span>
+    <span class="k">file</span> <span class="n">VEC_FILE</span> <span class="p">:</span> <span class="n">text</span> <span class="k">is</span> <span class="k">out</span> <span class="s1">"results"</span><span class="p">;</span>
+
+<span class="k">begin</span>
+
+    <span class="c1">-- strobe OUT_DATA on falling edges</span>
+    <span class="c1">-- of CLK and write value out to file</span>
+
+    <span class="k">if</span> <span class="n">CLK</span><span class="o">=</span><span class="sc">'0'</span> <span class="k">then</span>
+        <span class="n">write</span> <span class="p">(</span><span class="n">VEC_LINE</span><span class="p">,</span> <span class="n">OUT_DATA</span><span class="p">);</span>
+        <span class="n">writeline</span> <span class="p">(</span><span class="n">VEC_FILE</span><span class="p">,</span> <span class="n">VEC_LINE</span><span class="p">);</span>
+    <span class="k">end</span> <span class="k">if</span><span class="p">;</span>
+
+<span class="k">end</span> <span class="k">process</span> <span class="n">WRITE_FILE</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>A <strong>file</strong> (read or write) is opened in VHDL when the structure in which it is declared is elaborated. This means that files declared in processes or architectures are opened only once at the beginning of a simulation. files declared in procedures are reopened at the beginning of the <strong>file</strong> every time the procedure is elaborated (every time it is executed) and are closed every time the procedure finishes execution.</p>
+
+<h3 class="text-hr"><span>Synthesis Issues</span></h3>
+
+<p><strong>File</strong> declarations and operations are not supported by logic synthesis tools.</p>
+
+<h3 class="text-hr"><span>New in VHDL-93</span></h3>
+
+<p>VHDL-93 allows files to be explicitly opened and closed during simulation - this was not directly supported in VHDL-87. Consequently, <strong>file declarations are not upwards-compatible between VHDL-87 and VHDL-93</strong>. For instance, in VHDL-93 the equivalent declaration to the example above would be:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">file</span> <span class="n">MYTEXT</span> <span class="p">:</span> <span class="n">text</span> <span class="k">open</span> <span class="n">read_mode</span> <span class="k">is</span> <span class="s1">"enum.txt"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>The new attributes <strong>‘image</strong> and <strong>‘value</strong> make textio for enumerated types much easier - see
+<a href="attrib.html"><strong>attributes</strong></a>.</p>
+
+
+
+<br>
+<hr>
+
+
+        <div id="footer">
+            <h6>v1.0 - &copy; 2020 Michael Riegert - <a href="https://github.com/nobodywasishere/vhdlref">View on Github</a>
+<br>Distributed under the terms of the <a href="LICENSE.html">MIT License</a></h6>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

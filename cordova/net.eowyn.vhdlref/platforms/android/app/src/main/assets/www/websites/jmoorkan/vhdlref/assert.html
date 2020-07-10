@@ -1,0 +1,158 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+<!-- base href="http://www.vdlande.com/VHDL/assert.html" --><title>VHDL Reference Guide - Assert</title></head><body bgcolor="mintcream"><div style="border: 1px solid rgb(153, 153, 153); margin: -1px -1px 0pt; padding: 0pt; background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"><div style="border: 1px solid rgb(153, 153, 153); margin: 12px; padding: 8px; background: rgb(221, 221, 221) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; font-family: arial,sans-serif; font-style: normal; font-variant: normal; font-size: 13px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; color: rgb(0, 0, 0); font-weight: normal; text-align: left;">This is Google's cache of <a href="http://www.vdlande.com/VHDL/assert.html" style="text-decoration: underline; color: rgb(0, 0, 204);">http://www.vdlande.com/VHDL/assert.html</a>. It is a snapshot of the page as it appeared on Sep 9, 2009 15:14:58 GMT. The <a href="http://www.vdlande.com/VHDL/assert.html" style="text-decoration: underline; color: rgb(0, 0, 204);">current page</a> could have changed in the meantime. <a href="http://www.google.com/intl/en/help/features_list.html#cached" style="text-decoration: underline; color: rgb(0, 0, 204);">Learn more</a><br><br><div style="float: right;"><a href="http://74.125.155.132/search?q=cache:VsKMTe5vxMMJ:www.vdlande.com/VHDL/assert.html+site:www.vdlande.com+VHDL+reference+guide+vdlande&amp;hl=en&amp;client=firefox-a&amp;gl=us&amp;strip=1" style="text-decoration: underline; color: rgb(0, 0, 204);">Text-only version</a></div>
+<div>These search terms are highlighted: <span style="background: rgb(255, 255, 102) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; color: black; font-weight: bold;">vhdl</span>&nbsp;These terms only appear in links pointing to this page: <span style="font-weight: bold;">reference</span>&nbsp;<span style="font-weight: bold;">guide</span>&nbsp;<span style="font-weight: bold;">vdlande</span>&nbsp;&nbsp;</div></div></div><div style="position: relative;">
+
+
+
+
+
+<div align="center">
+<table border="0" cellpadding="5">
+<caption><b>Assert</b></caption>
+<tbody><tr><td colspan="3"><hr></td></tr>
+<tr>
+<td bgcolor="lightcyan">Concurrent Statement</td>
+<td>---- used in ----&gt;</td>
+<td bgcolor="lightgreen">Entity<br>Architecture</td>
+</tr>
+<tr>
+</tr>
+<tr>
+<td bgcolor="lightcyan">Sequential Statement</td>
+<td>---- used in ----&gt;</td>
+<td bgcolor="lightgreen">Process<br>Function<br>Procedure</td>
+</tr>
+</tbody></table>
+
+<p><table border="0">
+<tbody><tr><td><hr width="150"></td><td>Syntax</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="70%">
+<tbody><tr>
+<td><b>assert</b> condition <b>report</b> string <b>severity</b> severity_level;</td>
+</tr>
+</tbody></table>
+</div>
+
+<div align="center">
+<p>See LRM sections 8.2 and 9.4
+
+</p><p><table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Rules and Examples</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+<div align="left">
+<table border="1" cellpadding="5" width="70%">
+<tbody><tr>
+<td>The assert statement tests the boolean condition. If this is false,
+it outputs a message containing the reopirt string to the simulator screen:
+<pre>assert (J /= C) report "J = C" severity note;
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="70%">
+<tbody><tr>
+<td>The severity level may be defined as <b>note, warning, error</b> or <b>failure</b>
+Level <b>failure</b> normally aborts the simulation.
+<pre>assert not OVERFLOW) report "Accumulator overflowed" severity failure;
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="left">
+<table border="1" cellpadding="5" width="50%">
+<tbody><tr>
+<td>If the message clause is ommited, a default message is output.
+The severity level and the name of the design unit containing the relevant assert
+statement may also be output</td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="50%">
+<tbody><tr>
+<td>If the severity clause is ommited, the default level is <b>error.</b></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="right">
+<table border="1" cellpadding="5" width="50%">
+<tbody><tr>
+<td>A <b>concurrent</b> statement monitors the boolean condition continuously</td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="50%">
+<tbody><tr>
+<td>An unconditional message can be output by using the literal <b>false</b>:
+<pre>procedure PUT
+	(signal STACK  : inout T_STACK;
+	signal POINTER : inout T_POINT;
+	signal ITEM    : in    T_DATA) is
+begin
+	if (POINTER &lt; 5) then
+		STACK(POINTER) &lt;= ITEM;
+		POINTER &lt;= POINTER + 1;
+	else
+		assert false report "Stack overflow" severity error;
+	end if;
+end PUT;
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="left">
+<table border="1" cellpadding="5" width="70%">
+<tbody><tr>
+<td>As well as functional errors, timing errors can be reported via <b>assert</b>:
+<pre>CHECK_SETUP: process (CLK, D)
+begin
+	if (CLK'event and CLK = '1') then
+		assert D'stable(SETUP_TIME) report "Setup Violation..." severity warning;
+	end if;
+end process CHECK_SETUP;
+</pre></td>
+</tr>
+</tbody></table>
+</div>
+
+<div align="center">
+<p><table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Synthesis Issues</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+
+Assert statements are ignored by logic synthesis tools.
+</p></div>
+
+<div align="center">
+<p><table border="0">
+<tbody><tr><td><hr width="150"></td><td>Whats New in '93</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+
+In <b style="color: black; background-color: rgb(255, 255, 102);">VHDL</b>-93, the <b>assert</b> statement may have an option label.
+</p><p>
+A concurrent <b>assert</b> statement may be run as a
+postponed <a href="http://www.vdlande.com/VHDL/process.htm">process</a>
+</p><p>
+<b style="color: black; background-color: rgb(255, 255, 102);">VHDL</b>-93 allows <b>report</b> to be used on it's own as a sequential statement,
+giving the same functionality as <b>assert false</b>, except that the default
+severity is <b>note</b>
+</p><p>
+MSG1: report "Starting test sequence" severity note;
+</p></div>
+
+<hr width="80%">
+</div></body></html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href=css/main.css />
+    <link rel="stylesheet" href=css/code.css />
+    <link rel="apple-touch-icon" sizes="57x57"         href=assets/icons/apple-icon-57x57.png>
+    <link rel="apple-touch-icon" sizes="60x60"         href=assets/icons/apple-icon-60x60.png>
+    <link rel="apple-touch-icon" sizes="72x72"         href=assets/icons/apple-icon-72x72.png>
+    <link rel="apple-touch-icon" sizes="76x76"         href=assets/icons/apple-icon-76x76.png>
+    <link rel="apple-touch-icon" sizes="114x114"       href=assets/icons/apple-icon-114x114.png>
+    <link rel="apple-touch-icon" sizes="120x120"       href=assets/icons/apple-icon-120x120.png>
+    <link rel="apple-touch-icon" sizes="144x144"       href=assets/icons/apple-icon-144x144.png>
+    <link rel="apple-touch-icon" sizes="152x152"       href=assets/icons/apple-icon-152x152.png>
+    <link rel="apple-touch-icon" sizes="180x180"       href=assets/icons/apple-icon-180x180.png>
+    <link rel="icon" type="image/png" sizes="192x192"  href=assets/icons/android-icon-192x192.png>
+    <link rel="icon" type="image/png" sizes="32x32"    href=assets/icons/favicon-32x32.png>
+    <link rel="icon" type="image/png" sizes="96x96"    href=assets/icons/favicon-96x96.png>
+    <link rel="icon" type="image/png" sizes="16x16"    href=assets/icons/favicon-16x16.png>
+</head>
+
+
+<body>
+
+    <div id="content">
+
+        <title>Attributes</title>
+
+<span>
+    <h2 style="align-items: center;">
+        <a href=index.html class="text-norm">
+            <img src="assets/icons/android-icon-48x48.png" alt="logo" style="vertical-align:middle; margin: auto 2px 5px auto;" />
+            VHDLref
+        </a>
+    </h2>
+</span>
+
+<hr>
+
+<h1>Attributes</h1>
+
+<br>
+<div class="chart">
+    <table class="chart">
+        <tr>
+            <td bgcolor="lightcyan">
+                
+                Attribute
+                
+                
+            </td>
+
+            
+            
+            <td style="border: 0px solid transparent">——used—in—></td>
+
+            <td bgcolor="lightgreen">
+                
+                Entity
+                
+                <br>
+                
+                
+                Architecture
+                
+                <br>
+                
+                
+                Package
+                
+                <br>
+                
+                
+                Package Body
+                
+                
+            </td>
+            
+        </tr>
+
+        
+        
+    </table>
+</div>
+<br>
+<!-- tables generated using https://www.tablesgenerator.com/markdown_tables -->
+
+<h3 class="text-hr"><span>Syntax</span></h3>
+
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">object</span><span class="na">'attribute_name</span>
+</code></pre></div></div>
+
+<p>See LRM sections 14.1, 4.4, 5.1 and 6.6</p>
+
+<h3 class="text-hr"><span>Rules and Examples</span></h3>
+
+<p>Attributes supply additional information about an item, e.g. a signal, variable, type or component. Certain attributes are predefined for types, array objects and signals.</p>
+
+<p>These are some of the predefined attributes for scalar types, constrained array types and any objects declared to be of array types. They are the same type as the object (scalar), or the index (array):</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Name</th>
+      <th style="text-align: center">Definition</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">X’high</td>
+      <td style="text-align: center">The upper bound of X</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">X’low</td>
+      <td style="text-align: center">The lower bound of X</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">X’left</td>
+      <td style="text-align: center">The leftmost bound of X</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">X’right</td>
+      <td style="text-align: center">The rightmost bound of X</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>These are predefined only constrained array types and any objects declared to be of array types:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Name</th>
+      <th style="text-align: center">Definition</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">X’range</td>
+      <td style="text-align: center">The range of X</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">X’reverse_range</td>
+      <td style="text-align: center">The range of X “back to front”</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">X’length</td>
+      <td style="text-align: center">X’high - X’low + 1 (integer)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>These attributes are predefined for any signal X:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Name</th>
+      <th style="text-align: center">Definition</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">X’event</td>
+      <td style="text-align: center">True when signal X changes (boolean)</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">X’active</td>
+      <td style="text-align: center">True when signal X assigned to (boolean)</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">X’last_event</td>
+      <td style="text-align: center">When signal X last changed (time)</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">X’last_active</td>
+      <td style="text-align: center">When signal X was last assigned to (time)</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">X’last_value</td>
+      <td style="text-align: center">Previous value of X (same type as X)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>These attributes create a <strong>new signal</strong>, based on signal X:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Name</th>
+      <th style="text-align: center">Definition</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">X’delayed(T)</td>
+      <td style="text-align: center">Signal X delayed by T (same type as X)</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">X’stable(T)</td>
+      <td style="text-align: center">True if X unaltered for time T (boolean)</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">X’quiet(T)</td>
+      <td style="text-align: center">True if X is unassigned for time T (boolean)</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">X’transaction</td>
+      <td style="text-align: center">“Toggles” when X is assigned (bit)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>User defined attributes</strong> may be declared. These do not affect simulation, but may be used to supply information to other tools, e.g. for layout or synthesis:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">type</span> <span class="n">IC_PACKAGE</span> <span class="k">is</span> <span class="p">(</span><span class="n">DIL</span><span class="p">,</span> <span class="n">PLCC</span><span class="p">,</span> <span class="n">PGA</span><span class="p">);</span>
+<span class="k">attribute</span> <span class="n">PTYPE</span><span class="p">:</span> <span class="n">ICPACKAGE</span><span class="p">;</span>
+<span class="k">attribute</span> <span class="n">PTYPE</span> <span class="k">of</span> <span class="n">U1</span> <span class="p">:</span> <span class="k">component</span> <span class="k">is</span> <span class="n">PLCC</span><span class="p">;</span>
+<span class="k">attribute</span> <span class="n">PTYPE</span> <span class="k">of</span> <span class="n">U2</span> <span class="p">:</span> <span class="k">component</span> <span class="k">is</span> <span class="n">DIL</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 class="text-hr"><span>Synthesis Issues</span></h3>
+
+<p>Logic synthesis tools usually support the predefined attributes <strong>‘high</strong>, <strong>‘low</strong>, <strong>‘left</strong>, <strong>‘right</strong>, <strong>‘range</strong>, <strong>reverse_range</strong>, <strong>‘length</strong>, and <strong>‘event</strong>. Some tools support <strong>‘last_value</strong> and <strong>‘stable</strong></p>
+
+<p>Several synthesis vendors define a set of attributes to supply synthesis directives such as area or timing constraints, enumeration encoding, etc.</p>
+
+<h3 class="text-hr"><span>New in VHDL-93</span></h3>
+
+<p>VHDL-93 has several new predefined attributes:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Name</th>
+      <th style="text-align: center">Definition</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">X’driving</td>
+      <td style="text-align: center">True if a process is driving signal X</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">X’driving_value</td>
+      <td style="text-align: center">Value a process is driving signal X with</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">X’ascending</td>
+      <td style="text-align: center">True if index range of X is ascending</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">X’image(literal)</td>
+      <td style="text-align: center">String representation of enumeration literal</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">X’simple_name</td>
+      <td style="text-align: center">String equivalent to the name of X</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">X’instance_name</td>
+      <td style="text-align: center">Path downto and including X, excluding entity and architecture names</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">X’path_name</td>
+      <td style="text-align: center">Path downto and including X, excluding entity and architecture names</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The <strong>group</strong> construct allows collections of VHDL objects of different classes to be grouped together to allow common attributes to be set for the elements of these groups.</p>
+
+
+
+<br>
+<hr>
+
+
+        <div id="footer">
+            <h6>v1.0 - &copy; 2020 Michael Riegert - <a href="https://github.com/nobodywasishere/vhdlref">View on Github</a>
+<br>Distributed under the terms of the <a href="LICENSE.html">MIT License</a></h6>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

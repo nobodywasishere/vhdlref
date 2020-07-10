@@ -1,0 +1,143 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+<!-- base href="http://www.vdlande.com/VHDL/subt_dec.html" --><title>VHDL Reference Guide - Subtype Declaration</title></head><body bgcolor="mintcream"><div style="border: 1px solid rgb(153, 153, 153); margin: -1px -1px 0pt; padding: 0pt; background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"><div style="border: 1px solid rgb(153, 153, 153); margin: 12px; padding: 8px; background: rgb(221, 221, 221) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; font-family: arial,sans-serif; font-style: normal; font-variant: normal; font-size: 13px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; color: rgb(0, 0, 0); font-weight: normal; text-align: left;">This is Google's cache of <a href="http://www.vdlande.com/VHDL/subt_dec.html" style="text-decoration: underline; color: rgb(0, 0, 204);">http://www.vdlande.com/VHDL/subt_dec.html</a>. It is a snapshot of the page as it appeared on Sep 16, 2009 09:40:25 GMT. The <a href="http://www.vdlande.com/VHDL/subt_dec.html" style="text-decoration: underline; color: rgb(0, 0, 204);">current page</a> could have changed in the meantime. <a href="http://www.google.com/intl/en/help/features_list.html#cached" style="text-decoration: underline; color: rgb(0, 0, 204);">Learn more</a><br><br><div style="float: right;"><a href="http://74.125.155.132/search?q=cache:uPP_MEnv2QIJ:www.vdlande.com/VHDL/subt_dec.html+site:www.vdlande.com+VHDL+reference+guide+vdlande&amp;hl=en&amp;client=firefox-a&amp;gl=us&amp;strip=1" style="text-decoration: underline; color: rgb(0, 0, 204);">Text-only version</a></div>
+<div>These search terms are highlighted: <span style="background: rgb(255, 255, 102) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; color: black; font-weight: bold;">vhdl</span>&nbsp;These terms only appear in links pointing to this page: <span style="font-weight: bold;">reference</span>&nbsp;<span style="font-weight: bold;">guide</span>&nbsp;<span style="font-weight: bold;">vdlande</span>&nbsp;&nbsp;</div></div></div><div style="position: relative;">
+
+
+
+
+
+<div align="center">
+<table border="0" cellpadding="5">
+<caption><b>Subtype Declaration</b></caption>
+<tbody><tr><td colspan="3"><hr></td></tr>
+<tr>
+<td bgcolor="lightcyan">Declaration</td>
+<td>---- used in ----&gt;</td>
+<td bgcolor="lightgreen">Package<br>Entity<br>Architecture<br>Process<br>Procedure<br>Function</td>
+</tr>
+</tbody></table>
+
+<p><table border="0">
+<tbody><tr><td><hr width="150"></td><td>Syntax</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="40%">
+<tbody><tr>
+<td><pre><b>subtype</b> subtype_name <b>is</b> base_type <b>range</b> range_constraint;
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+
+
+<div align="center">
+See LRM section 4.2
+
+<p><table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Rules and Examples</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+<div align="left">
+<table border="1" cellpadding="5" width="80%">
+<tbody><tr>
+<td>Assignments may not be made between objects of different types even
+though they may be similar.
+<pre>type BUS_VAL is range 0 to 255;
+type MY_LOGIC is ('0','1');
+
+variable X_INT : integer := 22;
+variable X_BUS : BUS_VAL := 22;
+variable X_BIT : bit := '0';
+variable X_MY  : MY_LOGIC := '0';
+...
+X_BUS := X_INT; --illegal
+X_MY  := X_BIT; --illegal</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="80%">
+<tbody><tr>
+<td>Since a subtype is the <b>same type</b> as its base type,
+assignments between subtype and base type onjects can be made without
+conversion:
+<pre>subtype BUS_VAL is integer
+                range 0 to 255;
+subtype MY_LOGIC is std_ulogic
+                range 'X' to 'Z';
+variable X_INT : integer    := 22;
+variable X_BUS : BUS_VAL;
+variable X_STD : std_ulogic := '0';
+variable X_MY  : MY_LOGIC;
+...
+X_BUS := X_INT; --legal
+X_MY  := X_STD; --legal
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="60%">
+<tbody><tr>
+<td>Subtypes <b>natural</b> and <b>positive</b> are predefined subtypes
+of <b>integer</b>
+<pre>subtype NATURAL is integer range 0 to integer'high;
+subtype POSITIVE is integer range 1 to integer'high;
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="right">
+<table border="1" cellpadding="5" width="60%">
+<tbody><tr>
+<td>The std_logic_1164 package defines the following subtypes of
+<b>std_logic</b>:
+<pre>subtype XO1  is std_ulogic range 'X' to '1';
+subtype XO1Z is std_ulogic range 'X' to 'Z';
+subtype UXO1 is std_ulogic range 'U' to '1';
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="center">
+<p><table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Synthesis Issues</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+<div align="center">
+<table border="0" cellpadding="5" width="70%">
+<tbody><tr>
+<td>Most logic synthesis tools support subtypes of types that they
+recognise.
+<p>
+Synthesis tools will infer an appropriate number of bits for enumerated
+and integer subtypes, depending on the range.
+</p></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+
+
+<div align="center">
+<p><table border="0">
+<tbody><tr><td><hr width="150"></td><td>Whats New in '93</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+
+In <b style="color: black; background-color: rgb(255, 255, 102);">VHDL</b>-93, a new predefined subtype <b>delay_length</b> is defined,
+which can only take on positive values.
+</p><pre>subtype delay_length is time range 0 fs to time'high;</pre>
+
+</div>
+
+<hr width="80%">
+</div></body></html>

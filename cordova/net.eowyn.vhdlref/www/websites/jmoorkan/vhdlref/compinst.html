@@ -1,0 +1,135 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+<!-- base href="http://www.vdlande.com/VHDL/compinst.html" --><title>VHDL Reference Guide - Component Instantiation</title></head><body bgcolor="mintcream"><div style="border: 1px solid rgb(153, 153, 153); margin: -1px -1px 0pt; padding: 0pt; background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"><div style="border: 1px solid rgb(153, 153, 153); margin: 12px; padding: 8px; background: rgb(221, 221, 221) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; font-family: arial,sans-serif; font-style: normal; font-variant: normal; font-size: 13px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; color: rgb(0, 0, 0); font-weight: normal; text-align: left;">This is Google's cache of <a href="http://www.vdlande.com/VHDL/compinst.html" style="text-decoration: underline; color: rgb(0, 0, 204);">http://www.vdlande.com/VHDL/compinst.html</a>. It is a snapshot of the page as it appeared on Oct 15, 2009 22:32:49 GMT. The <a href="http://www.vdlande.com/VHDL/compinst.html" style="text-decoration: underline; color: rgb(0, 0, 204);">current page</a> could have changed in the meantime. <a href="http://www.google.com/intl/en/help/features_list.html#cached" style="text-decoration: underline; color: rgb(0, 0, 204);">Learn more</a><br><br><div style="float: right;"><a href="http://74.125.155.132/search?q=cache:e-xy85QRh8IJ:www.vdlande.com/VHDL/compinst.html+site:www.vdlande.com+vhdl+list&amp;hl=en&amp;client=firefox-a&amp;gl=us&amp;strip=1" style="text-decoration: underline; color: rgb(0, 0, 204);">Text-only version</a></div>
+<div>These search terms are highlighted: <span style="background: rgb(255, 255, 102) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; color: black; font-weight: bold;">vhdl</span>&nbsp;<span style="background: rgb(160, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; color: black; font-weight: bold;">list</span>&nbsp;&nbsp;</div></div></div><div style="position: relative;">
+
+
+
+
+
+<div align="center">
+<table border="0" cellpadding="5">
+<caption><b>Component Instantiation</b></caption>
+<tbody><tr><td colspan="3"><hr></td></tr>
+<tr>
+<td bgcolor="lightcyan">Concurrent Statement</td>
+<td>---- used in ----&gt;</td>
+<td bgcolor="lightgreen">Architecture</td>
+</tr>
+</tbody></table>
+
+<p><table border="0">
+<tbody><tr><td><hr width="150"></td><td>Syntax</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="40%">
+<tbody><tr>
+<td><pre>instance_label: component_name
+	<b>generic map</b> (generic_association_list)
+	<b>port map</b> (port_association_list);
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="center">
+See LRM section 9.6
+
+<p><table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Rules and Examples</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+<div align="left">
+<table border="1" cellpadding="5" width="70%">
+<tbody><tr>
+<td>The instance label is compulsory. The component name must match the
+relevant component declaration.<pre>architecture STRUCT of INC is
+  signal X,Y,S,C : bit;
+  component HALFADD
+    port(A,B : in bit;
+         SUM, CARRY : out bit);
+  end component;
+begin
+  U1: HALFADD port map (X,Y,S,C);
+  -- other statements
+end STRUCT;
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="70%">
+<tbody><tr>
+<td>The association <b style="color: black; background-color: rgb(160, 255, 255);">list</b> defines which local signals connect to which
+component ports. The association <b style="color: black; background-color: rgb(160, 255, 255);">list</b> above is <b>positional</b>, i.e.
+the signals are connected up in the order in which the ports were
+declared.
+</td>
+</tr>
+</tbody></table>
+</div>
+
+<div align="left">
+<table border="1" cellpadding="5" width="50%">
+<tbody><tr>
+<td>the alternative is <b>named association</b>, where ports are
+explicitly referenced and order is not important:<pre>ADDER1: HALFADD port map
+    (  B =&gt; Y,     A =&gt; X,
+     SUM =&gt; S, CARRY =&gt; C);
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="70%">
+<tbody><tr>
+<td>Ports may be left unconnected using the keyword <b>open</b>:<pre>ADDER2: HALFADD port map
+  (B=&gt;Y,A=&gt;X,SUM=&gt;S,CARRY=&gt;open);
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="right">
+<table border="1" cellpadding="5" width="60%">
+<tbody><tr>
+<td>An instance of a component with generics, has a <b>generic map</b>
+declared before the port map:<pre>U1 : PARITY
+  generic map (  N =&gt; 8)
+  port map    (  A =&gt; DATA_BYTE,
+               ODD =&gt; PARITY_BYTE);
+</pre></td>
+</tr>
+</tbody></table>
+</div>
+
+<div align="center">
+<p><table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Synthesis Issues</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+Component instantiation is supported for synthesis, although <b>generic
+map</b> is usually ignored. Whether a logic synthesis tool will "flatten
+through" a component, treat it as a "black box", or recognise it as a
+primitive is usually under the user's control.
+
+<div align="center">
+<p><table border="0">
+<tbody><tr><td><hr width="150"></td><td>Whats New in '93</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+
+In <b style="color: black; background-color: rgb(255, 255, 102);">VHDL</b>-93, an entity-architecture pair may be directly instantiated,
+i.e. a component need not be declared. This is more compact, but does
+not allow the flexibility of configuration</p><pre>DIRECT: entity HA_ENTITY(HA_ARCH)
+              port map (A,B,S,C);
+</pre>
+
+</div>
+
+<hr width="80%">
+</div></body></html>

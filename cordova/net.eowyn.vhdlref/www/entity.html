@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href=css/main.css />
+    <link rel="stylesheet" href=css/code.css />
+    <link rel="apple-touch-icon" sizes="57x57"         href=assets/icons/apple-icon-57x57.png>
+    <link rel="apple-touch-icon" sizes="60x60"         href=assets/icons/apple-icon-60x60.png>
+    <link rel="apple-touch-icon" sizes="72x72"         href=assets/icons/apple-icon-72x72.png>
+    <link rel="apple-touch-icon" sizes="76x76"         href=assets/icons/apple-icon-76x76.png>
+    <link rel="apple-touch-icon" sizes="114x114"       href=assets/icons/apple-icon-114x114.png>
+    <link rel="apple-touch-icon" sizes="120x120"       href=assets/icons/apple-icon-120x120.png>
+    <link rel="apple-touch-icon" sizes="144x144"       href=assets/icons/apple-icon-144x144.png>
+    <link rel="apple-touch-icon" sizes="152x152"       href=assets/icons/apple-icon-152x152.png>
+    <link rel="apple-touch-icon" sizes="180x180"       href=assets/icons/apple-icon-180x180.png>
+    <link rel="icon" type="image/png" sizes="192x192"  href=assets/icons/android-icon-192x192.png>
+    <link rel="icon" type="image/png" sizes="32x32"    href=assets/icons/favicon-32x32.png>
+    <link rel="icon" type="image/png" sizes="96x96"    href=assets/icons/favicon-96x96.png>
+    <link rel="icon" type="image/png" sizes="16x16"    href=assets/icons/favicon-16x16.png>
+</head>
+
+
+<body>
+
+    <div id="content">
+
+        <title>Entity</title>
+
+<span>
+    <h2 style="align-items: center;">
+        <a href=index.html class="text-norm">
+            <img src="assets/icons/android-icon-48x48.png" alt="logo" style="vertical-align:middle; margin: auto 2px 5px auto;" />
+            VHDLref
+        </a>
+    </h2>
+</span>
+
+<hr>
+
+<h1>Entity</h1>
+
+<br>
+<div class="chart">
+    <table class="chart">
+        <tr>
+            <td bgcolor="lightcyan">
+                
+                Primary Library Unit
+                
+                
+            </td>
+
+            
+            
+        </tr>
+
+        
+        
+    </table>
+</div>
+<br>
+<h3 class="text-hr"><span>Syntax</span></h3>
+
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">entity</span> <span class="n">entity_name</span> <span class="k">is</span>
+    <span class="k">generic</span> <span class="p">(</span><span class="n">generic_list</span><span class="p">);</span>
+    <span class="k">port</span> <span class="p">(</span><span class="n">port_list</span><span class="p">);</span>
+<span class="k">end</span> <span class="n">entity_name</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>See LRM section 1.1</p>
+
+<h3 class="text-hr"><span>Rules and Examples</span></h3>
+
+<p>The port list must define the name, the mode (i.e. direction) and the type of each port on the <strong>entity</strong>:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">entity</span> <span class="n">HALFADD</span> <span class="k">is</span>
+    <span class="k">port</span><span class="p">(</span>
+        <span class="n">A</span><span class="p">,</span><span class="n">B</span> <span class="p">:</span> <span class="k">in</span> <span class="kt">bit</span><span class="p">;</span>
+        <span class="n">SUM</span><span class="p">,</span> <span class="n">CARRY</span> <span class="p">:</span> <span class="k">out</span> <span class="kt">bit</span>
+    <span class="p">);</span>
+<span class="k">end</span> <span class="n">HALFADD</span><span class="p">;</span>
+
+<span class="k">entity</span> <span class="n">COUNTER</span> <span class="k">is</span>
+    <span class="k">port</span> <span class="p">(</span>
+        <span class="n">CLK</span>  <span class="p">:</span> <span class="k">in</span> <span class="kt">std_ulogic</span><span class="p">;</span>
+        <span class="n">RESET</span><span class="p">:</span> <span class="k">in</span> <span class="kt">std_ulogic</span><span class="p">;</span>
+        <span class="n">Q</span>    <span class="p">:</span> <span class="k">out</span> <span class="kt">integer</span> <span class="k">range</span> <span class="mi">0</span> <span class="k">to</span> <span class="mi">15</span>
+    <span class="p">);</span>
+<span class="k">end</span> <span class="n">COUNTER</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>The top-level <strong>entity</strong> in a simulatable VHDL model is usually “empty”, i.e. has no ports. Its architecture is usually the “test bench”:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">entity</span> <span class="n">TB_DISPLAY</span> <span class="k">is</span>
+<span class="k">end</span> <span class="n">TB_DISPLAY</span><span class="p">;</span>
+
+<span class="k">architecture</span> <span class="n">TEST</span> <span class="k">of</span> <span class="n">TB_DISPLAY</span> <span class="k">is</span>
+
+    <span class="c1">-- component declaration(s)</span>
+    <span class="c1">-- signal declarations</span>
+
+<span class="k">begin</span>
+
+    <span class="c1">-- component instance(s)</span>
+    <span class="c1">-- test processes</span>
+
+<span class="k">end</span> <span class="n">TEST</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Each entity port acts like a signal which is visible in the architecture(s) of the entity. The mode (direction) of each port determines whether it may be read from or written to in the architecture:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Mode</th>
+      <th style="text-align: center">Read in Arch</th>
+      <th style="text-align: center">Write in Arch</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">in</td>
+      <td style="text-align: center">Yes</td>
+      <td style="text-align: center">No</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">out</td>
+      <td style="text-align: center">No</td>
+      <td style="text-align: center">Yes</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">inout</td>
+      <td style="text-align: center">Yes</td>
+      <td style="text-align: center">Yes</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">buffer</td>
+      <td style="text-align: center">Yes</td>
+      <td style="text-align: center">Yes</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>If an <strong>entity</strong> has generics, these must be declared before the ports. They do not have a mode, as by definition they can only pass information into the <strong>entity</strong>:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">entity</span> <span class="n">AN2_GENERIC</span> <span class="k">is</span>
+    <span class="k">generic</span> <span class="p">(</span>
+        <span class="n">DELAY</span><span class="p">:</span> <span class="kt">time</span> <span class="p">:</span><span class="o">=</span> <span class="mi">1</span><span class="o">.</span><span class="mi">0</span> <span class="n">ns</span>
+    <span class="p">);</span>
+    <span class="k">port</span> <span class="p">(</span>
+        <span class="n">A</span><span class="p">,</span><span class="n">B</span> <span class="p">:</span> <span class="k">in</span> <span class="kt">std_ulogic</span><span class="p">;</span>
+        <span class="n">Z</span> <span class="p">:</span> <span class="k">out</span> <span class="kt">std_ulogic</span>
+    <span class="p">);</span>
+<span class="k">end</span> <span class="n">AN2_GENERIC</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>An entity may also contain declarations. Items declared are visible within the architecture(s) of the entity.</p>
+
+<h3 class="text-hr"><span>Synthesis Issues</span></h3>
+
+<p>Entity declarations are supported for synthesis, providing the port types are acceptable to the logic synthesis tool. Usually, only generics of type integer are supported. Values for generics have to be supplied by the user at the time of synthesis.</p>
+
+<h3 class="text-hr"><span>New in VHDL-93</span></h3>
+
+<p>In VHDL-93, the keyword <strong>end</strong> may be followed by the keyword <strong>entity</strong> for clarity and consistency.</p>
+
+
+
+<br>
+<hr>
+
+
+        <div id="footer">
+            <h6>v1.0 - &copy; 2020 Michael Riegert - <a href="https://github.com/nobodywasishere/vhdlref">View on Github</a>
+<br>Distributed under the terms of the <a href="LICENSE.html">MIT License</a></h6>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

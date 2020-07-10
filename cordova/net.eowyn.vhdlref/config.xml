@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="net.eowyn.vhdlref" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>VHDLref</name>
+    <description>
+        A usable language reference for writing VHDL that is concise, direct, and easy to understand.
+    </description>
+    <author email="dev@cordova.apache.org" href="http://cordova.io">
+        Apache Cordova Team
+    </author>
+    <content src="index.html" />
+    <plugin name="cordova-plugin-whitelist" spec="1" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <icon src="../../assets/icons/android-icon-36x36.png" density="ldpi" />
+        <icon src="../../assets/icons/android-icon-48x48.png" density="mdpi" />
+        <icon src="../../assets/icons/android-icon-72x72.png" density="hdpi" />
+        <icon src="../../assets/icons/android-icon-96x96.png" density="xhdpi" />
+        <icon src="../../assets/icons/android-icon-144x144.png" density="xxhdpi" />
+        <icon src="../../assets/icons/android-icon-192x192.png" density="xxxhdpi" />
+        <allow-intent href="market:*" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+</widget>

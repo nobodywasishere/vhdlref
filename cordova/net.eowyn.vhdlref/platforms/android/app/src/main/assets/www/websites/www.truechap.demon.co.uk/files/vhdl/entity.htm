@@ -1,0 +1,164 @@
+<HTML>
+<HEAD>
+<TITLE>VHDL Reference Guide - Entity</TITLE>
+</HEAD>
+<BODY BGCOLOR="mintcream">
+<a href="constdec.htm"><img border=0 src="../../images/left.gif" align=left></a>
+<a href="exits.htm"><img border=0 src="../../images/right.gif" align=right></a>
+
+<DIV ALIGN=CENTER>
+<TABLE BORDER=0 CELLPADDING=5>
+<CAPTION><B>Entity</B></CAPTION>
+<TR><TD COLSPAN=3><HR></TD></TR>
+<TR>
+<TD BGCOLOR="lightcyan">Primary Library Unit</TD>
+</TR>
+</TABLE>
+
+<P><TABLE BORDER=0>
+<TR><TD><HR width=150></TD><TD>Syntax</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=40%>
+<TR>
+<TD><PRE>entity entity_name is
+   generic (generic_list);	
+   port (port_list);
+end entity_name;
+</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=CENTER>
+See LRM section 1.1
+
+<P><TABLE BORDER=0 align=center>
+<TR><TD><HR width=150></TD><TD>Rules and Examples</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=left>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=80%>
+<TR>
+<TD>The port list must define the name, the mode (i.e. direction) and
+the type of each port on the entity:
+<PRE>entity HALFADD is
+  port(A,B : in bit;
+       SUM, CARRY : out bit);
+end HALFADD;
+
+entity COUNTER is
+port (CLK  : in std_ulogic;
+      RESET: in std_ulogic;
+      Q    : out integer
+                 range 0 to 15);
+end COUNTER;
+</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=80%>
+<TR>
+<TD>The top-level entity in a simulateable VHDL model is usually
+"empty", i.e. has no ports. Its architecture is usually the "test bench":
+<PRE>entity TB_DISPLAY is
+end TB_DISPLAY;
+
+architecture TEST of TB_DISPLAY is
+-- signal declarations
+-- component declaration(s)
+begin
+-- component instance(s)
+-- test processes
+end TEST;
+</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=right>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=50%>
+<TR>
+<TD>Each entity port acts like a signal which is visible in the
+architecture(s) of the entity. The mode (i.e.direction) of each port
+determines whether it may be read from or written to in the
+architecture:
+<table border=0 cellpadding=5><tr><th>Mode</th><th>Read in Arch?</th><th>Write in Arch</th></tr>
+<tr><td>in</td><td>Yes</td><td>No</td></tr>
+<tr><td>out</td><td>No</td><td>Yes</td></tr>
+<tr><td>inout</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>buffer</td><td>Yes</td><td>Yes</td></tr>
+</table></PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=70%>
+<TR>
+<TD>If an entity has generics, these must be declared before the ports.
+They do not have a mode, as by definition they can only pass information
+into the entity:
+<PRE>entity AN2_GENERIC is
+   generic (DELAY: time := 1.0 ns);
+   port (A,B : in std_ulogic;
+         Z : out std_ulogic);
+end AN2_GENERIC;
+</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=30%>
+<TR>
+<TD>An entity may also contain declarations. Items declared are visible
+within the arhitecture(s) of the entity.</TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=CENTER>
+<P><TABLE BORDER=0 align=center>
+<TR><TD><HR width=150></TD><TD>Synthesis Issues</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+Entity declarations are supported for suynthesis, providing the port
+types are acceptable to the logic synthesis tool. Usually, only generics
+of type integer are supported. Values for generics have to be supplied
+by the user at the time of synthesis.
+
+<DIV ALIGN=CENTER>
+<P><TABLE BORDER=0>
+<TR><TD><HR width=150></TD><TD>Whats New in '93</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+
+In VHDL-93, the keyword <b>end</b> may be followed by the keyword
+<b>entity</b> for clarity and consistancy.
+
+</DIV>
+
+<HR WIDTH="80%">
+<div align=center>
+<a href="constdec.htm"><img border=0 src="../../images/left.gif"></a>
+<a href="index.htm"><img border=0 src="../../images/up.gif"></a>
+<a href="exits.htm"><img border=0 src="../../images/right.gif"></a>
+</div>
+
+<HR WIDTH="80%">
+<ADDRESS>
+<CENTER>
+This page maintained by <A HREF="mailto:dave@truechap.demon.co.uk">
+<IMG SRC="/images/emailed.gif" BORDER=0>
+Dave Trueman</A>
+</CENTER>
+</ADDRESS>
+<HR WIDTH="80%">
+</BODY>
+</HTML>

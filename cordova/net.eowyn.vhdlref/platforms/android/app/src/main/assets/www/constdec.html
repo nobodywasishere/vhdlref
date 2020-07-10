@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href=css/main.css />
+    <link rel="stylesheet" href=css/code.css />
+    <link rel="apple-touch-icon" sizes="57x57"         href=assets/icons/apple-icon-57x57.png>
+    <link rel="apple-touch-icon" sizes="60x60"         href=assets/icons/apple-icon-60x60.png>
+    <link rel="apple-touch-icon" sizes="72x72"         href=assets/icons/apple-icon-72x72.png>
+    <link rel="apple-touch-icon" sizes="76x76"         href=assets/icons/apple-icon-76x76.png>
+    <link rel="apple-touch-icon" sizes="114x114"       href=assets/icons/apple-icon-114x114.png>
+    <link rel="apple-touch-icon" sizes="120x120"       href=assets/icons/apple-icon-120x120.png>
+    <link rel="apple-touch-icon" sizes="144x144"       href=assets/icons/apple-icon-144x144.png>
+    <link rel="apple-touch-icon" sizes="152x152"       href=assets/icons/apple-icon-152x152.png>
+    <link rel="apple-touch-icon" sizes="180x180"       href=assets/icons/apple-icon-180x180.png>
+    <link rel="icon" type="image/png" sizes="192x192"  href=assets/icons/android-icon-192x192.png>
+    <link rel="icon" type="image/png" sizes="32x32"    href=assets/icons/favicon-32x32.png>
+    <link rel="icon" type="image/png" sizes="96x96"    href=assets/icons/favicon-96x96.png>
+    <link rel="icon" type="image/png" sizes="16x16"    href=assets/icons/favicon-16x16.png>
+</head>
+
+
+<body>
+
+    <div id="content">
+
+        <title>Constant Declaration</title>
+
+<span>
+    <h2 style="align-items: center;">
+        <a href=index.html class="text-norm">
+            <img src="assets/icons/android-icon-48x48.png" alt="logo" style="vertical-align:middle; margin: auto 2px 5px auto;" />
+            REVHDL
+        </a>
+    </h2>
+</span>
+
+<hr>
+
+<h1>Constant Declaration</h1>
+
+<br>
+<div class="chart">
+    <table class="chart">
+        <tr>
+            <td bgcolor="lightcyan">
+                
+                Declaration
+                
+                
+            </td>
+
+            
+            
+            <td style="border: 0px solid transparent">——used—in—></td>
+
+            <td bgcolor="lightgreen">
+                
+                Entity
+                
+                <br>
+                
+                
+                Package
+                
+                <br>
+                
+                
+                Process
+                
+                <br>
+                
+                
+                Architecture
+                
+                <br>
+                
+                
+                Procedure
+                
+                <br>
+                
+                
+                Function
+                
+                
+            </td>
+            
+        </tr>
+
+        
+        
+    </table>
+</div>
+<br>
+<h3 class="text-hr"><span>Syntax</span></h3>
+
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">constant</span> <span class="n">constant_name</span> <span class="p">:</span> <span class="k">type</span> <span class="p">:</span><span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+</code></pre></div></div>
+<p>See LRM section 4.3.1.1</p>
+
+<h3 class="text-hr"><span>Rules and Examples</span></h3>
+
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">constant</span> <span class="n">BUS_WIDTH</span> <span class="p">:</span> <span class="kt">integer</span> <span class="p">:</span><span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+<span class="k">constant</span> <span class="n">FOUR_ONES</span> <span class="p">:</span>
+    <span class="kt">std_logic_vector</span><span class="p">(</span><span class="mi">3</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">):</span><span class="o">=</span> <span class="s1">"1111"</span><span class="p">;</span>
+
+<span class="k">constant</span> <span class="n">PERIOD</span> <span class="p">:</span> <span class="kt">time</span> <span class="p">:</span><span class="o">=</span> <span class="mi">10</span> <span class="n">ns</span><span class="p">;</span>
+<span class="k">constant</span> <span class="n">MAX_SIM_TIME</span> <span class="p">:</span> <span class="kt">time</span><span class="p">:</span><span class="o">=</span> <span class="mi">50</span> <span class="o">*</span> <span class="n">PERIOD</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>The values of array constants other than string, bit_vector, and std_logic_vector must be set using aggregates.</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">type</span> <span class="n">T_CLOCK_TIME</span> <span class="k">is</span> <span class="k">ARRAY</span><span class="p">(</span><span class="mi">3</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">)</span> <span class="k">of</span>
+    <span class="kt">integer</span> <span class="k">range</span> <span class="mi">0</span> <span class="k">to</span> <span class="mi">9</span><span class="p">;</span>
+<span class="k">constant</span> <span class="n">TWELVE_O_CLOCK</span> <span class="p">:</span>
+    <span class="n">T_CLOCK_TIME</span> <span class="p">:</span><span class="o">=</span> <span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>In a package, a constant may be <strong>deferred</strong>. This means its value is defined in the package body, and the value may be changed only by re-analyzing the package body.</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">package</span> <span class="n">P</span> <span class="k">is</span>
+    <span class="k">constant</span> <span class="n">C</span> <span class="p">:</span> <span class="kt">integer</span><span class="p">;</span>
+<span class="k">end</span> <span class="n">P</span><span class="p">;</span>
+
+<span class="k">package</span> <span class="k">body</span> <span class="n">P</span> <span class="k">is</span>
+    <span class="k">constant</span> <span class="n">C</span> <span class="p">:</span> <span class="kt">integer</span> <span class="p">:</span><span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
+<span class="k">end</span> <span class="n">P</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Provided they are of the correct type, constants may be used in any expression. They may be associated with generics of component instances and passed into procedures.</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">process</span>
+    <span class="k">type</span> <span class="n">T_DATA</span> <span class="k">is</span> <span class="k">array</span> <span class="p">(</span><span class="mi">0</span> <span class="k">to</span> <span class="mi">3</span><span class="p">)</span> <span class="k">of</span>
+        <span class="kt">bit_vector</span><span class="p">(</span><span class="mi">7</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="k">constant</span> <span class="n">DATA</span> <span class="p">:</span> <span class="n">T_DATA</span> <span class="p">:</span><span class="o">=</span>
+        <span class="p">(</span><span class="s1">"00001000"</span><span class="p">,</span>
+         <span class="s1">"00010001"</span><span class="p">,</span>
+         <span class="s1">"00100010"</span><span class="p">,</span>
+         <span class="s1">"01000011"</span><span class="p">);</span>
+
+<span class="k">begin</span>
+    <span class="k">for</span> <span class="n">I</span> <span class="k">in</span> <span class="n">DATA</span><span class="na">'range</span> <span class="k">loop</span>
+        <span class="n">serialize_byte</span><span class="p">(</span> <span class="n">DATA</span><span class="p">(</span><span class="n">I</span><span class="p">),</span> <span class="n">DOUT</span><span class="p">);</span>
+    <span class="k">end</span> <span class="k">loop</span><span class="p">;</span>
+<span class="k">end</span> <span class="k">process</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 class="text-hr"><span>Synthesis Issues</span></h3>
+
+<p>Constants are supported for synthesis, providing they are of a type acceptable to the logic synthesis tool. They are either synthesized as connections to logic ‘1’ or ‘0’, or are used to help minimize the number of gates required. Deferred constants may not be supported.</p>
+
+<h3 class="text-hr"><span>New in VHDL-93</span></h3>
+
+<p>In VHDL-93, constants and constant expressions may also be associated with input ports of component instances. In VHDL-87, this was only possible via an intermediate signal.</p>
+
+
+
+<br>
+<hr>
+
+
+        <div id="footer">
+            <h6>&copy; 2020 Michael Riegert - <a href="https://github.com/nobodywasishere/vhdlref">View on Github</a>
+<br>Distributed under the terms of the <a href="LICENSE.html">MIT License</a></h6>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

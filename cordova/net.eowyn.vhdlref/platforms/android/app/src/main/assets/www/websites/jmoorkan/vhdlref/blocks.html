@@ -1,0 +1,158 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+<!-- base href="http://www.vdlande.com/VHDL/blocks.html" --><title>VHDL Reference Guide - Block Statement</title></head><body bgcolor="mintcream"><div style="border: 1px solid rgb(153, 153, 153); margin: -1px -1px 0pt; padding: 0pt; background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"><div style="border: 1px solid rgb(153, 153, 153); margin: 12px; padding: 8px; background: rgb(221, 221, 221) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; font-family: arial,sans-serif; font-style: normal; font-variant: normal; font-size: 13px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; color: rgb(0, 0, 0); font-weight: normal; text-align: left;">This is Google's cache of <a href="http://www.vdlande.com/VHDL/blocks.html" style="text-decoration: underline; color: rgb(0, 0, 204);">http://www.vdlande.com/VHDL/blocks.html</a>. It is a snapshot of the page as it appeared on Sep 9, 2009 16:09:14 GMT. The <a href="http://www.vdlande.com/VHDL/blocks.html" style="text-decoration: underline; color: rgb(0, 0, 204);">current page</a> could have changed in the meantime. <a href="http://www.google.com/intl/en/help/features_list.html#cached" style="text-decoration: underline; color: rgb(0, 0, 204);">Learn more</a><br><br><div style="float: right;"><a href="http://74.125.155.132/search?q=cache:J0U0RTl8hngJ:www.vdlande.com/VHDL/blocks.html+site:www.vdlande.com+VHDL+reference+guide+vdlande&amp;hl=en&amp;client=firefox-a&amp;gl=us&amp;strip=1" style="text-decoration: underline; color: rgb(0, 0, 204);">Text-only version</a></div>
+<div>These search terms are highlighted: <span style="background: rgb(255, 255, 102) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; color: black; font-weight: bold;">vhdl</span>&nbsp;These terms only appear in links pointing to this page: <span style="font-weight: bold;">reference</span>&nbsp;<span style="font-weight: bold;">guide</span>&nbsp;<span style="font-weight: bold;">vdlande</span>&nbsp;&nbsp;</div></div></div><div style="position: relative;">
+
+
+
+
+
+<div align="center">
+<table border="0" cellpadding="5">
+<caption><b>Block Statement</b></caption>
+<tbody><tr><td colspan="3"><hr></td></tr>
+<tr>
+<td bgcolor="lightcyan">Concurrent Statement</td>
+<td>---- used in ----&gt;</td>
+<td bgcolor="lightgreen">Architecture</td>
+</tr>
+</tbody></table>
+
+<p><table border="0">
+<tbody><tr><td><hr width="150"></td><td>Syntax</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="60%">
+<tbody><tr>
+<td>
+<pre>label: <b>block</b> (optional_guard_condition)
+	declarations
+<b>begin</b>
+	concurrent statements
+<b>end block</b> label;
+</pre></td>
+</tr>
+</tbody></table>
+</div>
+
+<div align="center">
+See LRM section 9.1
+
+<p><table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Rules and Examples</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+<div align="left">
+<table border="1" cellpadding="5" width="80%">
+<tbody><tr>
+<td>The label is compulsory
+<pre>CONTROL_LOGIC: block
+begin
+  U1: CONTROLLER_A
+    port map (CLK,X,Y,Z);
+  U2: CONTROLLER_A
+      port map (CLK,A,B,C);
+end block CONTROL_LOGIC;
+
+DATA_PATH: block
+begin
+  U3: DATAPATH_A port map
+    (BUS_A,BUS_B,BUS_C,Z);
+  U4: DATAPATH_B port map
+    (BUS_A,BUS_C,BUS_D,C);
+end block DATA_PATH;
+</pre></td>
+</tr>
+</tbody></table>
+</div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="40%">
+<tbody><tr>
+<td>Without a guard condition a block is a grouping together of
+concurrent statements within an architecture. It may have local signals,
+constants etc. declared.</td>
+</tr>
+</tbody></table>
+</div>
+
+<div align="left">
+<table border="1" cellpadding="5" width="50%">
+<tbody><tr>
+<td>Blocks may contain further blocks, implying a form of
+hierarchy within a single architecture.</td>
+</tr>
+</tbody></table>
+</div>
+
+<div align="right">
+<table border="1" cellpadding="5" width="50%">
+<tbody><tr>
+<td>A Block may contain any of the declarations possible for an
+architecture. Items declared within a block are only visible inside it.</td>
+</tr>
+</tbody></table>
+</div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="80%">
+<tbody><tr>
+<td>IF an optional guard condition is included, the block becomes a
+<b>guarded block</b>. the <b>guard condition</b> must return a boolean
+value, and controls <b>guarded signal assignments</b> within the block.
+If the guard condition evaluates to false, the drive to any <b>guarded
+signals</b> from the block is "switched off". Such signals must be
+declared to be guarded signals of a resolved type. Guarded signals can
+be declared by adding the words <b>bus</b> or <b>register</b> after the
+name of the type of the signal. The difference between bus and register
+signals is that if all drivers to a bus signal are "switched off", it
+requires a resolution function to provide a value for the signal but a
+register signal retains its last driven value after all drivers to it
+have been switched off.
+<pre>
+architecture BLKS of TRISTATE is
+  signal INT: std_logic bus;
+begin
+  DRIVER_1: block (EN = '1')
+  begin
+    INT &lt;= guarded DATA_1;
+  end block DRIVER_1;
+end BLKS;
+</pre>
+</td>
+</tr>
+</tbody></table>
+</div>
+
+<div align="center">
+<p><table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Synthesis Issues</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+Unguarded <b>block</b> statements are usually ignored by logic synthesis
+tools (i.i. all blocks within an architecture are "flattened").<br>
+<b>Guarded block</b> statements are <b>not</b> usually supported for
+synthesis.
+<p>
+Sequential (i.e. flip-flop and register) behaviour can be modelled using
+guarded blocks, but again for synthesis and readability it is better
+described using "clocked" processes.
+
+</p><div align="center">
+<p><table border="0">
+<tbody><tr><td><hr width="150"></td><td>Whats New in '93</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+
+In <b style="color: black; background-color: rgb(255, 255, 102);">VHDL</b>-93 the keyword <b>block</b> (or the guard condition, if there is
+one), may be followed by the keyword <b>is</b>, for consistancy.:<br>
+</p><pre>label: <b>block</b> (optional guard_condition) <b>is</b>
+ -- etc
+</pre>
+
+</div>
+
+<hr width="80%">
+</div></body></html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href=css/main.css />
+    <link rel="stylesheet" href=css/code.css />
+    <link rel="apple-touch-icon" sizes="57x57"         href=assets/icons/apple-icon-57x57.png>
+    <link rel="apple-touch-icon" sizes="60x60"         href=assets/icons/apple-icon-60x60.png>
+    <link rel="apple-touch-icon" sizes="72x72"         href=assets/icons/apple-icon-72x72.png>
+    <link rel="apple-touch-icon" sizes="76x76"         href=assets/icons/apple-icon-76x76.png>
+    <link rel="apple-touch-icon" sizes="114x114"       href=assets/icons/apple-icon-114x114.png>
+    <link rel="apple-touch-icon" sizes="120x120"       href=assets/icons/apple-icon-120x120.png>
+    <link rel="apple-touch-icon" sizes="144x144"       href=assets/icons/apple-icon-144x144.png>
+    <link rel="apple-touch-icon" sizes="152x152"       href=assets/icons/apple-icon-152x152.png>
+    <link rel="apple-touch-icon" sizes="180x180"       href=assets/icons/apple-icon-180x180.png>
+    <link rel="icon" type="image/png" sizes="192x192"  href=assets/icons/android-icon-192x192.png>
+    <link rel="icon" type="image/png" sizes="32x32"    href=assets/icons/favicon-32x32.png>
+    <link rel="icon" type="image/png" sizes="96x96"    href=assets/icons/favicon-96x96.png>
+    <link rel="icon" type="image/png" sizes="16x16"    href=assets/icons/favicon-16x16.png>
+</head>
+
+
+<body>
+
+    <div id="content">
+
+        <title>Component Instantiation</title>
+
+<span>
+    <h2 style="align-items: center;">
+        <a href=index.html class="text-norm">
+            <img src="assets/icons/android-icon-48x48.png" alt="logo" style="vertical-align:middle; margin: auto 2px 5px auto;" />
+            VHDLref
+        </a>
+    </h2>
+</span>
+
+<hr>
+
+<h1>Component Instantiation</h1>
+
+<br>
+<div class="chart">
+    <table class="chart">
+        <tr>
+            <td bgcolor="lightcyan">
+                
+                Concurrent Statement
+                
+                
+            </td>
+
+            
+            
+            <td style="border: 0px solid transparent">——used—in—></td>
+
+            <td bgcolor="lightgreen">
+                
+                Architecture
+                
+                
+            </td>
+            
+        </tr>
+
+        
+        
+    </table>
+</div>
+<br>
+<h3 class="text-hr"><span>Syntax</span></h3>
+
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">instance_label</span><span class="p">:</span> <span class="n">component_name</span>
+    <span class="k">generic</span> <span class="k">map</span> <span class="p">(</span><span class="n">generic_association_list</span><span class="p">)</span>
+    <span class="k">port</span> <span class="k">map</span> <span class="p">(</span><span class="n">port_association_list</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>See LRM section 9.6</p>
+
+<h3 class="text-hr"><span>Rules and Examples</span></h3>
+
+<p>The instance label is compulsory. The component name must match the relevant component declaration.</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">architecture</span> <span class="n">STRUCT</span> <span class="k">of</span> <span class="n">INC</span> <span class="k">is</span>
+
+    <span class="k">signal</span> <span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">S</span><span class="p">,</span><span class="n">C</span> <span class="p">:</span> <span class="kt">bit</span><span class="p">;</span>
+
+    <span class="k">component</span> <span class="n">HALFADD</span>
+        <span class="k">port</span> <span class="p">(</span>
+            <span class="n">A</span><span class="p">,</span><span class="n">B</span> <span class="p">:</span> <span class="k">in</span> <span class="kt">bit</span><span class="p">;</span>
+            <span class="n">SUM</span><span class="p">,</span> <span class="n">CARRY</span> <span class="p">:</span> <span class="k">out</span> <span class="kt">bit</span>
+        <span class="p">);</span>
+    <span class="k">end</span> <span class="k">component</span><span class="p">;</span>
+
+<span class="k">begin</span>
+
+    <span class="n">U1</span><span class="p">:</span> <span class="n">HALFADD</span> <span class="k">port</span> <span class="k">map</span> <span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">C</span><span class="p">);</span>
+
+    <span class="c1">-- other statements</span>
+
+<span class="k">end</span> <span class="n">STRUCT</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>The association <mark>list</mark> defines which local signals connect to which component ports. The association <mark>list</mark> above is <strong>positional</strong>, i.e. the signals are connected up in the order in which the ports were declared.</p>
+
+<p>The alternative is <strong>named association</strong>, where ports are explicitly referenced and order is not important:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ADDER1</span><span class="p">:</span> <span class="n">HALFADD</span>
+    <span class="k">port</span> <span class="k">map</span> <span class="p">(</span>  
+        <span class="n">B</span> <span class="o">=&gt;</span> <span class="n">Y</span><span class="p">,</span>     
+        <span class="n">A</span> <span class="o">=&gt;</span> <span class="n">X</span><span class="p">,</span>
+        <span class="n">SUM</span> <span class="o">=&gt;</span> <span class="n">S</span><span class="p">,</span>
+        <span class="n">CARRY</span> <span class="o">=&gt;</span> <span class="n">C</span>
+    <span class="p">);</span>
+</code></pre></div></div>
+
+<p>Ports may be left unconnected using the keyword <strong>open</strong>:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ADDER1</span><span class="p">:</span> <span class="n">HALFADD</span>
+    <span class="k">port</span> <span class="k">map</span> <span class="p">(</span>  
+        <span class="n">B</span> <span class="o">=&gt;</span> <span class="n">Y</span><span class="p">,</span>     
+        <span class="n">A</span> <span class="o">=&gt;</span> <span class="n">X</span><span class="p">,</span>
+        <span class="n">SUM</span> <span class="o">=&gt;</span> <span class="n">S</span><span class="p">,</span>
+        <span class="n">CARRY</span> <span class="o">=&gt;</span> <span class="k">open</span>
+    <span class="p">);</span>
+</code></pre></div></div>
+
+<p>An instance of a component with generics, has a <strong>generic map</strong> declared before the port map:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">U1</span> <span class="p">:</span> <span class="n">PARITY</span>
+    <span class="k">generic</span> <span class="k">map</span> <span class="p">(</span>
+        <span class="n">N</span> <span class="o">=&gt;</span> <span class="mi">8</span>
+    <span class="p">)</span>
+    <span class="k">port</span> <span class="k">map</span> <span class="p">(</span>
+        <span class="n">A</span> <span class="o">=&gt;</span> <span class="n">DATA_BYTE</span><span class="p">,</span>
+        <span class="n">ODD</span> <span class="o">=&gt;</span> <span class="n">PARITY_BYTE</span>
+    <span class="p">);</span>
+</code></pre></div></div>
+
+<h3 class="text-hr"><span>Synthesis Issues</span></h3>
+
+<p>Component instantiation is supported for synthesis, although <strong>generic map</strong> is usually ignored. Whether a logic synthesis tool will “flatten through” a component, treat it as a “black box”, or recognize it as a primitive is usually under the user’s control.</p>
+
+<h3 class="text-hr"><span>New in VHDL-93</span></h3>
+
+<p>In VHDL-93, an entity-architecture pair may be directly instantiated (a component doesn’t need to be declared). This is more compact, but does not allow the flexibility of configuration:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">DIRECT</span><span class="p">:</span> <span class="k">entity</span> <span class="n">HA_ENTITY</span><span class="p">(</span><span class="n">HA_ARCH</span><span class="p">)</span>
+    <span class="k">port</span> <span class="k">map</span> <span class="p">(</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">C</span><span class="p">);</span>
+</code></pre></div></div>
+
+
+
+<br>
+<hr>
+
+
+        <div id="footer">
+            <h6>v1.0 - &copy; 2020 Michael Riegert - <a href="https://github.com/nobodywasishere/vhdlref">View on Github</a>
+<br>Distributed under the terms of the <a href="LICENSE.html">MIT License</a></h6>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

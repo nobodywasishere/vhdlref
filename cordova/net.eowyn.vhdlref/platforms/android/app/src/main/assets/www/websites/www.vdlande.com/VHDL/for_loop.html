@@ -1,0 +1,137 @@
+<HTML>
+<HEAD>
+<TITLE>VHDL Reference Guide - For Loop</TITLE>
+</HEAD>
+<BODY BGCOLOR="mintcream">
+
+<CENTER>
+<TABLE BORDER=0 cellpadding=5>
+<CAPTION><B>For Loop</B></CAPTION>
+<TR>
+<TD BGCOLOR="lightcyan">Sequential Statement</TD>
+<TD>----used in ----></TD>
+<TD BGCOLOR="lightgreen">Process<br>Function<br>Procedure</TD>
+</TR>
+</TABLE>
+</CENTER>
+
+<center>
+<TABLE BORDER=0 align=center>
+<TR><TD><HR width=150></TD><TD>Syntax</TD><TD><HR width=150></TD></TR>
+</TABLE><p>
+</center>
+
+<div align=center>
+<TABLE BORDER=1 cellpadding=5>
+<TR><TD>
+<pre>optional_label: <b>for</b> parameter <b>in</b> range <b>loop</b>
+	sequential statements
+<b>end loop</b> label;
+</pre>
+</TD></TR>
+</TABLE>
+</div>
+<p>
+
+<center>
+See LRM section 8.8
+</center>
+
+<center>
+<TABLE BORDER=0 align=center>
+<TR><TD><HR width=150></TD><TD>Rules and Examples</TD><TD><HR width=150></TD></TR>
+</TABLE>
+</center>
+
+<DIV align=left>
+<TABLE BORDER=1 cellpadding=5 width=50%>
+<TR><TD>The <b>for</b> loop defines a loop parameter which takes on the type of the range
+specified. For example, the range <b>0 to 3</b> implies an integer:
+<pre>
+process (A)
+begin
+	Z <= "0000";
+	for I in o to 3 loop
+		if (A = I) then
+			Z(I) <= '1';
+		end if;
+	end loop;
+end process;
+</pre>
+</TD></TR>
+</TABLE><p>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=60%>
+<TR>
+<TD>Attributes such as <b>'high, 'low</b> and <b>'range</b> may also be
+used to define the iterations of a <b>for</b> loop:
+<PRE>process (A)#
+	variable TMP : std_ulogic;
+begin
+	TMP := '0';
+	for I in A'low to A'high loop
+		TMP := TMP xor A(I);
+	end loop;
+	ODD <= TMP;
+end process;
+</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=right>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=70%>
+<TR>
+<TD>The range may be any discrete range, e.g. an enumerated type:
+<PRE>type PRIMARY is (RED, GREEN, BLUE);
+type COLOUR is ARRAY (PRIMARY) of integer range 0 to 255;
+-- other statements
+MUX: process
+begin
+	for SEL in PRIMARY loop
+		V_BUS <= VIDEO(SEL);
+		wait for 10 ns;
+	end loop;
+end process MUX;
+</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=50%>
+<TR>
+<TD>The loop parameter does not need to be declared: it is implicitly
+declared within the loop. It may not be modified within the loop:
+<PRE>for I in 1 to 10 loop
+	if (REPEAT = '1') then
+		I := I-1;	-- Illegal
+	end if;
+end loop;
+</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<div align=center>
+<TABLE BORDER=0>
+<TR><TD><HR width=150></TD><TD>Synthesis Issues</TD><TD><HR width=150></TD></TR>
+<TR><TD colspan=3>
+The for loop is supported for synthesis, providing:
+<ol><li>the loop range is static (i.e. implies a definite number of iterations), and
+<li>the loop contains no <b>wait</b> statements.
+</ol></div>
+</td></tr></TABLE><p>
+
+<div align=center>
+<TABLE BORDER=0 align=center>
+<TR><TD><HR width=150></TD><TD>Whats New in '93</TD><TD><HR width=150></TD></TR>
+</TABLE><p>
+The for ... loop statement has not changed in VHDL-93
+</div>
+
+<HR WIDTH="80%">
+</BODY>
+</HTML>

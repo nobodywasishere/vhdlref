@@ -1,0 +1,192 @@
+<HTML>
+<HEAD>
+<TITLE>VHDL Reference Guide - Operators</TITLE>
+</HEAD>
+<BODY BGCOLOR="mintcream">
+
+<a href="nulls.htm"><img border=0 src="../../images/left.gif" align=left></a>
+<a href="package.htm"><img border=0 src="../../images/right.gif" align=right></a>
+
+<DIV ALIGN=CENTER>
+<TABLE BORDER=0 CELLPADDING=5>
+<CAPTION><B>Operators</B></CAPTION>
+<TR><TD COLSPAN=3><HR></TD></TR>
+<TR>
+<TD BGCOLOR="lightcyan">Operator</TD>
+<TD>---- used in ----></TD>
+<TD BGCOLOR="lightgreen">Expression</TD>
+</TR>
+</TABLE>
+
+<P><TABLE BORDER=0>
+<TR><TD><HR width=150></TD><TD>Syntax</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=CENTER>
+See LRM section 7.2
+
+<P><TABLE BORDER=0 align=center>
+<TR><TD><HR width=150></TD><TD>Rules and Examples</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=0 CELLPADDING=5 WIDTH=100%>
+<TR>
+<TD><TABLE BORDER=1>
+<TR><TD>The <b>logical operators</b> are predefined for <b>bit, boolean,
+bit_vector</b>, linear arrays of <b>boolean, std_logic</b> and
+<b>std_logic_vector</b> types. They return a value of the same type:
+<pre>and, or, nand, nor, xor, not</pre>
+</TD></TR>
+</TABLE></TD>
+<TD><TABLE BORDER=1>
+<TR><TD>The <b>equality</b> and <b>inequality</b> operators are
+predefined for all types, and they return a boolean value:
+<pre>=   -- equal to
+/=  -- not equal to</pre>
+</TD></TR>
+</TABLE>
+</TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=60%>
+<TR>
+<TD>The other relational operators are predefined for all scalar types,
+and all one-dimensional array types. They also return a boolean value:
+<PRE><   -- less than
+>   -- greater than
+<=  -- less than or equal to
+>=  -- greater than or equal to
+</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=left>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=70%>
+<TR>
+<TD>For arrays of different lengthsm the predefined relational operators
+align the left-hand elements and compare corresponding positions. This
+can lead to unexpected results:
+<PRE>constant ARR1 :bit_vector := "0011";
+constant ARR2 :bit_vector := "01";
+-- (ARR1 < ARR2) will return true</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=right>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=70%>
+<TR>
+<TD>The <b>&</b> operator is used to concatenate (join) arrays, or join
+new elements to an array:
+<PRE>Z_BUS(1 downto 0) <= '0' & B_BIT;
+BYTE <= A_BUS & B_BUS;
+</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=70%>
+<TR>
+<TD>Add, subtract, multiply and divide are defined for integer and real.
+Both operands must be the same type, and the result is also of the same
+type:
+<PRE>signal INT1, INT2: integer := 0;
+signal REAL1, REAL2: real := 6.7;
+...
+INT1  <= INT1 + 3;
+REAL1 <= REAL2 - 2.2;
+INT2  <= INT1 * REAL1;   --illegal
+INT2  <= INT1 * INTEGER(REAL1);
+REAL2 <= REAL1 / 42.3;
+</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=right>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=70%>
+<TR>
+<TD>For physical types (e.g.time), assignments must be dimensionally
+consistant:
+<PRE>variable TIME1,TIME2: time;
+...
+TIME1 := TIME2 * 2.5;
+TIME1 := TIME2 / 4;
+TIME1 := 3.6 ns + TIME2;
+TIME1 := TIME2 * 6.67 ns;   --illegal
+</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=90%>
+<TR>
+<TD>Other numeric operators are exponentiation (<b>**</b>), absolute
+value (<b>abs</b>), modulus (<b>mod</b>), and remainder (<b>rem</b>).
+</TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+
+<DIV ALIGN=CENTER>
+<P><TABLE BORDER=0 align=center>
+<TR><TD><HR width=150></TD><TD>Synthesis Issues</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+Most predefined operators are synthesisable, providing they are used
+with types accepted by the synthesis tool. See also <a
+href="type_dec.htm">type declarations</a> and <a
+href="qualifex.htm">overloading</a>
+<p>
+The following are <b>not</b> usually synthesisable, except as part of a
+constant expression: exponentiation (**), division by other than 2, mod,
+rem.
+
+<DIV ALIGN=CENTER>
+<P><TABLE BORDER=0>
+<TR><TD><HR width=150></TD><TD>Whats New in '93</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+
+<b>xnor</b> has been added to the logical operators in VHDL-94. New
+<b>shift</b> and <b>rotate</b> operators are defined for one-dimensional
+arrays of bit or boolean:
+<pre>
+<b>sll</b> -- shift left logical
+<b>srl</b> -- shift right logical
+<b>sla</b> -- shift left arithmetic
+<b>sra</b> -- shift right arithmetic
+<b>rol</b> -- rotate left
+<b>ror</b> -- rotate right
+</pre>
+
+</DIV>
+
+<HR WIDTH="80%">
+<div align=center>
+<a href="nulls.htm"><img border=0 src="../../images/left.gif"></a>
+<a href="index.htm"><img border=0 src="../../images/up.gif"></a>
+<a href="package.htm"><img border=0 src="../../images/right.gif"></a>
+</div>
+
+<HR WIDTH="80%">
+<ADDRESS>
+<CENTER>
+This page maintained by <A HREF="mailto:dave@truechap.demon.co.uk">
+<IMG SRC="/images/emailed.gif" BORDER=0>
+Dave Trueman</A>
+</CENTER>
+</ADDRESS>
+<HR WIDTH="80%">
+</BODY>
+</HTML>

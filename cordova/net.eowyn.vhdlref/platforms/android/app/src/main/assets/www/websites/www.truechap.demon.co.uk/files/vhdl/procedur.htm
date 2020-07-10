@@ -1,0 +1,188 @@
+<HTML>
+<HEAD>
+<TITLE>VHDL Reference Guide - Procedures</TITLE>
+</HEAD>
+<BODY BGCOLOR="mintcream">
+
+<a href="packageb.htm"><img border=0 src="../../images/left.gif" align=left></a>
+<a href="process.htm"><img border=0 src="../../images/right.gif"align=right></a>
+
+<DIV ALIGN=CENTER>
+<TABLE BORDER=0 CELLPADDING=5>
+<CAPTION><B>Procedures</B></CAPTION>
+<TR><TD COLSPAN=3><HR></TD></TR>
+<TR>
+<TD BGCOLOR="lightcyan">Declaration</TD>
+<TD>---- used in ----></TD>
+<TD BGCOLOR="lightgreen">Package<br>Entity<br>Architecture<br>Process<br>Procedure<br>Function</TD>
+</TR>
+</TABLE>
+
+<P><TABLE BORDER=0>
+<TR><TD><HR width=150></TD><TD>Syntax</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=40%>
+<TR>
+<TD><PRE>procedure procedure_name (parameter_list) is
+	declarations
+begin
+	sequential statements
+end procedure_name;
+</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+
+
+<DIV ALIGN=CENTER>
+See LRM sections 2.1, 2.2, 8.5 and 9.3
+
+<P><TABLE BORDER=0 align=center>
+<TR><TD><HR width=150></TD><TD>Rules and Examples</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=left>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=60%>
+<TR>
+<TD>Procedures may have <b>in</b>, <b>out</b> or <b>inout</b>
+parameters. These may be <b>signal</b>, <b>variable</b> or
+<b>constant</b>. the default for <b>in</b> parameters is constant. For
+<b>out</b> and <b>inout</b> it is variable. In fact, a <b>constant
+in</b> parameter can be associated with a signal, variable constant or
+expression when the procedure is called:
+<PRE>procedure DISPLAY_MUX
+ (ALARM_TIME, CURRENT_TIME : in digit;
+  SHOW_A              : in std_ulogic;
+  signal DISPLAY_TIME : out digit) is 
+begin
+  if (SHOW_A = '1') then
+    DISPLAY_TIME <= ALARM_TIME;
+  else
+    DISPLAY_TIME <= CURRENT_TIME;
+  end if;
+end DISPLAY_MUX;
+</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=left>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=70%>
+<TR>
+<TD>Procedures may be called concurrently or sequentially. A concurrent
+procedure call executes whenever any of its <b>in</b> or <b>inout</b>
+parameters change:
+<PRE>architecture SUBPROG of DISP_MUX is
+  ...
+begin
+  DISPLAY_MUX (ALARM_TIME, CURRENT_TIME,
+                  SHOW_A, DISPLAY_TIME);
+end SUBPROG;
+</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=left>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=70%>
+<TR>
+<TD>A procedure may declare local variables. These do not retain their
+values between successive calls, but are re-initialised each time.
+Array-type parameters may be <a href="arrays.htm">unconstrained</a>
+<PRE>procedure PARITY
+   (signal X : in std_ulogic_vector;
+    signal Y : out std_ulogic) is
+  variable TMP : std_ulogic := '0';
+begin
+  for J in X'range loop
+    TMP := TMP xor X(J);
+  end loop; -- works for any size X
+  Y <= TMP;
+end PARITY;</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=right>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=40%>
+<TR>
+<TD>A procedure <b>can</b> contain <a href="waits.htm">wait
+statements</a>, <b>unless</b> it is called from a
+<a href="process.htm">process</a> with a sensitivity list, or from
+within a <a href="function.htm">function</a>.</TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=left>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=70%>
+<TR>
+<TD>If a procedure is defined in a <a href="package.htm">package</a>,
+its body (the algorithm part) must be placed in the
+<a href="packageb.htm">package body</a>.
+<PRE>package REF_PACK is
+  procedure PARITY
+   (signal X : in std_logic_vector;
+    signal Y : out std_logic);
+end REF_PACK;
+
+package body REF_PACK is
+  procedure PARITY
+   (signal X : in std_logic_vector;
+    signal Y : out std_logic) is  
+  begin
+    -- procedure code
+  end PARITY;
+end REF_PACK;</PRE></TD>
+</TR>
+</TABLE><P>
+</DIV>
+
+
+
+<DIV ALIGN=CENTER>
+<P><TABLE BORDER=0 align=center>
+<TR><TD><HR width=150></TD><TD>Synthesis Issues</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+Procedures are usually supported for synthesis, providing they do not
+contain any <a href="waits.htm">wait statements</a>.
+
+<DIV ALIGN=CENTER>
+<P><TABLE BORDER=0>
+<TR><TD><HR width=150></TD><TD>Whats New in '93</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+
+In VHDL-93, the keyword <b>end</b> may be followed by the keyword
+<b>procedure</b> for clarity and consistancy.
+<p>
+Any procedure may be given an optional label.
+<p>
+A concurrent procedure call can be specified to run as a
+<a href="process.htm">postponed process</a>.
+</DIV>
+
+<HR WIDTH="80%">
+<div align=center>
+<a href="packageb.htm"><img border=0 src="../../images/left.gif"></a>
+<a href="index.htm"><img border=0 src="../../images/up.gif"></a>
+<a href="qualifex.htm"><img border=0 src="../../images/right.gif"></a>
+</div>
+
+<HR WIDTH="80%">
+<ADDRESS>
+<CENTER>
+This page maintained by <A HREF="mailto:dave@truechap.demon.co.uk">
+<IMG SRC="/images/emailed.gif" BORDER=0>
+Dave Trueman</A>
+</CENTER>
+</ADDRESS>
+<HR WIDTH="80%">
+</BODY>
+</HTML>

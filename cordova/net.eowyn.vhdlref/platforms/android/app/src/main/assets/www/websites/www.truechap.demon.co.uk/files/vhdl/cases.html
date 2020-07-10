@@ -1,0 +1,192 @@
+<HTML>
+<HEAD>
+<TITLE>VHDL Reference Guide - Case Statement</TITLE>
+</HEAD>
+<BODY BGCOLOR="mintcream">
+<a href="blocks.html"><img border=0 src="../../images/left.gif" align=left></a>
+<a href="compdec.html"><img border=0 src="../../images/right.gif" align=right></a>
+
+<DIV ALIGN=CENTER>
+<TABLE BORDER=0 CELLPADDING=5>
+<CAPTION><B>Case Statement</B></CAPTION>
+<TR><TD COLSPAN=3><HR></TD></TR>
+<TR>
+<TD BGCOLOR="lightcyan">Sequential Statement</TD>
+<TD>---- used in ----></TD>
+<TD BGCOLOR="lightgreen">Process<br>Function<br>Procedure</TD>
+</TR>
+</TABLE>
+
+<P><TABLE BORDER=0>
+<TR><TD><HR width=150></TD><TD>Syntax</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=40%>
+<TR><TD><pre>
+<B>case</B> expression <B>is</B>
+   <b>when</b> choice =>
+     sequential statements	
+   <b>when</b> choice =>
+      sequential statements
+<b>end case</b>;
+<pre>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+
+
+<DIV ALIGN=CENTER>
+See LRM section 8.7
+
+<P><TABLE BORDER=0 align=center>
+<TR><TD><HR width=150></TD><TD>Rules and Examples</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+<DIV ALIGN=left>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=70%>
+<TR>
+<TD>All possible choices must be included, unless the <B>others</B> clause is used as the last choice:
+<pre>
+case SEL is
+  when "01" =>   Z <= A;
+  when "10" =>   Z <= B;
+  when others => Z <= 'X';
+end case;
+</pre>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=70%>
+<TR>
+<TD>A range or a selection may be specified as a choice:
+<pre>
+case INT_A is
+  when 0      =>  Z <= A;
+  when 1 to 3 =>  Z <= B;
+  when 4|6|8  =>  Z <= C;
+  when others =>  Z <= 'X';
+end case;
+</pre>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<DIV ALIGN=right>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=70%>
+<TR>
+<TD>Choices may not overlap
+<pre>
+case INT_A is
+  when 0      =>  Z <= A;
+  when 1 to 3 =>  Z <= B;
+  when 2|6|8  =>  Z <= C;   -- illegal
+  when others =>  Z <= 'X';
+end case;
+</pre>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<DIV ALIGN=left>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=70%>
+<TR>
+<TD>A range may not be used with a vector type
+<pre>
+case VEC is
+  when "000" to "010" 
+               =>  Z <= A;   -- illegal
+  when "111"   =>  Z <= B;
+  when others  =>  Z <= 'X';
+end case;
+</pre>
+</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<DIV ALIGN=right>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=50%>
+<TR>
+<TD>See also the <B>null</B> statement</TD>
+</TR>
+</TABLE>
+</DIV>
+
+
+
+<DIV ALIGN=CENTER>
+<P><TABLE BORDER=0 align=center>
+<TR><TD><HR width=150></TD><TD>Synthesis Issues</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+</DIV>
+
+The CASE statement is generally synthesisable.
+<p>
+With repeated assignments to a target signal, it willsynthesise to a
+large multiplexer with logic on the select inputs to evaluate the
+conditions for the different choices in the case statement branches. No
+"priority" will be inferred from the order of the branches
+<p>
+With multiple targets and embedded <b>if</b> statements, the <b>case</b>
+statement may be used to synthesise a general mapping function, e.g.
+next state and output generation for a finite state machine. For
+example:<p>
+<DIV ALIGN=center>
+<TABLE BORDER=1 CELLPADDING=5 WIDTH=40%>
+<TR>
+<TD><pre>
+case READ_CPU_STATE is
+  when WAITING =>
+    if CPU_DATA_VALID = '1' then
+      CPU_DATA_READ  <= '1';
+      READ_CPU_STATE <= DATA1;
+    end if;
+  when DATA1 =>
+    -- etc.
+end case;
+</pre></TD>
+</TR>
+</TABLE>
+</DIV>
+
+<DIV ALIGN=CENTER>
+<P><TABLE BORDER=0>
+<TR><TD><HR width=150></TD><TD>Whats New in '93</TD><TD><HR width=150></TD></TR>
+</TABLE><P>
+
+In VHDL-93, the <b>case</b>statement may have an optional label:
+<pre>
+label: <b>case</b> expression <b>is</b>
+... etc.
+<b>end case</b> label;
+</pre>
+</DIV>
+
+<HR WIDTH="80%">
+<div align=center>
+<a href="blocks.html"><img border=0 src="../../images/left.gif"></a>
+<a href="index.html"><img border=0 src="../../images/up.gif"></a>
+<a href="compdec.html"><img border=0 src="../../images/right.gif"></a>
+</div>
+
+<HR WIDTH="80%">
+<ADDRESS>
+<CENTER>
+This page maintained by <A HREF="mailto:dave@truechap.demon.co.uk">
+<IMG SRC="/images/emailed.gif" BORDER=0>
+Dave Trueman</A>
+</CENTER>
+</ADDRESS>
+<HR WIDTH="80%">
+</BODY>
+</HTML>

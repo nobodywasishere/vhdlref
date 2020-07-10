@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href=css/main.css />
+    <link rel="stylesheet" href=css/code.css />
+    <link rel="apple-touch-icon" sizes="57x57"         href=assets/icons/apple-icon-57x57.png>
+    <link rel="apple-touch-icon" sizes="60x60"         href=assets/icons/apple-icon-60x60.png>
+    <link rel="apple-touch-icon" sizes="72x72"         href=assets/icons/apple-icon-72x72.png>
+    <link rel="apple-touch-icon" sizes="76x76"         href=assets/icons/apple-icon-76x76.png>
+    <link rel="apple-touch-icon" sizes="114x114"       href=assets/icons/apple-icon-114x114.png>
+    <link rel="apple-touch-icon" sizes="120x120"       href=assets/icons/apple-icon-120x120.png>
+    <link rel="apple-touch-icon" sizes="144x144"       href=assets/icons/apple-icon-144x144.png>
+    <link rel="apple-touch-icon" sizes="152x152"       href=assets/icons/apple-icon-152x152.png>
+    <link rel="apple-touch-icon" sizes="180x180"       href=assets/icons/apple-icon-180x180.png>
+    <link rel="icon" type="image/png" sizes="192x192"  href=assets/icons/android-icon-192x192.png>
+    <link rel="icon" type="image/png" sizes="32x32"    href=assets/icons/favicon-32x32.png>
+    <link rel="icon" type="image/png" sizes="96x96"    href=assets/icons/favicon-96x96.png>
+    <link rel="icon" type="image/png" sizes="16x16"    href=assets/icons/favicon-16x16.png>
+</head>
+
+
+<body>
+
+    <div id="content">
+
+        <title>Alias Declaration</title>
+
+<span>
+    <h2 style="align-items: center;">
+        <a href=index.html class="text-norm">
+            <img src="assets/icons/android-icon-48x48.png" alt="logo" style="vertical-align:middle; margin: auto 2px 5px auto;" />
+            REVHDL
+        </a>
+    </h2>
+</span>
+
+<hr>
+
+<h1>Alias Declaration</h1>
+
+<br>
+<div class="chart">
+    <table class="chart">
+        <tr>
+            <td bgcolor="lightcyan">
+                
+                Declaration
+                
+                
+            </td>
+
+            
+            
+            <td style="border: 0px solid transparent">——used—in—></td>
+
+            <td bgcolor="lightgreen">
+                
+                Entity
+                
+                <br>
+                
+                
+                Package
+                
+                <br>
+                
+                
+                Process
+                
+                <br>
+                
+                
+                Architecture
+                
+                <br>
+                
+                
+                Procedure
+                
+                <br>
+                
+                
+                Function
+                
+                
+            </td>
+            
+        </tr>
+
+        
+        
+    </table>
+</div>
+<br>
+<h3 class="text-hr"><span>Syntax</span></h3>
+
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">alias</span> <span class="n">alias_name</span> <span class="p">:</span> <span class="n">alias_type</span> <span class="k">is</span> <span class="n">object_name</span><span class="p">;</span>
+</code></pre></div></div>
+<p>See LRM section 4.3.4</p>
+
+<h3 class="text-hr"><span>Rules and Examples</span></h3>
+
+<p>An alias is an alternative name for an existing object (signal, variable or constant). It does not define a new object.</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">alias</span> <span class="n">SIGN</span>    <span class="p">:</span> <span class="kt">bit</span> <span class="k">is</span> <span class="n">DATA</span><span class="p">(</span><span class="mi">31</span><span class="p">);</span>
+<span class="k">alias</span> <span class="n">BYTE_ID</span> <span class="p">:</span> <span class="kt">bit</span> <span class="k">is</span> <span class="n">NET_DATA_IN</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>Aliases provide a useful “shorthand” for referencing complex slices etc.:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">use</span> <span class="n">work</span><span class="o">.</span><span class="n">BV_ARITH</span><span class="o">.</span><span class="k">all</span><span class="p">;</span>
+
+<span class="c1">--</span>
+
+<span class="k">alias</span> <span class="n">OPERAND</span> <span class="p">:</span> <span class="kt">bit_vector</span><span class="p">(</span><span class="mi">1</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">)</span>
+       <span class="k">is</span> <span class="n">CPU_BUFFER</span><span class="p">(</span><span class="n">LOW</span><span class="p">)</span> <span class="p">(</span><span class="mi">4</span> <span class="k">downto</span> <span class="mi">3</span><span class="p">);</span>
+<span class="k">alias</span> <span class="n">A</span>       <span class="p">:</span> <span class="kt">bit_vector</span><span class="p">(</span><span class="mi">3</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">)</span>
+       <span class="k">is</span> <span class="n">CPU_BUFFER</span><span class="p">(</span><span class="n">HIGH</span><span class="p">)(</span><span class="mi">3</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>
+<span class="k">alias</span> <span class="n">B</span>       <span class="p">:</span> <span class="kt">bit_vector</span><span class="p">(</span><span class="mi">2</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">)</span>
+       <span class="k">is</span> <span class="n">CPU_BUFFER</span><span class="p">(</span><span class="n">LOW</span><span class="p">)</span> <span class="p">(</span><span class="mi">2</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>
+
+<span class="c1">--</span>
+
+<span class="n">CPU_DATA_TMP</span> <span class="p">:</span><span class="o">=</span> <span class="p">(</span><span class="n">B</span> <span class="o">&amp;</span> <span class="n">A</span><span class="p">)</span> <span class="o">+</span> <span class="n">OPERAND</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>An alias of an array object can be indexed in the opposite direction</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">signal</span> <span class="n">BUS_A</span> <span class="p">:</span>
+    <span class="kt">std_ulogic_vector</span><span class="p">(</span><span class="mi">7</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">);</span>
+
+<span class="k">alias</span> <span class="n">BIT_REV_A</span> <span class="p">:</span>
+    <span class="kt">std_ulogic_vector</span><span class="p">(</span><span class="mi">0</span> <span class="k">to</span> <span class="mi">7</span><span class="p">)</span> <span class="k">is</span> <span class="n">BUS_A</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 class="text-hr"><span>Synthesis Issues</span></h3>
+
+<p>Aliases are not supported by many logic synthesis tools.</p>
+
+<p>A work-around is to declare new “alias” signals, variables or constants, and assign them with the slice expression. With signals and variables this increases simulation overhead, but preserves readability.</p>
+
+<p>Such “alias” signals should be assigned concurrently, and “alias” variables should be reassigned each time their process is activated.</p>
+
+<h3 class="text-hr"><span>New in VHDL-93</span></h3>
+
+<p>Aliases may be applied much more extensively in VHDL-93.</p>
+
+<p>All objects may be aliased, i.e. signals, files, variables and constants.</p>
+
+<p>All “non-objects” can also be aliased, except labels, loop parameters and generate parameters. For instance:</p>
+
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- an alias of a type</span>
+<span class="k">alias</span> <span class="n">MY_LOGIC</span> <span class="k">is</span> <span class="n">ieee</span><span class="o">.</span><span class="n">std_logic_1164</span><span class="o">.</span><span class="kt">std_logic</span><span class="p">;</span>
+
+<span class="c1">-- an alias of a component</span>
+<span class="k">alias</span> <span class="n">NAND2</span> <span class="k">is</span> <span class="n">ASIC_LIB</span><span class="o">.</span><span class="n">ONE_MICRON</span><span class="o">.</span><span class="n">ND2</span><span class="p">;</span>
+</code></pre></div></div>
+
+
+
+<br>
+<hr>
+
+
+        <div id="footer">
+            <h6>&copy; 2020 Michael Riegert - <a href="https://github.com/nobodywasishere/vhdlref">View on Github</a>
+<br>Distributed under the terms of the <a href="LICENSE.html">MIT License</a></h6>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,171 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=us-ascii">
+<!-- base href="http://www.vdlande.com/VHDL/ifs.html" --><title>VHDL Reference Guide - If Statement</title></head><body bgcolor="mintcream"><div style="border: 1px solid rgb(153, 153, 153); margin: -1px -1px 0pt; padding: 0pt; background: rgb(255, 255, 255) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"><div style="border: 1px solid rgb(153, 153, 153); margin: 12px; padding: 8px; background: rgb(221, 221, 221) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; font-family: arial,sans-serif; font-style: normal; font-variant: normal; font-size: 13px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none; color: rgb(0, 0, 0); font-weight: normal; text-align: left;">This is Google's cache of <a href="http://www.vdlande.com/VHDL/ifs.html" style="text-decoration: underline; color: rgb(0, 0, 204);">http://www.vdlande.com/VHDL/ifs.html</a>. It is a snapshot of the page as it appeared on Oct 3, 2009 00:18:13 GMT. The <a href="http://www.vdlande.com/VHDL/ifs.html" style="text-decoration: underline; color: rgb(0, 0, 204);">current page</a> could have changed in the meantime. <a href="http://www.google.com/intl/en/help/features_list.html#cached" style="text-decoration: underline; color: rgb(0, 0, 204);">Learn more</a><br><br><div style="float: right;"><a href="http://74.125.155.132/search?q=cache:etMzSnlQGWsJ:www.vdlande.com/VHDL/ifs.html+site:www.vdlande.com+VHDL+reference+guide+vdlande&amp;hl=en&amp;client=firefox-a&amp;gl=us&amp;strip=1" style="text-decoration: underline; color: rgb(0, 0, 204);">Text-only version</a></div>
+<div>These search terms are highlighted: <span style="background: rgb(255, 255, 102) none repeat scroll 0% 0%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; color: black; font-weight: bold;">vhdl</span>&nbsp;These terms only appear in links pointing to this page: <span style="font-weight: bold;">reference</span>&nbsp;<span style="font-weight: bold;">guide</span>&nbsp;<span style="font-weight: bold;">vdlande</span>&nbsp;&nbsp;</div></div></div><div style="position: relative;">
+
+
+
+
+
+<div align="center">
+<table border="0" cellpadding="5">
+<caption><b>If Statement</b></caption>
+<tbody><tr><td colspan="3"><hr></td></tr>
+<tr>
+<td bgcolor="lightcyan">Sequential Statement</td>
+<td>---- used in ----&gt;</td>
+<td bgcolor="lightgreen">Process<br>Function<br>Procedure</td>
+</tr>
+</tbody></table>
+
+<p><table border="0">
+<tbody><tr><td><hr width="150"></td><td>Syntax</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="40%">
+<tbody><tr>
+<td><pre><b>if</b> condition_1 <b>then</b>
+	sequential statements
+<b>elsif</b> condition2 <b>then</b>
+	sequential statements
+<b>else</b>
+	sequential statements
+<b>end if;</b></pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="center">
+See LRM section 8.6
+
+<p><table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Rules and Examples</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+<div align="left">
+<table border="1" cellpadding="5" width="60%">
+<tbody><tr>
+<td>Conditions may overlap - <b>only</b> the statements after the
+<b>first</b> "true" condition are executed.
+<pre>if (X = 5) and (Y = 9) then
+	Z &lt;= A;
+elsif (X &gt;= 5) then
+	Z &lt;= B;
+else
+	Z &lt; C;
+end if;</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="right">
+<table border="1" cellpadding="5" width="60%">
+<tbody><tr>
+<td>The <b>elsif</b> and <b>else</b> clauses are optional. This process
+models a transparent latch:
+<pre>process (EN, D)
+begin
+	if (EN = '1') then Q &lt;= D;
+	end if;
+end process;
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="90%">
+<tbody><tr>
+<td>A condition is any boolean expression:
+<pre>process (ALARM_TIME, CURRENT_TIME)
+	variable AL_EQ_CUR: boolean;
+begin
+	AL_EQ_CUR := (ALARM_TIME = CURRENT_TIME);
+	if AL_EQ_CUR then
+		SOUND_ALARM &lt;= '1';
+	else
+		SOUND_ALARM &lt;= '0';
+	end if;
+end process;
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="70%">
+<tbody><tr>
+<td>An <b>if</b> statement may be used to infer edge-triggered registers
+in a process sensitive to a clock signal. Asynchronous reset may also be
+modelled:
+<pre>process(CLK, RESET)
+begin
+	if RESET = '1' then
+		COUNT &lt;= 0;
+	elseif CLK'event and CLK='1' then
+		if (COUNT &gt;= 9) then
+			COUNT &lt;= 0;
+		else
+			COUNT &lt;= COUNT + 1;
+		end if;
+	end if
+end process;
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="center">
+<table border="1" cellpadding="5" width="60%">
+<tbody><tr>
+<td><b>If</b> statements may be used to specify conditional assignments
+or state transitions in a finite state machine:
+<pre>case READ_CPU_STATE is
+	when WAITING =&gt;
+		if CPU_DATA_VALID = '1' then
+			CPU_DATA_READ &lt;= '1';
+			READ_CPU_STATE &lt;= DATA1;
+		end if;
+	when DATA1 =&gt;
+	-- other branches of the case statement
+end case;
+</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<div align="center">
+<p><table align="center" border="0">
+<tbody><tr><td><hr width="150"></td><td>Synthesis Issues</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+The <b>if</b> statement is generally synthesisable. Where an <b>if</b>
+statement is used to detect the clock edge in a "clocked process",
+certain conventions must be obeyed. Using an <b>if</b> statement without
+an <b>else</b> clause in a "combinational process" can result in latches
+being inferred, unless all signals driven by the process are given
+unconditional default assignments. For more details see
+<a href="http://www.vdlande.com/VHDL/process.htm.htm">Process</a>.
+
+<div align="center">
+<p><table border="0">
+<tbody><tr><td><hr width="150"></td><td>Whats New in '93</td><td><hr width="150"></td></tr>
+</tbody></table></p><p>
+</p></div>
+
+<div align="center">
+<table border="0" cellpadding="5" width="50%">
+<tbody><tr>
+<td>In <b style="color: black; background-color: rgb(255, 255, 102);">VHDL</b>-93, the <b>if</b> may have an optional label:
+<pre>label: <b>if</b> condition <b>then</b>
+...etc
+<b>end if</b> label</pre></td>
+</tr>
+</tbody></table><p>
+</p></div>
+
+<hr width="80%">
+</div></body></html>
