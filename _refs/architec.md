@@ -5,7 +5,7 @@ title: "Architecture"
 description: "An architecture is the secondary unit. It can contain any mix of component instances, processes or other concurrent statements"
 chart-left: "Secondary Unit" # for the left side of the chart
 chart-right: # for the right side of the chart
-tags: [architecture, configuration, end, shared variables]
+tags: [architecture, configuration, end, shared variables, bound]
 ---
 
 

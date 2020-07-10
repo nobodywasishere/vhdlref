@@ -4,7 +4,8 @@ layout: refpage
 title: "Arrays"
 description: "An arraycontains multiple elements of the same type."
 chart-left: "Declaration" # for the left side of the chart
-chart-right: [package, entity, architecture, process, procedure, function] # for the right side of the chart
+chart-right: [Package, Entity, Architecture, Process, Procedure, Function] # for the right side of the chart
+tags: [array, 'array - unconstrained', string, bit_vector, std_logic_vector, literals, concatenation, aggregates, slices, position]
 ---
 
 
@@ -80,7 +81,7 @@ X_2D(3,1) <= 4;
 
 <h3 class="text-hr"><span>Synthesis Issues</span></h3>
 
-Most logic synthesis tools accept one-dimensional arrays of other supported types. 1-D arrays of 1-D arrays are often supported. Some tols also allow true 2-D arrays, but not more dimensions.
+Most logic synthesis tools accept one-dimensional arrays of other supported types. 1-D arrays of 1-D arrays are often supported. Some tools also allow true 2-D arrays, but not more dimensions.
 
 Note that arrays are usually implemented using gates and flip-flops, not ROM's and RAM's.
 

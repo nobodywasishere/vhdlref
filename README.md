@@ -1,4 +1,4 @@
-# VHDL Reference Website
+# refVHDL
 
 The purpose of this website is to provide a usable language reference for writing VHDL (VHSIC Hardware Description Language) in a way that is concise, direct, and easy to understand for as many people as possible.
 

@@ -7,7 +7,7 @@ The purpose of this website is to provide a usable language reference for writin
 
 This website was written with Jekyll and can be hosted on Github Pages. The design of this website is intended to be as simple and accessible to as many people as possible, so there are very few colors (only exception being code highlighting) and no JavaScript. The interface should be able to scale and be readable at most resolutions. If it does not work on your device, please submit an issue at the git repository listed below.
 
-The website itself uses the MIT license, while all of the original information pulled from the archives listed below remains property of the original author(s). If you wish to help make this website better, learn about how the website works, or make your own version of it, the git repository is hosted [here](https://github.com/nobodywasishere/vhdlref).
+This website is distributed under the terms of the [MIT license]({{ 'LICENSE.html' | baseurl }}), except for the archives listed below, which remain property of the original author(s). If you wish to help make this website better, learn about how the website works, or make your own version of it, the git repository is hosted [here](https://github.com/nobodywasishere/vhdlref).
 
 <!-- If the Github repository is gone, I'm sorry :( -->
 
@@ -36,6 +36,8 @@ Due to this, I have also archived the original websites locally:
 * [`www.ics.uci.edu/~jmoorkan/vhdlref/`]({{ 'websites/jmoorkan/vhdlref/' | baseurl }})
 
 Be careful, I did not break the links to external websites or missing files.
+
+---
 
 Special thanks to:
 * Dave Trueman for (possibly) creating the original reference website

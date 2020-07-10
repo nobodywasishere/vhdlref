@@ -5,7 +5,7 @@ title: "Aggregates"
 description: "Aggregates are a grouping of values to form an array or record expression."
 chart-left: "Expression"
 chart-right: [Entity, Architecture, Package, Package Body]
-tags: [aggregates, positional association, named association, others]
+tags: [aggregates, 'association - positional', 'association - named', others]
 ---
 
 <h3 class="text-hr"><span>Syntax</span></h3>

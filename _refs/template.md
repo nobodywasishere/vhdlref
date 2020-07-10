@@ -2,7 +2,6 @@
 permalink: template.html # url you want the page to be at
 layout: refpage
 title: "Template Page"
-description: "Template Page."
 chart-left: "What it does" # for the left side of the chart
 chart-right: [Where, It, Wants, To, Go] # for the right side of the chart
 ---

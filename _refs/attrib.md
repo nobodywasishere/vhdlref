@@ -2,10 +2,10 @@
 permalink: attrib.html # url you want the page to be at
 layout: refpage
 title: "Attributes"
-description: "Attributes supply additional information about an item, e.g. a signal, variable, type or component."
 chart-left: "Attribute" # for the left side of the chart
 chart-right: [Entity,Architecture,Package,Package Body] # for the right side of the chart
-tags: [attributes, user defined attributes, group]
+tags: [attributes, user defined attributes, group, "'high", "'low", "'left", "'right", "'range",
+"'reverse_range", "'length", "'event", "'active", "'last_event", "'last_active", "'last_value", "'delayed(T)", "'stable(T)", "'quiet(T)", "'transaction", "'driving", "'driving_value", "'ascending", "'image(literal)", "'simple_name", "'instance_name", "'path_name"]
 ---
 
 <!-- tables generated using https://www.tablesgenerator.com/markdown_tables -->
@@ -16,6 +16,7 @@ tags: [attributes, user defined attributes, group]
 ```vhdl
 object'attribute_name
 ```
+
 See LRM sections 14.1, 4.4, 5.1 and 6.6
 
 
