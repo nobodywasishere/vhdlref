@@ -7,7 +7,7 @@ layout: default
 <span>
     <h2 style="align-items: center;">
         <a href={{ "index.html" | proper_url }} class="text-norm">
-            <img src="{{ 'assets/icons/android-icon-48x48.png' | baseurl }}" alt="logo" style="vertical-align:middle; margin: auto 2px 5px auto;" />
+            <img src="{{ 'assets/icon.svg' | baseurl }}" alt="logo" style="vertical-align:middle; margin: auto 2px 5px auto; width: 50px; height: 50px" />
             {{ site.name }}
         </a>
     </h2>
