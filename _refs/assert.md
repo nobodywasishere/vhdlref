@@ -7,7 +7,7 @@ chart-left: "Concurrent Statement" # for the left side of the chart
 chart-right: [Entity,Architecture] # for the right side of the chart
 chart2-left: "Sequential Statement" # for the left side of the chart
 chart2-right: [Process,Function,Procedure] # for the right side of the chart
-tags: [assert, severity level, concurrent, unconditional, false, report, statement - concurrent, message - unconditional]
+tags: [assert, severity level, concurrent, unconditional, report, statement - concurrent, message - unconditional]
 ---
 
 

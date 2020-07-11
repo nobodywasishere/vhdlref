@@ -3,31 +3,49 @@ title: Index
 layout: page
 ---
 
-<br>
+<hr style="width: 75%">
 
 <div class="index-container">
-<!-- https://talk.jekyllrb.com/t/collect-items-from-multiple-collections-and-organize-by-tag/1645/5 -->
-{%- assign tags = site.refs | map: 'tags' |  join: ','  | split: ',' | sort -%}
-{%- assign prevTag = "" -%}
-{%- for tag in tags -%}
+    <!-- https://talk.jekyllrb.com/t/collect-items-from-multiple-collections-and-organize-by-tag/1645/5 -->
+    {%- assign tags = site.refs | map: 'tags' |  join: ','  | split: ',' | sort -%}
+    {%- assign prevTag = "" -%}
+    {%- assign halfTags = tags | size | divided_by: 2 | plus: 6 -%}
+    {%- assign prevLetter = "" -%}
 
-{%- if tag != prevTag -%}
+    <div class="index-column">
+        {%- for tag in tags -%}
 
-    <dt>{{ tag }}</dt>
+            {%- if forloop.index == halfTags -%}
+                </div>
+                {%- assign prevLetter = "" -%}
+                <div class="index-column">
+            {%- endif -%}
 
-    {%- for refs in site.refs -%}
-        {%- if refs.tags contains tag -%}
+            {%- assign currLetter = tag | slice: 0 -%}
+            {% if prevLetter != currLetter %}
+                <h3 style="text-transform: capitalize; text-align: center">{{ currLetter }}</h3>
+                <hr style="width: 50%;">
+            {% endif %}
+            {%- assign prevLetter = tag | slice: 0 -%}
 
-            <dd><a href="{{ refs.permalink | baseurl }}">{{ refs.title }}</a></dd>
+            {%- if tag != prevTag -%}
 
-        {%- endif -%}
-    {%- endfor -%}
-    <br>
+                <dt>{{ tag }}</dt>
 
-{%- endif -%}
+                {%- for refs in site.refs -%}
+                    {%- if refs.tags contains tag -%}
 
-{%- assign prevTag = tag -%}
+                        <dd><a href="{{ refs.permalink | baseurl }}">{{ refs.title }}</a></dd>
 
-{%- endfor -%}
+                    {%- endif -%}
+                {%- endfor -%}
+                <br>
+
+            {%- endif -%}
+
+            {%- assign prevTag = tag -%}
+
+        {%- endfor -%}
+    </div>
 </div>
 <br>
