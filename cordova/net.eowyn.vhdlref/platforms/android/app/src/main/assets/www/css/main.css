@@ -38,16 +38,23 @@ th, td {
 
 dt {
     font-weight: bold;
-    font-size: 110%;
+    font-size: 100%;
     margin: 10px;
 }
 dd {
+    font-size: 90%;
     margin-top: 10px;
 }
 
-.index-container {
-    max-width: 600px;
-    margin: 0 auto 0 auto;
+.index-container:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.index-column {
+    float: left;
+    width: 50%;
 }
 
 .chart table {
@@ -163,5 +170,9 @@ h1, h2, h4, h6 {
 
     ul {
         font-size: 85%;
+    }
+
+    .index-column {
+        width: 100%;
     }
 }
