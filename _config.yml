@@ -2,7 +2,7 @@ name: VHDLref
 url: https://nobodywasishere.github.io
 baseurl:
 
-exclude: [cordova, documents]
+exclude: [cordova, documents, license.html, TODO.md, README.md, Makefile, test.html]
 
 collections:
   refs:
