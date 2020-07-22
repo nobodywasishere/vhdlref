@@ -80,7 +80,7 @@ The loop parameter does not need to be declared: it is implicitly declared withi
 ```vhdl
 for I in 1 to 10 loop
     if (REPEAT = '1') then
-        I := I-1;	-- Illegal
+        I := I-1;    -- Illegal
     end if;
 end loop;
 ```

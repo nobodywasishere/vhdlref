@@ -1,7 +1,7 @@
 ---
 permalink: attrib.html # url you want the page to be at
 layout: refpage
-title: "Attributes"
+title: "Attribute"
 chart-left: "Attribute" # for the left side of the chart
 chart-right: [Entity,Architecture,Package,Package Body] # for the right side of the chart
 tags: [attributes, user defined attributes, group, "'high", "'low", "'left", "'right", "'range",

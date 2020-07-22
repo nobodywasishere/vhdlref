@@ -1,7 +1,7 @@
 ---
 permalink: function.html # url you want the page to be at
 layout: refpage
-title: "Functions"
+title: "Function"
 chart-left: "Declaration" # for the left side of the chart
 chart-right: [Package, Entity, Process, Procedure, Function] # for the right side of the chart
 tags: [functions, signal assignment, wait, package, std_logic_1164, user defined functions, function - pure, function - impure]

@@ -1,7 +1,7 @@
 ---
 permalink: generics.html # url you want the page to be at
 layout: refpage
-title: "Generics"
+title: "Generic"
 chart-left: "Declaration" # for the left side of the chart
 chart-right: [Entity, Component] # for the right side of the chart
 tags: [generics, map - generic]
@@ -34,10 +34,10 @@ end component_name;
 
 ```vhdl
 instance_label: component_name
-	generic map (
+    generic map (
         -- generic_association_list
     )
-	port map (
+    port map (
         -- port_association_list
     );
 ```

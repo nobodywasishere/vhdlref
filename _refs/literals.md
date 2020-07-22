@@ -1,7 +1,7 @@
 ---
 permalink: literals.html # url you want the page to be at
 layout: refpage
-title: "Literals"
+title: "Literal"
 chart-left: "Literal" # for the left side of the chart
 chart-right: [Expression] # for the right side of the chart
 ---
@@ -18,7 +18,7 @@ constant FREEZE : integer := 32;
 constant TEMP : real := 32.0;
 ```
 
-Numeric literasls may be expressed in any base from 2 to 16. They may also be broken up using underscore, for clarity.
+Numeric literals may be expressed in any base from 2 to 16. They may also be broken up using underscore, for clarity.
 ```vhdl
 A_INT <= 16#FF#;
 B_INT <= 2#1010_1010#;

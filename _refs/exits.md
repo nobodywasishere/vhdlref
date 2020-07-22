@@ -3,7 +3,8 @@ permalink: exist.html # url you want the page to be at
 layout: refpage
 title: "Exit Statement"
 chart-left: "Sequential Statement" # for the left side of the chart
-chart-right: [loop, loop - for, loop - while, when, exit] # for the right side of the chart
+chart-right: [For Loop, While Loop] # for the right side of the chart
+tags: [loop, loop - for, loop - while, when, exit]
 ---
 
 
