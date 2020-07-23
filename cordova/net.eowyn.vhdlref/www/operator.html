@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href=css/main.css />
+    <link rel="stylesheet" href=css/code.css />
+    <link rel="apple-touch-icon" sizes="57x57"         href=assets/icons/apple-icon-57x57.png>
+    <link rel="apple-touch-icon" sizes="60x60"         href=assets/icons/apple-icon-60x60.png>
+    <link rel="apple-touch-icon" sizes="72x72"         href=assets/icons/apple-icon-72x72.png>
+    <link rel="apple-touch-icon" sizes="76x76"         href=assets/icons/apple-icon-76x76.png>
+    <link rel="apple-touch-icon" sizes="114x114"       href=assets/icons/apple-icon-114x114.png>
+    <link rel="apple-touch-icon" sizes="120x120"       href=assets/icons/apple-icon-120x120.png>
+    <link rel="apple-touch-icon" sizes="144x144"       href=assets/icons/apple-icon-144x144.png>
+    <link rel="apple-touch-icon" sizes="152x152"       href=assets/icons/apple-icon-152x152.png>
+    <link rel="apple-touch-icon" sizes="180x180"       href=assets/icons/apple-icon-180x180.png>
+    <link rel="icon" type="image/png" sizes="192x192"  href=assets/icons/android-icon-192x192.png>
+    <link rel="icon" type="image/png" sizes="32x32"    href=assets/icons/favicon-32x32.png>
+    <link rel="icon" type="image/png" sizes="96x96"    href=assets/icons/favicon-96x96.png>
+    <link rel="icon" type="image/png" sizes="16x16"    href=assets/icons/favicon-16x16.png>
+</head>
+
+
+<body>
+
+    <div id="content">
+
+        <title>Operator</title>
+
+<span>
+    <h2 style="align-items: center;">
+        <a href=index.html class="text-norm">
+            <img src="assets/icon.svg" alt="logo" style="vertical-align:middle; margin: auto 2px 5px auto; width: 50px; height: 50px" />
+            VHDLref
+        </a>
+    </h2>
+</span>
+
+<hr>
+
+<h1>Operator</h1>
+
+<br>
+<div class="chart">
+    <table class="chart">
+        <tr>
+            <td bgcolor="lightcyan">
+                
+                Operator
+                
+                
+            </td>
+
+            
+            
+            <td style="border: 0px solid transparent; width: 24%">——used—in—></td>
+
+            <td bgcolor="lightgreen">
+                
+                Expression
+                
+                
+            </td>
+            
+        </tr>
+
+        
+        
+    </table>
+</div>
+<br>
+<h3 class="text-hr"><span>Syntax</span></h3>
+
+<!-- include the vhdl tag to highlight as vhdl -->
+<p>See LRM section 7.2</p>
+
+<h3 class="text-hr"><span>Rules and Examples</span></h3>
+
+<p>The <strong>logical operators</strong> are predefined for <strong>bit</strong>, <strong>boolean</strong>, <strong>bit_vector</strong>, linear arrays of <strong>boolean</strong>, <strong>std_logic</strong> and <strong>std_logic_vector</strong> types. They return a value of the same type:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">C</span> <span class="o">&lt;=</span> <span class="n">A</span> <span class="ow">and</span> <span class="n">B</span><span class="p">;</span>
+<span class="n">C</span> <span class="o">&lt;=</span> <span class="n">A</span> <span class="ow">or</span> <span class="n">B</span><span class="p">;</span>
+<span class="n">C</span> <span class="o">&lt;=</span> <span class="n">A</span> <span class="ow">nand</span> <span class="n">B</span><span class="p">;</span>
+<span class="n">C</span> <span class="o">&lt;=</span> <span class="n">A</span> <span class="ow">nor</span> <span class="n">B</span><span class="p">;</span>
+<span class="n">C</span> <span class="o">&lt;=</span> <span class="n">A</span> <span class="ow">xor</span> <span class="n">B</span><span class="p">;</span>
+<span class="n">C</span> <span class="o">&lt;=</span> <span class="n">A</span> <span class="ow">xnor</span> <span class="n">B</span><span class="p">;</span>
+<span class="n">C</span> <span class="o">&lt;=</span> <span class="ow">not</span> <span class="n">B</span><span class="p">;</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>A</th>
+      <th>B</th>
+      <th>and</th>
+      <th>or</th>
+      <th>nand</th>
+      <th>nor</th>
+      <th>xor</th>
+      <th>xnor</th>
+      <th>not</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The equality and inequality operators are predefined for all types, and they return a boolean value:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="p">(</span><span class="n">A</span> <span class="o">=</span> <span class="n">B</span><span class="p">)</span> <span class="k">then</span> <span class="c1">-- equal to</span>
+    <span class="c1">-- other code here</span>
+<span class="k">end</span> <span class="k">if</span><span class="p">;</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">A</span> <span class="o">/=</span> <span class="n">B</span><span class="p">)</span> <span class="k">then</span> <span class="c1">-- not equal to</span>
+    <span class="c1">-- other code here</span>
+<span class="k">end</span> <span class="k">if</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>The other relational operators are predefined for all scalar types, and all one-dimensional array types. They also return a boolean value:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span>   <span class="c1">-- less than</span>
+<span class="o">&gt;</span>   <span class="c1">-- greater than</span>
+<span class="o">&lt;=</span>  <span class="c1">-- less than or equal to</span>
+<span class="o">&gt;=</span>  <span class="c1">-- greater than or equal to</span>
+</code></pre></div></div>
+
+<p>For arrays of different lengths, the predefined relational operators align the left-hand elements and compare corresponding positions. This can lead to unexpected results:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">constant</span> <span class="n">ARR1</span> <span class="p">:</span> <span class="kt">bit_vector</span> <span class="p">:</span><span class="o">=</span> <span class="s1">"0011"</span><span class="p">;</span>
+<span class="k">constant</span> <span class="n">ARR2</span> <span class="p">:</span> <span class="kt">bit_vector</span> <span class="p">:</span><span class="o">=</span> <span class="s1">"01"</span><span class="p">;</span>
+<span class="c1">-- (ARR1 &lt; ARR2) will return true</span>
+</code></pre></div></div>
+
+<p>The <strong>&amp;</strong> operator is used to concatenate (join) arrays, or join new elements to an array:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">Z_BUS</span><span class="p">(</span><span class="mi">1</span> <span class="k">downto</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="sc">'0'</span> <span class="o">&amp;</span> <span class="n">B_BIT</span><span class="p">;</span>
+<span class="n">BYTE</span> <span class="o">&lt;=</span> <span class="n">A_BUS</span> <span class="o">&amp;</span> <span class="n">B_BUS</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>For physical types (i.e. time), assignments must be dimensionally consistent:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">variable</span> <span class="n">TIME1</span><span class="p">,</span><span class="n">TIME2</span><span class="p">:</span> <span class="kt">time</span><span class="p">;</span>
+
+<span class="o">...</span>
+
+<span class="n">TIME1</span> <span class="p">:</span><span class="o">=</span> <span class="n">TIME2</span> <span class="o">*</span> <span class="mi">2</span><span class="o">.</span><span class="mi">5</span><span class="p">;</span>
+<span class="n">TIME1</span> <span class="p">:</span><span class="o">=</span> <span class="n">TIME2</span> <span class="o">/</span> <span class="mi">4</span><span class="p">;</span>
+<span class="n">TIME1</span> <span class="p">:</span><span class="o">=</span> <span class="mi">3</span><span class="o">.</span><span class="mi">6</span> <span class="n">ns</span> <span class="o">+</span> <span class="n">TIME2</span><span class="p">;</span>
+<span class="n">TIME1</span> <span class="p">:</span><span class="o">=</span> <span class="n">TIME2</span> <span class="o">*</span> <span class="mi">6</span><span class="o">.</span><span class="mi">67</span> <span class="n">ns</span><span class="p">;</span>   <span class="c1">--illegal</span>
+</code></pre></div></div>
+
+<p>Other numeric operators are exponentiation (<strong>**</strong>), absolute value (<strong>abs</strong>), modulus (<strong>mod</strong>), and remainder (<strong>rem</strong>).</p>
+
+<h3 class="text-hr"><span>Synthesis Issues</span></h3>
+
+<p>Most predefined operators are synthesizable, providing they are used with types accepted by the synthesis tool. See also <a href="">type declarations</a> and <a href="">overloading</a>.</p>
+
+<p>The following are not usually synthesizable, except as part of a constant expression: exponentiation (**), division by other than 2, mod, rem.</p>
+
+<h3 class="text-hr"><span>New in VHDL-93</span></h3>
+
+<p>New shift and rotate operators are defined for one-dimensional arrays of bit or boolean:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="ow">sll</span> <span class="c1">-- shift left logical</span>
+<span class="ow">srl</span> <span class="c1">-- shift right logical</span>
+<span class="ow">sla</span> <span class="c1">-- shift left arithmetic</span>
+<span class="ow">sra</span> <span class="c1">-- shift right arithmetic</span>
+<span class="ow">rol</span> <span class="c1">-- rotate left</span>
+<span class="ow">ror</span> <span class="c1">-- rotate right</span>
+</code></pre></div></div>
+
+
+
+<br>
+<hr>
+
+
+        <div id="footer">
+            <h6>v1.0 - &copy; 2020 Michael Riegert - <a href="https://github.com/nobodywasishere/vhdlref">View on Github</a>
+<br>Distributed under the terms of the <a href="LICENSE.html">MIT License</a></h6>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

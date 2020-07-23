@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href=css/main.css />
+    <link rel="stylesheet" href=css/code.css />
+    <link rel="apple-touch-icon" sizes="57x57"         href=assets/icons/apple-icon-57x57.png>
+    <link rel="apple-touch-icon" sizes="60x60"         href=assets/icons/apple-icon-60x60.png>
+    <link rel="apple-touch-icon" sizes="72x72"         href=assets/icons/apple-icon-72x72.png>
+    <link rel="apple-touch-icon" sizes="76x76"         href=assets/icons/apple-icon-76x76.png>
+    <link rel="apple-touch-icon" sizes="114x114"       href=assets/icons/apple-icon-114x114.png>
+    <link rel="apple-touch-icon" sizes="120x120"       href=assets/icons/apple-icon-120x120.png>
+    <link rel="apple-touch-icon" sizes="144x144"       href=assets/icons/apple-icon-144x144.png>
+    <link rel="apple-touch-icon" sizes="152x152"       href=assets/icons/apple-icon-152x152.png>
+    <link rel="apple-touch-icon" sizes="180x180"       href=assets/icons/apple-icon-180x180.png>
+    <link rel="icon" type="image/png" sizes="192x192"  href=assets/icons/android-icon-192x192.png>
+    <link rel="icon" type="image/png" sizes="32x32"    href=assets/icons/favicon-32x32.png>
+    <link rel="icon" type="image/png" sizes="96x96"    href=assets/icons/favicon-96x96.png>
+    <link rel="icon" type="image/png" sizes="16x16"    href=assets/icons/favicon-16x16.png>
+</head>
+
+
+<body>
+
+    <div id="content">
+
+        <title>Null Statement</title>
+
+<span>
+    <h2 style="align-items: center;">
+        <a href=index.html class="text-norm">
+            <img src="assets/icon.svg" alt="logo" style="vertical-align:middle; margin: auto 2px 5px auto; width: 50px; height: 50px" />
+            VHDLref
+        </a>
+    </h2>
+</span>
+
+<hr>
+
+<h1>Null Statement</h1>
+
+<br>
+<div class="chart">
+    <table class="chart">
+        <tr>
+            <td bgcolor="lightcyan">
+                
+                Sequential Statement
+                
+                
+            </td>
+
+            
+            
+            <td style="border: 0px solid transparent; width: 24%">——used—in—></td>
+
+            <td bgcolor="lightgreen">
+                
+                Process
+                
+                <br>
+                
+                
+                Function
+                
+                <br>
+                
+                
+                Procedure
+                
+                
+            </td>
+            
+        </tr>
+
+        
+        
+    </table>
+</div>
+<br>
+<h3 class="text-hr"><span>Syntax</span></h3>
+
+<!-- include the vhdl tag to highlight as vhdl -->
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">null</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>See LRM section 8.12</p>
+
+<h3 class="text-hr"><span>Rules and Examples</span></h3>
+
+<p>The null statement performs no action. It is usually used with the case statement to indicate that under certain conditions, no action is required.</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">case</span> <span class="n">ENCRYPTION</span> <span class="k">is</span>
+    <span class="k">when</span> <span class="s1">"00"</span> <span class="o">=&gt;</span>
+        <span class="n">CPU_DATA_TMP</span> <span class="p">:</span><span class="o">=</span> <span class="p">(</span><span class="n">B</span> <span class="o">&amp;</span> <span class="n">A</span><span class="p">)</span> <span class="o">-</span> <span class="n">OPERAND</span><span class="p">;</span>
+    <span class="k">when</span> <span class="s1">"01"</span> <span class="o">=&gt;</span>
+        <span class="n">CPU_DATA_TMP</span> <span class="p">:</span><span class="o">=</span> <span class="p">(</span><span class="n">B</span> <span class="o">&amp;</span> <span class="n">A</span><span class="p">)</span> <span class="o">+</span> <span class="n">OPERAND</span><span class="p">;</span>
+    <span class="k">when</span> <span class="s1">"10"</span> <span class="o">=&gt;</span>
+        <span class="n">CPU_DATA_TMP</span> <span class="p">:</span><span class="o">=</span> <span class="p">(</span><span class="n">A</span> <span class="o">&amp;</span> <span class="n">B</span><span class="p">)</span> <span class="o">-</span> <span class="n">OPERAND</span><span class="p">;</span>
+    <span class="k">when</span> <span class="s1">"11"</span> <span class="o">=&gt;</span>
+        <span class="n">CPU_DATA_TMP</span> <span class="p">:</span><span class="o">=</span> <span class="p">(</span><span class="n">A</span> <span class="o">&amp;</span> <span class="n">B</span><span class="p">)</span> <span class="o">+</span> <span class="n">OPERAND</span><span class="p">;</span>
+    <span class="k">when</span> <span class="k">others</span> <span class="o">=&gt;</span>
+        <span class="nb">null</span><span class="p">;</span>
+<span class="k">end</span> <span class="k">case</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 class="text-hr"><span>Synthesis Issues</span></h3>
+
+<p>The <strong>null</strong> statement is supported by synthesis tools.</p>
+
+<p>Note: using a <strong>null</strong> statement in a “combinational process” can result in latches being inferred, unless all signals driven by the process are given unconditional default assignments.</p>
+
+<h3 class="text-hr"><span>New in VHDL-93</span></h3>
+
+<p>In VHDL-93, the <strong>null</strong> may have an optional label:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">label</span> <span class="nb">null</span><span class="p">;</span>
+</code></pre></div></div>
+
+
+
+<br>
+<hr>
+
+
+        <div id="footer">
+            <h6>v1.0 - &copy; 2020 Michael Riegert - <a href="https://github.com/nobodywasishere/vhdlref">View on Github</a>
+<br>Distributed under the terms of the <a href="LICENSE.html">MIT License</a></h6>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

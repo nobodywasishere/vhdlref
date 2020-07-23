@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href=css/main.css />
+    <link rel="stylesheet" href=css/code.css />
+    <link rel="apple-touch-icon" sizes="57x57"         href=assets/icons/apple-icon-57x57.png>
+    <link rel="apple-touch-icon" sizes="60x60"         href=assets/icons/apple-icon-60x60.png>
+    <link rel="apple-touch-icon" sizes="72x72"         href=assets/icons/apple-icon-72x72.png>
+    <link rel="apple-touch-icon" sizes="76x76"         href=assets/icons/apple-icon-76x76.png>
+    <link rel="apple-touch-icon" sizes="114x114"       href=assets/icons/apple-icon-114x114.png>
+    <link rel="apple-touch-icon" sizes="120x120"       href=assets/icons/apple-icon-120x120.png>
+    <link rel="apple-touch-icon" sizes="144x144"       href=assets/icons/apple-icon-144x144.png>
+    <link rel="apple-touch-icon" sizes="152x152"       href=assets/icons/apple-icon-152x152.png>
+    <link rel="apple-touch-icon" sizes="180x180"       href=assets/icons/apple-icon-180x180.png>
+    <link rel="icon" type="image/png" sizes="192x192"  href=assets/icons/android-icon-192x192.png>
+    <link rel="icon" type="image/png" sizes="32x32"    href=assets/icons/favicon-32x32.png>
+    <link rel="icon" type="image/png" sizes="96x96"    href=assets/icons/favicon-96x96.png>
+    <link rel="icon" type="image/png" sizes="16x16"    href=assets/icons/favicon-16x16.png>
+</head>
+
+
+<body>
+
+    <div id="content">
+
+        <title>Process</title>
+
+<span>
+    <h2 style="align-items: center;">
+        <a href=index.html class="text-norm">
+            <img src="assets/icon.svg" alt="logo" style="vertical-align:middle; margin: auto 2px 5px auto; width: 50px; height: 50px" />
+            VHDLref
+        </a>
+    </h2>
+</span>
+
+<hr>
+
+<h1>Process</h1>
+
+<br>
+<div class="chart">
+    <table class="chart">
+        <tr>
+            <td bgcolor="lightcyan">
+                
+                Concurrent Statement
+                
+                
+            </td>
+
+            
+            
+            <td style="border: 0px solid transparent; width: 24%">——used—in—></td>
+
+            <td bgcolor="lightgreen">
+                
+                Architecture
+                
+                
+            </td>
+            
+        </tr>
+
+        
+        
+    </table>
+</div>
+<br>
+<h3 class="text-hr"><span>Syntax</span></h3>
+
+<!-- include the vhdl tag to highlight as vhdl -->
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">optional_label</span><span class="p">:</span> <span class="k">process</span> <span class="p">(</span>
+    <span class="c1">-- optional sensitivity list</span>
+<span class="p">)</span>
+	<span class="c1">-- declarations</span>
+<span class="k">begin</span>
+	<span class="c1">-- sequential statements</span>
+<span class="k">end</span> <span class="k">process</span> <span class="n">optional_label</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>See LRM section 9.2</p>
+
+<h3 class="text-hr"><span>Rules and Examples</span></h3>
+
+<p>The sensitivity list is a list of signals. A change in value on one or more of these signals, causes the process to be activated:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">process</span> <span class="p">(</span><span class="n">ALARM_TIME</span><span class="p">,</span> <span class="n">CURRENT_TIME</span><span class="p">)</span>
+<span class="k">begin</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">ALARM_TIME</span> <span class="o">=</span> <span class="n">CURRENT_TIME</span><span class="p">)</span> <span class="k">then</span>
+        <span class="n">SOUND_ALARM</span> <span class="o">&lt;=</span> <span class="sc">'1'</span><span class="p">;</span>
+    <span class="k">else</span>
+        <span class="n">SOUND_ALARM</span> <span class="o">&lt;=</span> <span class="sc">'0'</span><span class="p">;</span>
+    <span class="k">end</span> <span class="k">if</span><span class="p">;</span>
+<span class="k">end</span> <span class="k">process</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Alternatively, process activation and suspension may be controlled via the wait statement:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">process</span>
+<span class="k">begin</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">ALARM_TIME</span> <span class="o">=</span> <span class="n">CURRENT_TIME</span><span class="p">)</span> <span class="k">then</span>
+        <span class="n">SOUND_ALARM</span> <span class="o">&lt;=</span> <span class="sc">'1'</span><span class="p">;</span>
+    <span class="k">else</span>
+        <span class="n">SOUND_ALARM</span> <span class="o">&lt;=</span> <span class="sc">'0'</span><span class="p">;</span>
+    <span class="k">end</span> <span class="k">if</span><span class="p">;</span>
+    <span class="k">wait</span> <span class="k">on</span> <span class="n">ALARM_TIME</span><span class="p">,</span> <span class="n">CURRENT_TIME</span><span class="p">;</span>
+<span class="k">end</span> <span class="k">process</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>A process cannot have both a sensitivity list and wait statements. A process may contain any sequential statement.</p>
+
+<h3 class="text-hr"><span>Synthesis Issues</span></h3>
+
+<p>Processes are synthesizable, provided they match certain typical forms, some of which are shown below.</p>
+
+<p>A “clocked process” with either a wait statement or sensitivity list. For such a process, registers are inferred on all signals which have assignments to them:</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">WAIT_PROC</span><span class="p">:</span> <span class="k">process</span>
+<span class="k">begin</span>
+    <span class="k">wait</span> <span class="k">until</span> <span class="n">CLK</span><span class="na">'event</span> <span class="ow">and</span> <span class="n">CLK</span><span class="o">=</span><span class="sc">'1'</span><span class="p">;</span>
+    <span class="n">Q1</span> <span class="o">&lt;=</span> <span class="n">D1</span><span class="p">;</span>
+<span class="k">end</span> <span class="k">process</span><span class="p">;</span>
+
+<span class="n">SENSE_PROC</span><span class="p">:</span> <span class="k">process</span> <span class="p">(</span><span class="n">CLK</span><span class="p">)</span>
+<span class="k">begin</span>
+    <span class="k">if</span> <span class="n">CLK</span><span class="na">'event</span> <span class="ow">and</span> <span class="n">CLK</span><span class="o">=</span><span class="sc">'1'</span> <span class="k">then</span>
+        <span class="n">Q2</span> <span class="o">&lt;=</span> <span class="n">D2</span><span class="p">;</span>
+    <span class="k">end</span> <span class="k">if</span><span class="p">;</span>
+<span class="k">end</span> <span class="k">process</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>A “combinational process” must have a sensitivity list containing all the signals which it reads (inputs), and must always update the signals which it assigns (outputs):</p>
+<div class="language-vhdl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">process</span> <span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">SEL</span><span class="p">)</span>
+<span class="k">begin</span>
+    <span class="n">Z</span> <span class="o">&lt;=</span> <span class="n">B</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">SEL</span> <span class="o">=</span> <span class="sc">'1'</span><span class="p">)</span> <span class="k">then</span>
+        <span class="n">Z</span> <span class="o">&lt;=</span> <span class="n">A</span><span class="p">;</span>
+    <span class="k">end</span> <span class="k">if</span><span class="p">;</span>
+<span class="k">end</span> <span class="k">process</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 class="text-hr"><span>New in VHDL-93</span></h3>
+
+<p>In VHDL-93, the keyword <strong>process</strong> (or the sensitivity list, if there is one) may be followed by the keyword <strong>is</strong> for clarity and consistency.</p>
+
+<p>In VHDL-93, a postponed process may be defined. Such a process runs when all normal processes have completed at a particular point in simulated time. Postponed processes cannot schedule any further zero-delay events. Their main use is to perform timing or functional checks, based on the “steady-state” values of signals.</p>
+
+
+
+<br>
+<hr>
+
+
+        <div id="footer">
+            <h6>v1.0 - &copy; 2020 Michael Riegert - <a href="https://github.com/nobodywasishere/vhdlref">View on Github</a>
+<br>Distributed under the terms of the <a href="LICENSE.html">MIT License</a></h6>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
