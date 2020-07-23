@@ -8,7 +8,14 @@
 
         {%- if page.permalink != navpage.permalink and navpage.title != "VHDL Reference" and navpage.title != "" -%}
 
-            <h3 class="text-hr"><span><a class="text-norm" href="{{ navpage.permalink | baseurl }}">{{ navpage.title }}</a></span></h3>
+            <h3 class="text-hr"><span><a class="text-norm" href="{{ navpage.permalink | baseurl }}">
+
+            {%- if navpage.title-short -%}
+                {{ navpage.title }}
+            {%- else -%}
+                {{ navpage.title }}
+            {%- endif -%}
+            </a></span></h3>
 
         {%- endif -%}
 

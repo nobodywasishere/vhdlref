@@ -2,6 +2,7 @@
 permalink: conc_s_a.html # url you want the page to be at
 layout: refpage
 title: "Concurrent Signal Assignment"
+title-short: "Conc. Signal Assign."
 chart-left: "Concurrent Statement" # for the left side of the chart
 chart-right: [Architecture] # for the right side of the chart
 tags: [] # list of tags

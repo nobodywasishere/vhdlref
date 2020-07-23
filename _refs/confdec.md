@@ -2,6 +2,7 @@
 permalink: cofdec.html # url you want the page to be at
 layout: refpage
 title: "Configuration Declaration"
+title-short: "Config. Declaration"
 description: "Template Page."
 chart-left: "Primary Library Unit" # for the left side of the chart
 chart-right: # for the right side of the chart

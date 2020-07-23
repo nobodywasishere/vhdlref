@@ -2,6 +2,7 @@
 permalink: confspec.html # url you want the page to be at
 layout: refpage
 title: "Configuration Specification"
+title-short: "Config. Specification"
 description: "Configuration Specification."
 chart-left: "Specification" # for the left side of the chart
 chart-right: [Architecture] # for the right side of the chart
