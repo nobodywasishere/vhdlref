@@ -21,12 +21,12 @@ Meaning:
 - [x] Open source - anyone can take and use for their own purposes without restriction
 - [x] None or limited use of images and colors
 - [x] Works on a variety of devices and web browsers
-- [ ] Up to date with currently used standards
+- [ ] Up to date with currently used standards (need to support VHDL-08)
 - [x] One major focus or topic per page
 - [x] No JavaScript - static HTML and CSS only
 - [ ] Search engine optimized
-- [ ] Meaningful example code that is easy to follow
+- [x] Meaningful example code that is easy to follow
 - [x] Relative links to/from every page
-- [ ] Easy for visually impaired to use
+- [ ] Easy for visually impaired to use (need people to test)
 
 Pull requests and forks are welcome.
