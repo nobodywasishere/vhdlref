@@ -8,19 +8,25 @@ This website is distributed under the terms of the MIT license, except for the a
 
 ---
 
+There has been some work put into turning this website into a webapp using Cordova. Currently only the Android build has been tested. Running `make android` will build the website and application and put it in the cordova folder. While webapps are not ideal, the website is light enough that any performance loss is made up in being able to seamlessly change the website all at once, instead of having multiple sources.
+
+---
+
 Design Goals:
 * Accessible
 * Simple
 * Useful
 
 Meaning:
-* Open source - anyone can take and use for their own purposes without restriction
-* None or limited use of images and colors
-* Works on a variety of devices and web browsers
-* Up to date with currently used standards
-* One major focus or topic per page
-* No JavaScript - static HTML and CSS only
-* Search engine optimized
-* Meaningful example code that is easy to follow
-* Relative links to/from every page
-* Easy for visually impaired to use
+- [x] Open source - anyone can take and use for their own purposes without restriction
+- [x] None or limited use of images and colors
+- [x] Works on a variety of devices and web browsers
+- [ ] Up to date with currently used standards
+- [x] One major focus or topic per page
+- [x] No JavaScript - static HTML and CSS only
+- [ ] Search engine optimized
+- [ ] Meaningful example code that is easy to follow
+- [x] Relative links to/from every page
+- [ ] Easy for visually impaired to use
+
+Pull requests and forks are welcome.
