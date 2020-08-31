@@ -5,7 +5,7 @@ title: "Alias Declaration"
 description: "An alias is an alternative name for an existing object (signal, variable or constant). It does not define a new object."
 chart-left: "Declaration" # for the left side of the chart
 chart-right: [Entity,Package,Process,Architecture,Procedure,Function] # for the right side of the chart
-tag: [alias]
+tag: [alias, declaration - alias]
 ---
 
 
@@ -30,12 +30,9 @@ use work.BV_ARITH.all;
 
 --
 
-alias OPERAND : bit_vector(1 downto 0)
-       is CPU_BUFFER(LOW) (4 downto 3);
-alias A       : bit_vector(3 downto 0)
-       is CPU_BUFFER(HIGH)(3 downto 0);
-alias B       : bit_vector(2 downto 0)
-       is CPU_BUFFER(LOW) (2 downto 0);
+alias OPERAND : bit_vector(1 downto 0) is CPU_BUFFER(LOW) (4 downto 3);
+alias A       : bit_vector(3 downto 0) is CPU_BUFFER(HIGH)(3 downto 0);
+alias B       : bit_vector(2 downto 0) is CPU_BUFFER(LOW) (2 downto 0);
 
 --
 
@@ -44,11 +41,9 @@ CPU_DATA_TMP := (B & A) + OPERAND;
 
 An alias of an array object can be indexed in the opposite direction
 ```vhdl
-signal BUS_A :
-    std_ulogic_vector(7 downto 0);
+signal BUS_A : std_ulogic_vector(7 downto 0);
 
-alias BIT_REV_A :
-    std_ulogic_vector(0 to 7) is BUS_A;
+alias BIT_REV_A : std_ulogic_vector(0 to 7) is BUS_A;
 ```
 
 <h3 class="text-hr"><span>Synthesis Issues</span></h3>
