@@ -84,7 +84,3 @@ X_2D(3,1) <= 4;
 Most logic synthesis tools accept one-dimensional arrays of other supported types. 1-D arrays of 1-D arrays are often supported. Some tools also allow true 2-D arrays, but not more dimensions.
 
 Note that arrays are usually implemented using gates and flip-flops, not ROM's and RAM's.
-
-<h3 class="text-hr"><span>New in VHDL-93</span></h3>
-
-Array types have not changed in VHDL-93.

@@ -7,7 +7,7 @@ chart-left: "Concurrent Statement" # for the left side of the chart
 chart-right: [Entity,Architecture] # for the right side of the chart
 chart2-left: "Sequential Statement" # for the left side of the chart
 chart2-right: [Process,Function,Procedure] # for the right side of the chart
-tags: [assert, severity level, concurrent, unconditional, report, statement - concurrent, message - unconditional]
+tags: [assert, severity level, concurrent, unconditional, report, statement - concurrent, message - unconditional, process, process - postponed]
 ---
 
 
@@ -15,6 +15,10 @@ tags: [assert, severity level, concurrent, unconditional, report, statement - co
 
 ```vhdl
 assert condition report string severity severity_level;
+```
+
+```vhdl
+label: assert condition report string severity severity_level;
 ```
 
 See LRM sections 8.2 and 9.4
@@ -63,18 +67,14 @@ begin
 end process CHECK_SETUP;
 ```
 
-<h3 class="text-hr"><span>Synthesis Issues</span></h3>
-
-Assert statements are ignored by logic synthesis tools.
-
-<h3 class="text-hr"><span>New in VHDL-93</span></h3>
-
-In VHDL-93, the __assert__ statement may have an option label.
-
-A concurrent __assert__ statement may be run as a postponed [__process__]({{'process.html' | baseurl }}).
-
-VHDL-93 allows __report__ to be used on it's own as a sequential statement, giving the same functionality as __assert false__, except that the default severity is __note__.
+__Report__ can be used on it's own as a sequential statement, giving the same functionality as __assert false__, except that the default severity is __note__.
 
 ```vhdl
 MSG1: report "Starting test sequence" severity note;
 ```
+
+A concurrent __assert__ statement may be run as a postponed [__process__]({{'process.html' | baseurl }}).
+
+<h3 class="text-hr"><span>Synthesis Issues</span></h3>
+
+Assert statements are ignored by logic synthesis tools.

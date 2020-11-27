@@ -20,6 +20,15 @@ case expression is
 end case;
 ```
 
+```vhdl
+[label:] case expression is
+    when choice =>
+        sequential statements
+    when choice =>
+        sequential statements
+end case [label];
+```
+
 See LRM section 8.7
 
 <h3 class="text-hr"><span>Rules and Examples</span></h3>
@@ -82,14 +91,4 @@ case READ_CPU_STATE is
     when DATA1 =>
         -- etc.
 end case;
-```
-
-<h3 class="text-hr"><span>New in VHDL-93</span></h3>
-
-In VHDL-93, the __case__ statement may have an optional label:
-
-```vhdl
-label: case expression is
-    -- etc.
-end case label;
 ```

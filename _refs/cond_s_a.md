@@ -5,7 +5,7 @@ title: "Conditional Signal Assignment"
 title-short: "Cond. Signal Assign."
 chart-left: "Concurrent Statement" # for the left side of the chart
 chart-right: [Architecture] # for the right side of the chart
-tags: [] # list of tags
+tags: [unaffected, process - postponed, inertial, reject, signal assignment] # list of tags
 ---
 
 <h3 class="text-hr"><span>Syntax</span></h3>
@@ -14,6 +14,10 @@ tags: [] # list of tags
 ```vhdl
 signal_name <= expression_1 when condition_1 else
                expression_2 when condition_2 else expression_3;
+```
+
+```vhdl
+label: signal_name <= expression_1 when condition_1 else expression_3;
 ```
 
 See LRM section 9.5.1
@@ -59,6 +63,14 @@ begin
 end COND;
 ```
 
+The __unaffected__ keyword can be used to indicate a condition when a signal is not given a new assignment:
+```vhdl
+label: signal <= expression_1 when condition_1 else
+                 expression_2 when condition_2 else unaffected;
+```
+
+The keywords __inertial__ and __reject__ may also be used in a conditional signal assignment.
+
 <h3 class="text-hr"><span>Synthesis Issues</span></h3>
 
 Conditional signal assignments are generally synthesizable.
@@ -69,14 +81,5 @@ If a signal is conditionally assigned to itself, latches may be inferred.
 
 <h3 class="text-hr"><span>New in VHDL-93</span></h3>
 
-In VHDL-93, any signal assigment statement may have an optinal label.
-
-VHDL-93 defines an __unaffected__ keyword, which indicates a condition when a signal is not given a new assignment:
-```vhdl
-label: signal <= expression_1 when condition_1 else
-                 expression_2 when condition_2 else unaffected;
-```
-
-The keywords __inertial__ and __reject__ may also be used in a conditional signal assignment.
 
 A conditional signal assignment can be specified to run as a __postponed process__.

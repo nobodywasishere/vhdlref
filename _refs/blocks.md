@@ -12,7 +12,7 @@ tags: [guard condition, guarded block, guarded signal assignments, guarded signa
 <h3 class="text-hr"><span>Syntax</span></h3>
 
 ```vhdl
-label: block (optional_guard_condition)
+label: block (optional_guard_condition) is
     declarations
 begin
     concurrent statements
@@ -67,11 +67,3 @@ Unguarded __block__ statements are usually ignored by logic synthesis tools (i.e
 __Guarded block__ statements are __not__ usually supported for synthesis.
 
 Sequential (i.e. flip-flop and register) behavior can be modeled using guarded blocks, but again for synthesis and readability it is better described using "clocked" processes.
-
-<h3 class="text-hr"><span>New in VHDL-93</span></h3>
-
-In VHDL-93 the keyword __block__ (or the guard condition, if there is one), may be followed by the keyword __is__, for consistancy.:
-```vhdl
-label: block (optional guard_condition) is
-    -- etc
-```

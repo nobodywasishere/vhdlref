@@ -5,7 +5,7 @@ title: "Concurrent Signal Assignment"
 title-short: "Conc. Signal Assign."
 chart-left: "Concurrent Statement" # for the left side of the chart
 chart-right: [Architecture] # for the right side of the chart
-tags: [] # list of tags
+tags: [signal assignment, process, block, inertial, transport] # list of tags
 ---
 
 <h3 class="text-hr"><span>Syntax</span></h3>
@@ -13,6 +13,10 @@ tags: [] # list of tags
 <!-- include the vhdl tag to highlight as vhdl -->
 ```vhdl
 signal_name <= expression;
+```
+
+```vhdl
+label: signal_name <= expression;
 ```
 
 ```vhdl
@@ -64,9 +68,17 @@ begin
 end TRANS;
 ```
 
+A delayed signal assignment with inertial delay may be explicitly preceded by the keyword __inertial__. It may also have a __reject time__ specified. This is the minimum "pulse width" to be propagated, if different from the inertial delay:
+
+```vhdl
+OUTPUT <= reject 2 ns inertial not (INPUT) after 10 ns;
+```
+
 Multiple concurrent assignments to the same signal imply multiple drivers. A signal which is the target of multiple concurrent signal assignments must be of a resolved type, e.g. std_logic, std_logic_vector.
 
 For __guarded assignments__, see __blocks__.
+
+A concurrent signal assignment can be specified to run as a postponed process (see __process__).
 
 <h3 class="text-hr"><span>Synthesis Issues</span></h3>
 
@@ -75,17 +87,3 @@ Concurrent signal assignments are generally synthesizable, providing they use ty
 A signal assigned with a concurrent statement will be inferred as combinational logic.
 
 Guarded assignments are not usually supported, and delays are ignored.
-
-<h3 class="text-hr"><span>New in VHDL-93</span></h3>
-
-In VHDL-93, any signal assignment statement may have an optional label:
-```vhdl
-label: signal_name <= expression;
-```
-
-A delayed signal assignment with inertial delay may be explicitly preceded by the keyword __inertial__. It may also have a __reject time__ specified. This is the minimum "pulse width" to be propagated, if different from the inertial delay:
-```vhdl
-OUTPUT <= reject 2 ns inertial not (INPUT) after 10 ns;
-```
-
-A concurrent signal assignment can be specified to run as a postponed process (see __process__).

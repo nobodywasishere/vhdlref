@@ -87,7 +87,3 @@ variable D_BUS : std_ulogic_vector(63 downto 0) :=
 <h3 class="text-hr"><span>Synthesis Issues</span></h3>
 
 Logic synthesis tools may not support named association fully. Also, record assignments using aggregates may not be supported.
-
-<h3 class="text-hr"><span>New in VHDL-93</span></h3>
-
-Aggregates have not changed in VHDL-93.

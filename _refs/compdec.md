@@ -5,21 +5,21 @@ title: "Component Declaration"
 description: "Component Declaration."
 chart-left: "Declaration" # for the left side of the chart
 chart-right: [Architecture, Package] # for the right side of the chart
-tags: [configuration, begin, component, declaration]
+tags: [configuration, begin, component, declaration, component instantiation]
 ---
 
 
 <h3 class="text-hr"><span>Syntax</span></h3>
 
 ```vhdl
-component component_name
+component component_name is
     generic (
         generic_list
     );
     port (
         port_list
     );
-end component;
+end component [component_name];
 ```
 
 See LRM sections 4.5, 1.1.1.1 and 1.1.1.2
@@ -28,7 +28,7 @@ See LRM sections 4.5, 1.1.1.1 and 1.1.1.2
 
 The port list must define the name, the mode (i.e.direction) and the type of each port on the component.
 ```vhdl
-component HALFADD
+component HALFADD is
     port (
         A,B : in bit;
         SUM, CARRY : out bit
@@ -44,7 +44,7 @@ architecture STRUCTURAL of FULLADD is
 
     -- (local signal declarations here)
 
-    component ORGATE
+    component ORGATE is
         port (
             A, B : in bit;
             Z : out bit
@@ -64,7 +64,7 @@ A component declared in a package is visible in any architecture which uses the 
 
 For a component with generics, these must be declared before the ports. They do not have a mode, as by definition they can only pass information into the entity:
 ```vhdl
-component PARITY
+component PARITY is
     generic (
         N : integer
     );
@@ -75,17 +75,8 @@ component PARITY
 end component;
 ```
 
+An entity-architecture pair can be instantiated directly. In this case a component declaration is not required. This is more compact, but does not allow the flexibility of configuration. See [__Component Instantiation__]({{'compinst.html' | baseurl }}).
+
 <h3 class="text-hr"><span>Synthesis Issues</span></h3>
 
 __Component__ declarations are supported for synthesis, providing the port types are acceptable to the logic synthesis tool. Usually, only generics of type integer are supported. Whether a synthesis tool will "flatten through" a component, treat is as a "black box", or recognize it as a primitive is usually under the user's control.
-
-<h3 class="text-hr"><span>New in VHDL-93</span></h3>
-
-In VHDL-93, an entity-architecture pair can be instantiated directly. In this case a component declaration is not required. This is more compact, but does not allow the flexibility of configuration.
-
-In VHDL-93, the component name may be followed by the keyword __is__, for clarity and consistency. Also the keywords __end__ and __component__ may be followed by a repetition of the component name:
-```vhdl
-component component_name is
-    port (port list);
-end component component_name;
-```

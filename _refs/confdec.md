@@ -29,7 +29,7 @@ configuration config_name of entity_name is
             end for;
         end for;
     end for;
-end config_name;
+end [configuration] config_name;
 ```
 
 ```vhdl
@@ -81,14 +81,8 @@ configuration CFG_FULLADD_DELAY of FULLADD is
 end CFG_FULLADD_DELAY;
 ```
 
+A configuration __specification__ for a component (or instance) may legally be overridden by a configuration __declaration__ for the same item.
+
 <h3 class="text-hr"><span>Synthesis Issues</span></h3>
 
 Configuration is not usually supported by synthesis tools. The user usually has to ensure that component and entity names and ports match, and that only one architecture per entity is analyzed.
-
-<h3 class="text-hr"><span>New in VHDL-93</span></h3>
-
-In VHDL-93, an entity-architecture pair may be directly instantiated, i.e. a component need not be declared. this is more compact, but does not allow the flexibility of configuration.
-
-In VHDL-93, a configuration __specification__ for a component (or instance) may legally be overridden by a configuration __declaration__ for the same item. This was not allowed in VHDL-87.
-
-In VHDL-93, the keyword __end__ may be followed by the keyword __configuration__ for clarity and consistency.

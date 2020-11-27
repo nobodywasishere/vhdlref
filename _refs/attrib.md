@@ -55,7 +55,14 @@ These attributes create a __new signal__, based on signal X:
 
 |      Name     |                  Definition                  |
 |:-------------:|:--------------------------------------------:|
+| X'ascending      | True if index range of X is ascending                                |
 | X'delayed(T)  | Signal X delayed by T (same type as X)       |
+| X'driving        | True if a process is driving signal X                                |
+| X'driving_value  | Value a process is driving signal X with                             |
+| X'image(literal) | String representation of enumeration literal                         |
+| X'instance_name  | Path downto and including X, excluding entity and architecture names |
+| X'path_name      | Path downto and including X, excluding entity and architecture names |
+| X'simple_name    | String equivalent to the name of X                                   |
 | X'stable(T)   | True if X unaltered for time T (boolean)     |
 | X'quiet(T)    | True if X is unassigned for time T (boolean) |
 | X'transaction | "Toggles" when X is assigned (bit)           |
@@ -68,24 +75,10 @@ attribute PTYPE of U1 : component is PLCC;
 attribute PTYPE of U2 : component is DIL;
 ```
 
+The __group__ construct allows collections of VHDL objects of different classes to be grouped together to allow common attributes to be set for the elements of these groups.
+
 <h3 class="text-hr"><span>Synthesis Issues</span></h3>
 
-Logic synthesis tools usually support the predefined attributes __'high__, __'low__, __'left__, __'right__, __'range__, __reverse_range__, __'length__, and __'event__. Some tools support __'last_value__ and __'stable__
+Logic synthesis tools usually support the predefined attributes __'high__, __'low__, __'left__, __'right__, __'range__, __'reverse_range__, __'length__, and __'event__. Some tools support __'last_value__ and __'stable__
 
 Several synthesis vendors define a set of attributes to supply synthesis directives such as area or timing constraints, enumeration encoding, etc.
-
-<h3 class="text-hr"><span>New in VHDL-93</span></h3>
-
-VHDL-93 has several new predefined attributes:
-
-|       Name       |                              Definition                              |
-|:----------------:|:--------------------------------------------------------------------:|
-| X'driving        | True if a process is driving signal X                                |
-| X'driving_value  | Value a process is driving signal X with                             |
-| X'ascending      | True if index range of X is ascending                                |
-| X'image(literal) | String representation of enumeration literal                         |
-| X'simple_name    | String equivalent to the name of X                                   |
-| X'instance_name  | Path downto and including X, excluding entity and architecture names |
-| X'path_name      | Path downto and including X, excluding entity and architecture names |
-
-The __group__ construct allows collections of VHDL objects of different classes to be grouped together to allow common attributes to be set for the elements of these groups.

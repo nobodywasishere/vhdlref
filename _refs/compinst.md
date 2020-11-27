@@ -5,14 +5,20 @@ title: "Component Instantiation"
 description: "Template Page."
 chart-left: "Concurrent Statement" # for the left side of the chart
 chart-right: [Architecture] # for the right side of the chart
-tags: [list, positional, named, association, open, map - generic]
+tags: [list, positional, named, association, open, map - generic, component instantiation]
 ---
 
 
 <h3 class="text-hr"><span>Syntax</span></h3>
 
 ```vhdl
-instance_label: component_name
+instance_label: [component] component_name
+    generic map (generic_association_list)
+    port map (port_association_list);
+```
+
+```vhdl
+instance_label: entity entity_name
     generic map (generic_association_list)
     port map (port_association_list);
 ```
@@ -79,14 +85,13 @@ U1 : PARITY
     );
 ```
 
-<h3 class="text-hr"><span>Synthesis Issues</span></h3>
+An entity-architecture pair may be directly instantiated (a component doesn't need to be declared). This is more compact, but does not allow the flexibility of configuration:
 
-Component instantiation is supported for synthesis, although __generic map__ is usually ignored. Whether a logic synthesis tool will "flatten through" a component, treat it as a "black box", or recognize it as a primitive is usually under the user's control.
-
-<h3 class="text-hr"><span>New in VHDL-93</span></h3>
-
-In VHDL-93, an entity-architecture pair may be directly instantiated (a component doesn't need to be declared). This is more compact, but does not allow the flexibility of configuration:
 ```vhdl
 DIRECT: entity HA_ENTITY(HA_ARCH)
     port map ( A, B, S, C);
 ```
+
+<h3 class="text-hr"><span>Synthesis Issues</span></h3>
+
+Component instantiation is supported for synthesis, although __generic map__ is usually ignored. Whether a logic synthesis tool will "flatten through" a component, treat it as a "black box", or recognize it as a primitive is usually under the user's control.

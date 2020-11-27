@@ -5,7 +5,7 @@ title: "Architecture"
 description: "An architecture is the secondary unit. It can contain any mix of component instances, processes or other concurrent statements"
 chart-left: "Secondary Unit" # for the left side of the chart
 chart-right: # for the right side of the chart
-tags: [architecture, configuration, end, shared variables, bound]
+tags: [architecture, configuration, end, variable - shared, bound]
 ---
 
 
@@ -21,7 +21,7 @@ begin
 
     -- concurrent statements
 
-end architecture_name;
+end [architecture] architecture_name;
 ```
 
 <h3 class="text-hr"><span>Rules and Examples</span></h3>
@@ -113,14 +113,10 @@ An entity can have one or more architectures. which one is used (or "bound") dep
 
 An architecture cannot be analyzed unless the entity it refers to exists in the same design library.
 
+__Shared variables__ may be declared within an architecture. Shared variables may be accessed by more than one process. However, the language does not define what happens if two or more processes make conflicting accesses to a shared variable at the same time.
+
 <h3 class="text-hr"><span>Synthesis Issues</span></h3>
 
 Architectures are fully supported by synthesis tools, provided the declarations and statements they contain are compatible with synthesis.
 
 Configuration is not usually supported by synthesis tools, so only one architecture per entity may be analyzed. With some tools, this architecture must be in the same design file as the entity.
-
-<h3 class="text-hr"><span>New in VHDL-93</span></h3>
-
-In VHDL-93, the keyword __end__ may be followed by the keyword __architecture__, for clarity and consistency.
-
-In VHDL-93, __shared variables__ may be declared within an architecture. Shared variables may be accessed by more than one process. However, the language does not define what happens if two or more processes make conflicting accesses to a shared variable at the same time.
