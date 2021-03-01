@@ -22,7 +22,7 @@ title: VHDLref
 email: michael@eowyn.net
 description: >- # this means to ignore newlines until "baseurl:"
   A usable language reference for VHDL that is concise, direct, and easy to understand
-baseurl: "/vhdlref-jtd" # the subpath of your site, e.g. /blog
+baseurl: "/vhdlref" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  nobodywasishere
 
