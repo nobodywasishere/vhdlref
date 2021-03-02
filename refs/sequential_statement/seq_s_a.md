@@ -2,8 +2,7 @@
 permalink: seq_s_a.html
 layout: refpage
 title: "Sequential Signal Assignment"
-chart-left: "Sequential Statement"
-chart-right: [Process, Procedure]
+used-in: [Process, Procedure]
 tags: []
 parent: Sequential Statements
 lrm:

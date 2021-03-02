@@ -3,8 +3,7 @@ permalink: conc_s_a.html
 layout: refpage
 title: "Concurrent Signal Assignment"
 title-short: "Conc. Signal Assign."
-chart-left: "Concurrent Statement"
-chart-right: [Architecture]
+used-in: [Architecture]
 tags: [signal assignment, process, block, inertial, transport]
 parent: Concurrent Statements
 lrm:

@@ -2,8 +2,7 @@
 permalink: waits.html
 layout: refpage
 title: "Wait Statement"
-chart-left: "Sequential Statement"
-chart-right: [Process, Procedure]
+used-in: [Process, Procedure]
 tags: [statement - wait, wait, wait for, wait on, wait until, until, time, "'event", process - clocked, process - combinational]
 parent: Sequential Statements
 lrm:

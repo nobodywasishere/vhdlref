@@ -2,9 +2,7 @@
 permalink: aliasdec.html
 layout: refpage
 title: "Alias Declaration"
-description: "An alias is an alternative name for an existing object (signal, variable or constant). It does not define a new object."
-chart-left: "Declaration"
-chart-right: [Entity,Package,Process,Architecture,Procedure,Function]
+used-in: [Entity,Package,Process,Architecture,Procedure,Function]
 tag: [alias, declaration - alias]
 parent: Declarations
 lrm:

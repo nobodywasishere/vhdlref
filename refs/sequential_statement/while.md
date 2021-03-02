@@ -2,8 +2,7 @@
 permalink: while.html
 layout: refpage
 title: "While and Infinite Loop"
-chart-left: "Sequential Statement"
-chart-right: [Process, Function, Procedure]
+used-in: [Process, Function, Procedure]
 tags: [loop, loop - while, loop - infinite, wait, exit]
 parent: Sequential Statements
 lrm:

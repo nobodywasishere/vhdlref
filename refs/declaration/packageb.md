@@ -2,8 +2,7 @@
 permalink: packageb.html
 layout: refpage
 title: "Package Body"
-chart-left: "Secondary Library Unit"
-chart-right:
+used-in:
 tags: [type, subtype, constant, file, alias, attribute, function, procedure, body, package, wait, unconstrained, end, constant, process - postponed]
 parent: Declarations
 lrm:

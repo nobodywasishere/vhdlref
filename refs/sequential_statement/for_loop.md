@@ -2,8 +2,7 @@
 permalink: for_loop.html
 layout: refpage
 title: "For Loop"
-chart-left: "Sequential Statement"
-chart-right: [Process, Function, Procedure]
+used-in: [Process, Function, Procedure]
 tags: [loop - for, range, "'high", "'low", "'range", wait]
 parent: Sequential Statements
 lrm:

@@ -2,8 +2,7 @@
 permalink: nexts.html
 layout: refpage
 title: "Next Statement"
-chart-left: "Sequential Statement"
-chart-right: [Loop, For Loop, While Loop]
+used-in: [Loop, For Loop, While Loop]
 parent: Sequential Statements
 lrm:
     - 93: [8.9]

@@ -2,8 +2,7 @@
 permalink: exist.html
 layout: refpage
 title: "Exit Statement"
-chart-left: "Sequential Statement"
-chart-right: [For Loop, While Loop]
+used-in: [For Loop, While Loop]
 tags: [loop, loop - for, loop - while, when, exit]
 parent: Sequential Statements
 lrm:

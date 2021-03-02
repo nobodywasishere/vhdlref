@@ -2,8 +2,7 @@
 permalink: procedur.html
 layout: refpage
 title: "Procedure"
-chart-left: "Declaration"
-chart-right: [Package, Entity, Architecture, Process, Procedure, Function]
+used-in: [Package, Entity, Architecture, Process, Procedure, Function]
 tags: [unconstrained, package body, statement - wait, process, function, package, process - postponed]
 parent: Declarations
 lrm:

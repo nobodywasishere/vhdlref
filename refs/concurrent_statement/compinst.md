@@ -2,9 +2,7 @@
 permalink: compinst.html
 layout: refpage
 title: "Component Instantiation"
-description: "Template Page."
-chart-left: "Concurrent Statement"
-chart-right: [Architecture]
+used-in: [Architecture]
 tags: [list, positional, named, association, open, map - generic, component instantiation]
 parent: Concurrent Statements
 lrm:

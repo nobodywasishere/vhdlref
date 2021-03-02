@@ -1,8 +1,8 @@
-{% assign crsize = page.chart-right | size %}
+{% assign crsize = page.used-in | size %}
 {% if crsize != 0 %}
 <h2>Used In</h2>
 <ul>
-    {% for cr in page.chart-right %}
+    {% for cr in page.used-in %}
         <li>{{ cr }}</li>
     {% endfor %}
 </ul>

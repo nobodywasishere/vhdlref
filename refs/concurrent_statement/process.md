@@ -2,8 +2,7 @@
 permalink: process.html
 layout: refpage
 title: "Process"
-chart-left: "Concurrent Statement"
-chart-right: [Architecture]
+used-in: [Architecture]
 tags: []
 parent: Concurrent Statements
 lrm:

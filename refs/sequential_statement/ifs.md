@@ -2,8 +2,7 @@
 permalink: ifs.html
 layout: refpage
 title: "If Statement"
-chart-left: "Sequential Statement"
-chart-right: [Process, Function, Procedure]
+used-in: [Process, Function, Procedure]
 tags: [if, elif, else]
 parent: Sequential Statements
 lrm:

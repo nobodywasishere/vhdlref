@@ -3,8 +3,7 @@ permalink: cond_s_a.html
 layout: refpage
 title: "Conditional Signal Assignment"
 title-short: "Cond. Signal Assign."
-chart-left: "Concurrent Statement"
-chart-right: [Architecture]
+used-in: [Architecture]
 tags: [unaffected, process - postponed, inertial, reject, signal assignment]
 parent: Concurrent Statements
 lrm:

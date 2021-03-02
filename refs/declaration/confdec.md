@@ -3,15 +3,15 @@ permalink: cofdec.html
 layout: refpage
 title: "Configuration"
 title-short: "Config."
-description: "Template Page."
-chart-left: "Primary Library Unit"
-chart-right:
+used-in:
 tags: [configuration, declaration, default binding, last analyzed, all, others, specification, declaration, end]
 parent: Declarations
 lrm:
     - 93: [1.3]
 ---
 
+Add information about what a configuration is and what it's used for
+{: .todo }
 
 ## Syntax
 

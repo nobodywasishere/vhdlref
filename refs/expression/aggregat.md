@@ -2,9 +2,7 @@
 permalink: aggregat.html
 layout: refpage
 title: "Aggregate"
-description: "Aggregates are a grouping of values to form an array or record expression."
-chart-left: "Expression"
-chart-right: [Entity, Architecture, Package, Package Body]
+used-in: [Entity, Architecture, Package, Package Body]
 tags: [aggregate, association - positional, association - named, others]
 parent: Expressions
 ---

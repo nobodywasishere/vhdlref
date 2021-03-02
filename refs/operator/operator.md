@@ -2,8 +2,7 @@
 permalink: operator.html
 layout: refpage
 title: "Logical Operations"
-chart-left: "Operator"
-chart-right: [Expression]
+used-in: [Expression]
 lrm:
     - 93: [7.2]
 ---

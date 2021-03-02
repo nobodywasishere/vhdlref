@@ -2,8 +2,7 @@
 permalink: subt_dec.html
 layout: refpage
 title: "Subtype Declaration"
-chart-left: "Declaration"
-chart-right: [Package, Entity, Architecture, Process, Procedure, Function]
+used-in: [Package, Entity, Architecture, Process, Procedure, Function]
 tags: []
 parent: Declarations
 lrm:

@@ -2,9 +2,7 @@
 permalink: arrays.html
 layout: refpage
 title: "Array"
-description: "An arraycontains multiple elements of the same type."
-chart-left: "Declaration"
-chart-right: [Package, Entity, Architecture, Process, Procedure, Function]
+used-in: [Package, Entity, Architecture, Process, Procedure, Function]
 tags: [array, 'array - unconstrained', string, bit_vector, std_logic_vector, literals, concatenation, aggregates, slices, position]
 parent: Declarations
 lrm:

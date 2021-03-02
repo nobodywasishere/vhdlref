@@ -2,9 +2,7 @@
 permalink: assert.html
 layout: refpage
 title: "Assert"
-description: "The assert statement tests a boolean condition. If this returns false, it outputs a message containing the report string to the simulator screen."
-chart-left: "Concurrent Statement"
-chart-right: [Entity,Architecture,Process,Function,Procedure]
+used-in: [Entity,Architecture,Process,Function,Procedure]
 tags: [assert, severity level, concurrent, unconditional, report, statement - concurrent, message - unconditional, process, process - postponed]
 parent: Concurrent Statements
 parent: Sequential Statements

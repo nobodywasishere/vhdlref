@@ -2,9 +2,7 @@
 permalink: entity.html
 layout: refpage
 title: "Entity"
-description: "Entity."
-chart-left: "Primary Library Unit"
-chart-right:
+used-in:
 tags: [entity, declaration - entity]
 parent: Declarations
 lrm:

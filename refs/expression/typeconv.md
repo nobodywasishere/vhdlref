@@ -2,8 +2,7 @@
 permalink: typeconv.html
 layout: refpage
 title: "Type Conversion"
-chart-left: "Expression"
-chart-right: [Package, Entity, Architecture, Process, Procedure, Function]
+used-in: [Package, Entity, Architecture, Process, Procedure, Function]
 tags: []
 parent: Expressions
 lrm:

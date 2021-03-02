@@ -2,8 +2,7 @@
 permalink: sig_dec.html
 layout: refpage
 title: "Signal Declaration"
-chart-left: "Declaration"
-chart-right: [Architecture]
+used-in: [Architecture]
 tags: ["'left"]
 parent: Declarations
 lrm:

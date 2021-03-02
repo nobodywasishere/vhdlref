@@ -2,8 +2,7 @@
 permalink: use.html
 layout: refpage
 title: "Use Clause"
-chart-left: "Context Clause"
-chart-right: [Entity, Architecture, Package, Configuration]
+used-in: [Entity, Architecture, Package, Configuration]
 tags: []
 parent: Context Clause
 lrm:

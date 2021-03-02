@@ -2,8 +2,7 @@
 permalink: sel_s_a.html
 layout: refpage
 title: "Selected Signal Assignment"
-chart-left: "Concurrent Statement"
-chart-right: [Architecture]
+used-in: [Architecture]
 tags: []
 parent: Concurrent Statements
 lrm:

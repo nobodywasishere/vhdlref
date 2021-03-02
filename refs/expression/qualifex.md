@@ -2,8 +2,7 @@
 permalink: qualifex.html
 layout: refpage
 title: "Qualified Expression"
-chart-left: "Expression"
-chart-right: [Entity, Architecture, Package, Package Body]
+used-in: [Entity, Architecture, Package, Package Body]
 tags: []
 parent: Expressions
 lrm:

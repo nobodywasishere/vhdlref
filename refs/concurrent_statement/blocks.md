@@ -2,9 +2,7 @@
 permalink: blocks.html
 layout: refpage
 title: "Block Statement"
-description: "Template Page."
-chart-left: "Concurrent Statement"
-chart-right: [Architecture]
+used-in: [Architecture]
 tags: [guard condition, guarded block, guarded signal assignments, guarded signals, bus, register, unguarded block, block]
 parent: Concurrent Statements
 lrm:

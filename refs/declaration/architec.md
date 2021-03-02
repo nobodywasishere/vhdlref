@@ -2,9 +2,7 @@
 permalink: architec.html
 layout: refpage
 title: "Architecture"
-description: "An architecture is the secondary unit. It can contain any mix of component instances, processes or other concurrent statements"
-chart-left: "Secondary Library Unit"
-chart-right:
+used-in:
 tags: [architecture, configuration, end, variable - shared, bound]
 parent: Declarations
 ---

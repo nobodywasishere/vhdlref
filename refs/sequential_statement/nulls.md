@@ -2,8 +2,7 @@
 permalink: nulls.html
 layout: refpage
 title: "Null Statement"
-chart-left: "Sequential Statement"
-chart-right: [Process, Function, Procedure]
+used-in: [Process, Function, Procedure]
 parent: Sequential Statements
 lrm:
     - 93: [8.12]

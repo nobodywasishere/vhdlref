@@ -2,9 +2,7 @@
 permalink: constdec.html
 layout: refpage
 title: "Constant Declaration"
-description: "Template Page."
-chart-left: "Declaration"
-chart-right: [Entity, Package, Process, Architecture, Procedure, Function]
+used-in: [Entity, Package, Process, Architecture, Procedure, Function]
 parent: Declarations
 lrm:
     - 93: [4.3.1.1]

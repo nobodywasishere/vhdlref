@@ -2,8 +2,7 @@
 permalink: generate.html
 layout: refpage
 title: "Generate Statement"
-chart-left: "Concurrent Statement"
-chart-right: [Architecture]
+used-in: [Architecture]
 tags: [generate, generics, generate - for, generate - if]
 parent: Concurrent Statements
 lrm:

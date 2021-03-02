@@ -2,8 +2,7 @@
 permalink: names.html
 layout: refpage
 title: "Names"
-chart-left: "Identifier"
-chart-right: [Entity, Architecture, Package, Package Body, Configuration]
+used-in: [Entity, Architecture, Package, Package Body, Configuration]
 parent: Expressions
 lrm:
     - 93: [13.3]

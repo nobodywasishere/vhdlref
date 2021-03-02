@@ -2,8 +2,7 @@
 permalink: library.html
 layout: refpage
 title: "Library Clause"
-chart-left: "Context Clause"
-chart-right: [Entity, Package, Configuration]
+used-in: [Entity, Package, Configuration]
 tags: []
 parent: Context Clause
 lrm:

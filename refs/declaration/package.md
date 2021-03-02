@@ -2,8 +2,7 @@
 permalink: package.html
 layout: refpage
 title: "Package"
-chart-left: "Primary Library Unit"
-chart-right:
+used-in:
 tags: [type, subtype, constant, file, alias, component, attribute, function, procedure, package, use clause, package body, deferred, shared variables, groups]
 parent: Declarations
 lrm:

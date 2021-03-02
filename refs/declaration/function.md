@@ -2,8 +2,7 @@
 permalink: function.html
 layout: refpage
 title: "Function"
-chart-left: "Declaration"
-chart-right: [Package, Entity, Process, Procedure, Function]
+used-in: [Package, Entity, Process, Procedure, Function]
 tags: [functions, signal assignment, wait, package, std_logic_1164, user defined functions, function - pure, function - impure]
 parent: Declarations
 lrm:

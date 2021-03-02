@@ -2,8 +2,7 @@
 permalink: type_dec.html
 layout: refpage
 title: "Type Declaration"
-chart-left: "Declaration"
-chart-right: [Package, Entity, Architecture, Process, Procedure, Function]
+used-in: [Package, Entity, Architecture, Process, Procedure, Function]
 tags: []
 parent: Declarations
 lrm:

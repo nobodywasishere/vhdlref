@@ -2,8 +2,7 @@
 permalink: var_dec.html
 layout: refpage
 title: "Variable Declaration"
-chart-left: "Declaration"
-chart-right: [Process, Procedure, Function]
+used-in: [Process, Procedure, Function]
 tags: []
 parent: Declarations
 lrm:

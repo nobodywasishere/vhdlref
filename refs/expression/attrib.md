@@ -2,8 +2,7 @@
 permalink: attrib.html
 layout: refpage
 title: "Attribute"
-chart-left: "Attribute"
-chart-right: [Entity,Architecture,Package,Package Body]
+used-in: [Entity,Architecture,Package,Package Body]
 tags: [attributes, user defined attributes, group, "'high", "'low", "'left", "'right", "'range",
 "'reverse_range", "'length", "'event", "'active", "'last_event", "'last_active", "'last_value", "'delayed(T)", "'stable(T)", "'quiet(T)", "'transaction", "'driving", "'driving_value", "'ascending", "'image(literal)", "'simple_name", "'instance_name", "'path_name"]
 parent: Expressions

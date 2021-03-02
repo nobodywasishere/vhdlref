@@ -2,9 +2,7 @@
 permalink: cases.html
 layout: refpage
 title: "Case Statement"
-description: "Case Statement."
-chart-left: "Sequential Statement"
-chart-right: [Process, Function, Procedure]
+used-in: [Process, Function, Procedure]
 tags: [others, case, null]
 parent: Sequential Statements
 lrm:

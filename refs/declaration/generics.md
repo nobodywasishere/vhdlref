@@ -2,8 +2,7 @@
 permalink: generics.html
 layout: refpage
 title: "Generic"
-chart-left: "Declaration"
-chart-right: [Entity, Component]
+used-in: [Entity, Component]
 tags: [generics, map - generic]
 parent: Declarations
 lrm:

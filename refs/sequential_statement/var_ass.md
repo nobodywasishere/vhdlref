@@ -2,8 +2,7 @@
 permalink: var_ass.html
 layout: refpage
 title: "Variable Assignment"
-chart-left: "Sequential Statement"
-chart-right: [Process, Procedure, Function]
+used-in: [Process, Procedure, Function]
 tags: []
 parent: Sequential Statements
 lrm:
