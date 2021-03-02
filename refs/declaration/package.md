@@ -3,9 +3,9 @@ permalink: package.html
 layout: refpage
 title: "Package"
 chart-left: "Primary Library Unit"
-chart-right: 
+chart-right:
 tags: [type, subtype, constant, file, alias, component, attribute, function, procedure, package, use clause, package body, deferred, shared variables, groups]
-parent: Primary Library Unit
+parent: Declarations
 lrm:
     - 93: [2.5]
 ---

@@ -1,9 +1,10 @@
 ---
 permalink: literals.html
 layout: refpage
-title: "Literal"
+title: "Literals"
 chart-left: "Literal"
 chart-right: [Expression]
+parent: Expressions
 lrm:
     - 93: [7.3.1, 13.4, 3.1.1, 3.1.3]
 ---

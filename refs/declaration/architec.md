@@ -6,7 +6,7 @@ description: "An architecture is the secondary unit. It can contain any mix of c
 chart-left: "Secondary Library Unit"
 chart-right:
 tags: [architecture, configuration, end, variable - shared, bound]
-parent: Secondary Library Unit
+parent: Declarations
 ---
 
 

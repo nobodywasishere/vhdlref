@@ -1,7 +1,7 @@
 ---
 permalink: operator.html
 layout: refpage
-title: "Operator"
+title: "Logical Operations"
 chart-left: "Operator"
 chart-right: [Expression]
 lrm:

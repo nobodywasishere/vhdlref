@@ -1,13 +1,13 @@
 ---
 permalink: cofdec.html
 layout: refpage
-title: "Configuration Declaration"
-title-short: "Config. Declaration"
+title: "Configuration"
+title-short: "Config."
 description: "Template Page."
 chart-left: "Primary Library Unit"
 chart-right:
 tags: [configuration, declaration, default binding, last analyzed, all, others, specification, declaration, end]
-parent: Primary Library Unit
+parent: Declarations
 lrm:
     - 93: [1.3]
 ---

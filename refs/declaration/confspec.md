@@ -3,13 +3,15 @@ permalink: confspec.html
 layout: refpage
 title: "Configuration Specification"
 title-short: "Config. Specification"
-description: "Configuration Specification."
-chart-left: "Specification"
-chart-right: [Architecture]
+used-in: [Architecture]
 tags: [specification, all, others, default binding, last analyzed, declaration]
+parent: Declarations
 lrm:
     - 93: [5.2]
 ---
+
+Add information about what a configuration is and what it's used for
+{: .todo }
 
 ## Syntax
 

@@ -5,7 +5,7 @@ title: "Package Body"
 chart-left: "Secondary Library Unit"
 chart-right:
 tags: [type, subtype, constant, file, alias, attribute, function, procedure, body, package, wait, unconstrained, end, constant, process - postponed]
-parent: Secondary Library Unit
+parent: Declarations
 lrm:
     - 93: [2.6]
 ---

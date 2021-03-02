@@ -6,7 +6,7 @@ description: "Entity."
 chart-left: "Primary Library Unit"
 chart-right:
 tags: [entity, declaration - entity]
-parent: Primary Library Unit
+parent: Declarations
 lrm:
     - 93: [1.1]
 ---
