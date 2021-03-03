@@ -1,7 +1,7 @@
 ---
 permalink: compdec.html
 layout: refpage
-title: "Component Declaration"
+title: "Component"
 used-in: [Architecture, Package]
 tags: [configuration, begin, component, declaration, component instantiation]
 parent: Declarations

@@ -1,7 +1,7 @@
 ---
 permalink: aliasdec.html
 layout: refpage
-title: "Alias Declaration"
+title: "Alias"
 used-in: [Entity,Package,Process,Architecture,Procedure,Function]
 tag: [alias, declaration - alias]
 parent: Declarations

@@ -1,7 +1,7 @@
 ---
 permalink: type_dec.html
 layout: refpage
-title: "Type Declaration"
+title: "Type"
 used-in: [Package, Entity, Architecture, Process, Procedure, Function]
 tags: []
 parent: Declarations

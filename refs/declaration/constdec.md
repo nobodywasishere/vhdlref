@@ -1,7 +1,7 @@
 ---
 permalink: constdec.html
 layout: refpage
-title: "Constant Declaration"
+title: "Constant"
 used-in: [Entity, Package, Process, Architecture, Procedure, Function]
 parent: Declarations
 lrm:

@@ -1,7 +1,7 @@
 ---
 permalink: filedec.html
 layout: refpage
-title: "File Declaration"
+title: "File"
 used-in: [Package Process Architecture Procedure Function]
 tags: [file, mode, in, out, endfile, readline, read, std.textio, write, writeln, bit, bit_vector, boolean, character, integer, real, string, time, "'image", "'value"]
 parent: Declarations

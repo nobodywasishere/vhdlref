@@ -1,7 +1,7 @@
 ---
 permalink: subt_dec.html
 layout: refpage
-title: "Subtype Declaration"
+title: "Subtype"
 used-in: [Package, Entity, Architecture, Process, Procedure, Function]
 tags: []
 parent: Declarations

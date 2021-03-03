@@ -1,7 +1,7 @@
 ---
 permalink: sig_dec.html
 layout: refpage
-title: "Signal Declaration"
+title: "Signal"
 used-in: [Architecture]
 tags: ["'left"]
 parent: Declarations

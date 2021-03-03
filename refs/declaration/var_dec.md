@@ -1,7 +1,7 @@
 ---
 permalink: var_dec.html
 layout: refpage
-title: "Variable Declaration"
+title: "Variable"
 used-in: [Process, Procedure, Function]
 tags: []
 parent: Declarations
