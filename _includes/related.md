@@ -12,11 +12,11 @@
                     </a> See Also
                 </h2>
                 {%- assign tagEnableFlag = 1 -%}
+                <ul>
             {%- endif -%}
-            <ul>
             <li><a href="{{ site.baseurl }}/{{ refs.permalink }}">{{ refs.title }}</a></li>
             {%- assign prevRef = refs.title -%}
-            </ul>
         {%- endif -%}
     {%- endfor -%}
 {%- endfor -%}
+</ul>
