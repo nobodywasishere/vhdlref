@@ -7,8 +7,6 @@ lrm:
     - 93: [7.2]
 ---
 
-
-
 ## Syntax
 
 See reference manual.
@@ -26,12 +24,12 @@ C <= A xnor B;
 C <= not B;
 ```
 
-| A | B | and | or | nand | nor | xor | xnor | not |
-|---|---|-----|----|------|-----|-----|------|-----|
-| 0 | 0 | 0   | 0  | 1    | 1   | 0   | 1    | 1   |
-| 0 | 1 | 0   | 1  | 1    | 0   | 1   | 0    | 0   |
-| 1 | 0 | 0   | 1  | 1    | 0   | 1   | 0    | 1   |
-| 1 | 1 | 1   | 1  | 1    | 0   | 0   | 1    | 0   |
+| A | B | and | or | nand | nor | xor | xnor |
+|---|---|-----|----|------|-----|-----|------|
+| 0 | 0 | 0   | 0  | 1    | 1   | 0   | 1    |
+| 0 | 1 | 0   | 1  | 1    | 0   | 1   | 0    |
+| 1 | 0 | 0   | 1  | 1    | 0   | 1   | 0    |
+| 1 | 1 | 1   | 1  | 0    | 0   | 0   | 1    |
 
 The equality and inequality operators are predefined for all types, and they return a boolean value:
 ```vhdl

@@ -48,7 +48,7 @@ begin
 end STRUCT;
 ```
 
-The association <mark>list</mark> defines which local signals connect to which component ports. The association <mark>list</mark> above is __positional__, i.e. the signals are connected up in the order in which the ports were declared.
+The association list defines which local signals connect to which component ports. The association list above is __positional__, i.e. the signals are connected up in the order in which the ports were declared.
 
 The alternative is __named association__, where ports are explicitly referenced and order is not important:
 ```vhdl

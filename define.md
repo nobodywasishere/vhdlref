@@ -4,6 +4,12 @@ title: Definitions
 nav_order: 0
 ---
 
+{: .todo }
+Change this to follow the new layout
+
+Term
+: Brief description of Term
+
 <!-- Generated using https://www.tablesgenerator.com/markdown_tables -->
 
 <table class="define">
