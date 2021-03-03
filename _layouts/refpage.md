@@ -7,3 +7,5 @@ layout: default
 {%- include chart.md -%}
 
 {{ content }}
+
+{%- include related.md -%}
