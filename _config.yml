@@ -19,7 +19,7 @@
 # in the templates via {{ site.myvariable }}.
 
 title: VHDLref
-email: michael@eowyn.net
+email: margret@eowyn.net
 description: >- # this means to ignore newlines until "baseurl:"
   A usable language reference for VHDL that is concise, direct, and easy to understand
 baseurl: "/vhdlref" # the subpath of your site, e.g. /blog
@@ -102,7 +102,7 @@ heading_anchors: true
 # appears at the bottom of every page's main content
 # Note: The footer_content option is deprecated and will be removed in a future major release. Please use `_includes/footer_custom.html` for more robust
 # markup / liquid-based content.
-footer_content: "Copyright &copy; 2020-2021 Michael Riegert. Distributed by an <a href=\"/license.html\">MIT license.</a>"
+footer_content: "Copyright &copy; 2020-2021 Margret Riegert. Distributed by an <a href=\"/license.html\">MIT license.</a>"
 
 # Footer last edited timestamp
 last_edit_timestamp: true # show or hide edit time - page must have `last_modified_date` defined in the frontmatter
